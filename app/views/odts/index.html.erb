@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Odts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>Description</th>
+      <th>Razon social</th>
+      <th>Monto contrato</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @odts.each do |odt| %>
+      <tr>
+        <td><%= odt.code %></td>
+        <td><%= odt.description %></td>
+        <td><%= odt.razon_social_id %></td>
+        <td><%= odt.monto_contrato %></td>
+        <td><%= link_to 'Show', odt %></td>
+        <td><%= link_to 'Edit', edit_odt_path(odt) %></td>
+        <td><%= link_to 'Destroy', odt, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Odt', new_odt_path %>

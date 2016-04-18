@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  odt_id: 
+  gg_id: 
+  inversion_id: 
+  loan_id: 
+  retencione_id: 
+  monto: 9.99
+  balance: 9.99
+  n_comprobante: MyString
+  description: MyText
+
+two:
+  odt_id: 
+  gg_id: 
+  inversion_id: 
+  loan_id: 
+  retencione_id: 
+  monto: 9.99
+  balance: 9.99
+  n_comprobante: MyString
+  description: MyText

@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Retenciones</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Code factura</th>
+      <th>Razon social</th>
+      <th>Type</th>
+      <th>Monto</th>
+      <th>Description</th>
+      <th>Status</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @retenciones.each do |retencione| %>
+      <tr>
+        <td><%= retencione.code_factura %></td>
+        <td><%= retencione.razon_social_id %></td>
+        <td><%= retencione.type %></td>
+        <td><%= retencione.monto %></td>
+        <td><%= retencione.description %></td>
+        <td><%= retencione.status %></td>
+        <td><%= link_to 'Show', retencione %></td>
+        <td><%= link_to 'Edit', edit_retencione_path(retencione) %></td>
+        <td><%= link_to 'Destroy', retencione, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Retencione', new_retencione_path %>

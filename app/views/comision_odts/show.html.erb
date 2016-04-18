@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Odt:</strong>
+  <%= @comision_odt.odt_id %>
+</p>
+
+<p>
+  <strong>Employee:</strong>
+  <%= @comision_odt.employee_id %>
+</p>
+
+<p>
+  <strong>P comision:</strong>
+  <%= @comision_odt.p_comision %>
+</p>
+
+<%= link_to 'Edit', edit_comision_odt_path(@comision_odt) %> |
+<%= link_to 'Back', comision_odts_path %>

@@ -1,0 +1,81 @@
+  [1m[36m (37.2ms)[0m  [1mCREATE TABLE `articles` (`id` int(11) auto_increment PRIMARY KEY, `title` varchar(255), `text` text, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (40.3ms)[0m  CREATE TABLE `auth_groups` (`id` int(11) auto_increment PRIMARY KEY, `name` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (40.5ms)[0m  [1mCREATE TABLE `employee_groups` (`id` int(11) auto_increment PRIMARY KEY, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL, `auth_group_id` int(11), `employee_id` int(11)) ENGINE=InnoDB[0m
+  [1m[35m (89.9ms)[0m  CREATE  INDEX `index_employee_groups_on_auth_group_id` USING btree ON `employee_groups` (`auth_group_id`) 
+  [1m[36m (84.0ms)[0m  [1mCREATE  INDEX `index_employee_groups_on_employee_id` USING btree ON `employee_groups` (`employee_id`) [0m
+  [1m[35m (65.4ms)[0m  CREATE TABLE `employees` (`id` int(11) auto_increment PRIMARY KEY, `cedula` varchar(255), `name` varchar(255), `last_name` varchar(255), `phone_number` varchar(255), `email` varchar(255), `address` text, `startdate` date, `note` text, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (39.8ms)[0m  [1mCREATE TABLE `users` (`id` int(11) auto_increment PRIMARY KEY, `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(255) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime, `remember_created_at` datetime, `sign_in_count` int(11) DEFAULT 0 NOT NULL, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `current_sign_in_ip` varchar(255), `last_sign_in_ip` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (77.4ms)[0m  CREATE UNIQUE INDEX `index_users_on_email` USING btree ON `users` (`email`) 
+  [1m[36m (77.7ms)[0m  [1mCREATE UNIQUE INDEX `index_users_on_reset_password_token` USING btree ON `users` (`reset_password_token`) [0m
+  [1m[35m (114.5ms)[0m  ALTER TABLE `employee_groups` ADD CONSTRAINT `fk_rails_f00770e433`
+FOREIGN KEY (`auth_group_id`)
+  REFERENCES `auth_groups` (`id`)
+
+  [1m[36m (133.1ms)[0m  [1mALTER TABLE `employee_groups` ADD CONSTRAINT `fk_rails_4af8e31bfb`
+FOREIGN KEY (`employee_id`)
+  REFERENCES `employees` (`id`)
+[0m
+  [1m[35m (44.7ms)[0m  CREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB
+  [1m[36m (95.4ms)[0m  [1mCREATE UNIQUE INDEX `unique_schema_migrations`  ON `schema_migrations` (`version`) [0m
+  [1m[35m (0.4ms)[0m  SELECT version FROM `schema_migrations`
+  [1m[36m (17.3ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20160412184609')[0m
+  [1m[35m (18.0ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20160411070145')
+  [1m[36m (17.9ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20160408062448')[0m
+  [1m[35m (17.9ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20160403161741')
+  [1m[36m (17.8ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20160412165838')[0m
+  [1m[35m (18.2ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20160411063920')
+  [1m[36m (17.8ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20160411065609')[0m
+  [1m[35m (18.1ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20160412162926')
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+  [1m[36m (0.2ms)[0m  [1mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'railsapp_test'
+  AND fk.table_name = 'articles'
+[0m
+  [1m[35m (0.1ms)[0m  SHOW CREATE TABLE `articles`
+  [1m[36m (0.1ms)[0m  [1mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'railsapp_test'
+  AND fk.table_name = 'auth_groups'
+[0m
+  [1m[35m (0.1ms)[0m  SHOW CREATE TABLE `auth_groups`
+  [1m[36m (0.1ms)[0m  [1mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'railsapp_test'
+  AND fk.table_name = 'employee_groups'
+[0m
+  [1m[35m (0.1ms)[0m  SHOW CREATE TABLE `employee_groups`
+  [1m[36m (0.1ms)[0m  [1mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'railsapp_test'
+  AND fk.table_name = 'employees'
+[0m
+  [1m[35m (0.1ms)[0m  SHOW CREATE TABLE `employees`
+  [1m[36m (0.1ms)[0m  [1mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'railsapp_test'
+  AND fk.table_name = 'users'
+[0m
+  [1m[35m (0.1ms)[0m  SHOW CREATE TABLE `users`

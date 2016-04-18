@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Odt:</strong>
+  <%= @deducciones_odt.odt_id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @deducciones_odt.name %>
+</p>
+
+<p>
+  <strong>P gasto:</strong>
+  <%= @deducciones_odt.p_gasto %>
+</p>
+
+<%= link_to 'Edit', edit_deducciones_odt_path(@deducciones_odt) %> |
+<%= link_to 'Back', deducciones_odts_path %>

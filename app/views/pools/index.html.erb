@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Pools</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Odt</th>
+      <th>Gg</th>
+      <th>Inversion</th>
+      <th>Loan</th>
+      <th>Retencione</th>
+      <th>Monto</th>
+      <th>Balance</th>
+      <th>N comprobante</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @pools.each do |pool| %>
+      <tr>
+        <td><%= pool.odt %></td>
+        <td><%= pool.gg %></td>
+        <td><%= pool.inversion %></td>
+        <td><%= pool.loan %></td>
+        <td><%= pool.retencione %></td>
+        <td><%= pool.monto %></td>
+        <td><%= pool.balance %></td>
+        <td><%= pool.n_comprobante %></td>
+        <td><%= pool.description %></td>
+        <td><%= link_to 'Show', pool %></td>
+        <td><%= link_to 'Edit', edit_pool_path(pool) %></td>
+        <td><%= link_to 'Destroy', pool, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Pool', new_pool_path %>

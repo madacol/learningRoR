@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160403161741) do
+ActiveRecord::Schema.define(version: 20160416054258) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title",      limit: 255
@@ -20,4 +20,176 @@ ActiveRecord::Schema.define(version: 20160403161741) do
     t.datetime "updated_at",               null: false
   end
 
+  create_table "auth_groups", force: :cascade do |t|
+    t.string   "name",         limit: 255
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+    t.boolean  "odt",                      default: false, null: false
+    t.boolean  "gg",                       default: false, null: false
+    t.boolean  "inversion",                default: false, null: false
+    t.boolean  "loan",                     default: false, null: false
+    t.boolean  "employee",                 default: false, null: false
+    t.boolean  "retencione",               default: false, null: false
+    t.boolean  "pool",                     default: false, null: false
+    t.boolean  "razon_social",             default: false, null: false
+    t.boolean  "auth_group",               default: false, null: false
+  end
+
+  create_table "comision_odts", force: :cascade do |t|
+    t.integer  "odt_id",      limit: 4,                         null: false
+    t.integer  "employee_id", limit: 4,                         null: false
+    t.decimal  "p_comision",            precision: 6, scale: 6, null: false
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
+  end
+
+  add_index "comision_odts", ["employee_id"], name: "index_comision_odts_on_employee_id", using: :btree
+  add_index "comision_odts", ["odt_id"], name: "index_comision_odts_on_odt_id", using: :btree
+
+  create_table "deducciones_odts", force: :cascade do |t|
+    t.integer  "odt_id",     limit: 4,                           null: false
+    t.string   "name",       limit: 255,                         null: false
+    t.decimal  "p_gasto",                precision: 6, scale: 6, null: false
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
+  end
+
+  add_index "deducciones_odts", ["odt_id"], name: "index_deducciones_odts_on_odt_id", using: :btree
+
+  create_table "employee_groups", force: :cascade do |t|
+    t.integer  "employee_id",   limit: 4
+    t.integer  "auth_group_id", limit: 4
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  add_index "employee_groups", ["auth_group_id"], name: "index_employee_groups_on_auth_group_id", using: :btree
+  add_index "employee_groups", ["employee_id"], name: "index_employee_groups_on_employee_id", using: :btree
+
+  create_table "employees", force: :cascade do |t|
+    t.string   "cedula",       limit: 255
+    t.string   "name",         limit: 255
+    t.string   "last_name",    limit: 255
+    t.string   "phone_number", limit: 255
+    t.string   "email",        limit: 255
+    t.text     "address",      limit: 65535
+    t.date     "startdate"
+    t.text     "note",         limit: 65535
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  create_table "ggs", force: :cascade do |t|
+    t.string   "code",        limit: 255,   null: false
+    t.text     "description", limit: 65535, null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "ggs", ["code"], name: "index_ggs_on_code", unique: true, using: :btree
+
+  create_table "inversions", force: :cascade do |t|
+    t.string   "code",        limit: 255,   null: false
+    t.text     "description", limit: 65535, null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "inversions", ["code"], name: "index_inversions_on_code", unique: true, using: :btree
+
+  create_table "odts", force: :cascade do |t|
+    t.string   "code",            limit: 255,                            null: false
+    t.text     "description",     limit: 65535,                          null: false
+    t.integer  "razon_social_id", limit: 4,                              null: false
+    t.decimal  "monto_contrato",                precision: 10, scale: 2, null: false
+    t.datetime "created_at",                                             null: false
+    t.datetime "updated_at",                                             null: false
+  end
+
+  add_index "odts", ["code"], name: "index_odts_on_code", unique: true, using: :btree
+  add_index "odts", ["razon_social_id"], name: "index_odts_on_razon_social_id", using: :btree
+
+  create_table "pools", force: :cascade do |t|
+    t.integer  "odt_id",           limit: 4
+    t.integer  "gg_id",            limit: 4
+    t.integer  "inversion_id",     limit: 4
+    t.integer  "employee_id",      limit: 4
+    t.integer  "retencione_id",    limit: 4
+    t.integer  "cuenta",           limit: 4
+    t.integer  "comprobante_type", limit: 4
+    t.string   "n_comprobante",    limit: 255
+    t.decimal  "monto",                          precision: 10, scale: 2
+    t.decimal  "balance",                        precision: 10, scale: 2
+    t.text     "description",      limit: 65535
+    t.datetime "created_at",                                              null: false
+    t.datetime "updated_at",                                              null: false
+  end
+
+  add_index "pools", ["employee_id"], name: "index_pools_on_employee_id", using: :btree
+  add_index "pools", ["gg_id"], name: "index_pools_on_gg_id", using: :btree
+  add_index "pools", ["inversion_id"], name: "index_pools_on_inversion_id", using: :btree
+  add_index "pools", ["odt_id"], name: "index_pools_on_odt_id", using: :btree
+  add_index "pools", ["retencione_id"], name: "index_pools_on_retencione_id", using: :btree
+
+  create_table "razon_socials", force: :cascade do |t|
+    t.string   "rif_ci",        limit: 255,   null: false
+    t.string   "name",          limit: 255,   null: false
+    t.text     "description",   limit: 65535
+    t.string   "phone",         limit: 255
+    t.string   "email",         limit: 255
+    t.text     "address",       limit: 65535
+    t.string   "contact_name",  limit: 255
+    t.string   "contact_phone", limit: 255
+    t.string   "contact_email", limit: 255
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  add_index "razon_socials", ["email"], name: "index_razon_socials_on_email", unique: true, using: :btree
+  add_index "razon_socials", ["rif_ci"], name: "index_razon_socials_on_rif_ci", unique: true, using: :btree
+
+  create_table "retenciones", force: :cascade do |t|
+    t.string   "code_factura",    limit: 255,                            null: false
+    t.integer  "razon_social_id", limit: 4,                              null: false
+    t.integer  "type",            limit: 4,                              null: false
+    t.decimal  "monto",                         precision: 10, scale: 2, null: false
+    t.text     "description",     limit: 65535
+    t.integer  "status",          limit: 4
+    t.datetime "created_at",                                             null: false
+    t.datetime "updated_at",                                             null: false
+  end
+
+  add_index "retenciones", ["code_factura"], name: "index_retenciones_on_code_factura", unique: true, using: :btree
+  add_index "retenciones", ["razon_social_id"], name: "index_retenciones_on_razon_social_id", using: :btree
+
+  create_table "users", force: :cascade do |t|
+    t.string   "email",                  limit: 255, default: "", null: false
+    t.string   "encrypted_password",     limit: 255, default: "", null: false
+    t.string   "reset_password_token",   limit: 255
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          limit: 4,   default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip",     limit: 255
+    t.string   "last_sign_in_ip",        limit: 255
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  add_foreign_key "comision_odts", "employees"
+  add_foreign_key "comision_odts", "odts"
+  add_foreign_key "deducciones_odts", "odts"
+  add_foreign_key "employee_groups", "auth_groups"
+  add_foreign_key "employee_groups", "employees"
+  add_foreign_key "odts", "razon_socials"
+  add_foreign_key "pools", "employees"
+  add_foreign_key "pools", "ggs"
+  add_foreign_key "pools", "inversions"
+  add_foreign_key "pools", "odts"
+  add_foreign_key "pools", "retenciones"
+  add_foreign_key "retenciones", "razon_socials"
 end

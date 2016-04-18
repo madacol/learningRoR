@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Auth Groups</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @auth_groups.each do |auth_group| %>
+      <tr>
+        <td><%= auth_group.name %></td>
+        <td><%= link_to 'Show', auth_group %></td>
+        <td><%= link_to 'Edit', edit_auth_group_path(auth_group) %></td>
+        <td><%= link_to 'Destroy', auth_group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Auth group', new_auth_group_path %>

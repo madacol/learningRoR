@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  code: MyString
+  description: MyText
+  razon_social_id_id: 
+  monto_contrato: 9.99
+
+two:
+  code: MyString
+  description: MyText
+  razon_social_id_id: 
+  monto_contrato: 9.99

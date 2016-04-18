@@ -1,0 +1,25 @@
+<%= form_for(@gg) do |f| %>
+  <% if @gg.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@gg.errors.count, "error") %> prohibited this gg from being saved:</h2>
+
+      <ul>
+      <% @gg.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :code %><br>
+    <%= f.text_field :code %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

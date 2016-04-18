@@ -1,0 +1,2 @@
+module GGsHelper
+end

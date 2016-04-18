@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Comision Odts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Odt</th>
+      <th>Employee</th>
+      <th>P comision</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @comision_odts.each do |comision_odt| %>
+      <tr>
+        <td><%= comision_odt.odt_id %></td>
+        <td><%= comision_odt.employee_id %></td>
+        <td><%= comision_odt.p_comision %></td>
+        <td><%= link_to 'Show', comision_odt %></td>
+        <td><%= link_to 'Edit', edit_comision_odt_path(comision_odt) %></td>
+        <td><%= link_to 'Destroy', comision_odt, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Comision odt', new_comision_odt_path %>

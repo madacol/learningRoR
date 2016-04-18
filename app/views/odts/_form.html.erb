@@ -1,0 +1,33 @@
+<%= form_for(@odt) do |f| %>
+  <% if @odt.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@odt.errors.count, "error") %> prohibited this odt from being saved:</h2>
+
+      <ul>
+      <% @odt.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :code %><br>
+    <%= f.text_field :code %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :razon_social_id_id %><br>
+    <%= f.text_field :razon_social_id_id %>
+  </div>
+  <div class="field">
+    <%= f.label :monto_contrato %><br>
+    <%= f.text_field :monto_contrato %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

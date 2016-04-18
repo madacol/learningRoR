@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @odt.code %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @odt.description %>
+</p>
+
+<p>
+  <strong>Razon social:</strong>
+  <%= @odt.razon_social_id %>
+</p>
+
+<p>
+  <strong>Monto contrato:</strong>
+  <%= @odt.monto_contrato %>
+</p>
+
+<%= link_to 'Edit', edit_odt_path(@odt) %> |
+<%= link_to 'Back', odts_path %>

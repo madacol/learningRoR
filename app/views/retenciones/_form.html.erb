@@ -1,0 +1,41 @@
+<%= form_for(@retencione) do |f| %>
+  <% if @retencione.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@retencione.errors.count, "error") %> prohibited this retencione from being saved:</h2>
+
+      <ul>
+      <% @retencione.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :code_factura %><br>
+    <%= f.text_field :code_factura %>
+  </div>
+  <div class="field">
+    <%= f.label :razon_social_id_id %><br>
+    <%= f.text_field :razon_social_id_id %>
+  </div>
+  <div class="field">
+    <%= f.label :type %><br>
+    <%= f.number_field :type %>
+  </div>
+  <div class="field">
+    <%= f.label :monto %><br>
+    <%= f.text_field :monto %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :status %><br>
+    <%= f.number_field :status %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

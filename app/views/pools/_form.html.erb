@@ -1,0 +1,53 @@
+<%= form_for(@pool) do |f| %>
+  <% if @pool.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@pool.errors.count, "error") %> prohibited this pool from being saved:</h2>
+
+      <ul>
+      <% @pool.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :odt_id %><br>
+    <%= f.text_field :odt_id %>
+  </div>
+  <div class="field">
+    <%= f.label :gg_id %><br>
+    <%= f.text_field :gg_id %>
+  </div>
+  <div class="field">
+    <%= f.label :inversion_id %><br>
+    <%= f.text_field :inversion_id %>
+  </div>
+  <div class="field">
+    <%= f.label :loan_id %><br>
+    <%= f.text_field :loan_id %>
+  </div>
+  <div class="field">
+    <%= f.label :retencione_id %><br>
+    <%= f.text_field :retencione_id %>
+  </div>
+  <div class="field">
+    <%= f.label :monto %><br>
+    <%= f.text_field :monto %>
+  </div>
+  <div class="field">
+    <%= f.label :balance %><br>
+    <%= f.text_field :balance %>
+  </div>
+  <div class="field">
+    <%= f.label :n_comprobante %><br>
+    <%= f.text_field :n_comprobante %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

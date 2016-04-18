@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Code factura:</strong>
+  <%= @retencione.code_factura %>
+</p>
+
+<p>
+  <strong>Razon social:</strong>
+  <%= @retencione.razon_social_id %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @retencione.type %>
+</p>
+
+<p>
+  <strong>Monto:</strong>
+  <%= @retencione.monto %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @retencione.description %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @retencione.status %>
+</p>
+
+<%= link_to 'Edit', edit_retencione_path(@retencione) %> |
+<%= link_to 'Back', retenciones_path %>

@@ -1,0 +1,29 @@
+<%= form_for(@comision_odt) do |f| %>
+  <% if @comision_odt.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@comision_odt.errors.count, "error") %> prohibited this comision_odt from being saved:</h2>
+
+      <ul>
+      <% @comision_odt.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :odt_id_id %><br>
+    <%= f.text_field :odt_id_id %>
+  </div>
+  <div class="field">
+    <%= f.label :employee_id_id %><br>
+    <%= f.text_field :employee_id_id %>
+  </div>
+  <div class="field">
+    <%= f.label :p_comision %><br>
+    <%= f.text_field :p_comision %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

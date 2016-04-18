@@ -1,4 +1,20 @@
 Rails.application.routes.draw do
+  resources :pools
+  resources :loans
+  resources :auth_groups
+  resources :employee_groups
+  resources :employees
+  resources :retenciones
+  resources :inversions
+  resources :ggs
+  resources :deducciones_odts
+  resources :comision_odts
+  resources :odts
+  resources :razon_socials
+  resources :testtts
+  resources :testtts
+  resources :blahs
+  devise_for :users
   get 'test/a'
 
   get 'testing/test'

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  odt_id_id: 
+  employee_id_id: 
+  p_comision: 9.99
+
+two:
+  odt_id_id: 
+  employee_id_id: 
+  p_comision: 9.99
