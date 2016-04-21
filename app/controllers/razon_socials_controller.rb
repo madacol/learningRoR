@@ -1,5 +1,5 @@
 class RazonSocialsController < ApplicationController
-  http_basic_authenticate_with name: "dhh", password: "secret", except: :index
+  before_filter :authenticate_user!
 
   before_action :set_razon_social, only: [:show, :edit, :update, :destroy]
 
@@ -7,6 +7,7 @@ class RazonSocialsController < ApplicationController
   # GET /razon_socials.json
   def index
     @razon_socials = RazonSocial.all
+    logger.debug current_user
   end
 
   # GET /razon_socials/1

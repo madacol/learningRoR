@@ -13,8 +13,9 @@ Rails.application.routes.draw do
   resources :razon_socials
   resources :testtts
   resources :testtts
-  resources :blahs
+
   devise_for :users
+  
   get 'test/a'
 
   get 'testing/test'
