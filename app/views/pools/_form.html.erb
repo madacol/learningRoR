@@ -13,13 +13,13 @@
 
   <div class="field">
     <%= label_tag( 'pool_category_type', 'Categoría' ) %><br>
-    <%= f.select( :category_type, options_for_select( @pool.categories.collect {|c| c.reverse}), :prompt => '--Seleccionar--' ) %>
+    <%= f.select( :category_type, options_for_select( categories.collect { |category, attribute| [attribute['show'], category] }, @pool.category_type ), :prompt => '--Seleccionar--' ) %>
   </div>
 
-  <% @pool.categories.keys.each do |category| %>
-    <div id= <%= category %> class="field hidden">
+  <% categories.each do |category, attribute| %>
+    <div id= <%= category %> class="field <%= 'hidden' if @pool.category_type != category %>">
       <%= label_tag( 'pool_category_id', 'Código' ) %><br>
-      <%= select_tag( :category_id, options_for_select( eval( category+'.all.collect {|k| [k.code,k.id] }') ), class: 'asd', :prompt => '--Seleccionar--' ) %>
+      <%= select_tag_for(@pool, category) %>
     </div>
   <% end %>
    

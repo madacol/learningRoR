@@ -20,5 +20,8 @@ class Employee < ActiveRecord::Base
 			end
 		end
 	end
+	def full_name
+		return self.name+' '+self.last_name
+	end
 
 end

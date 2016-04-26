@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160426030212) do
+ActiveRecord::Schema.define(version: 20160426205007) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title",      limit: 255
@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(version: 20160426030212) do
   add_index "employee_groups", ["employee_id"], name: "index_employee_groups_on_employee_id", using: :btree
 
   create_table "employees", force: :cascade do |t|
-    t.string   "code",         limit: 255
+    t.string   "cedula",       limit: 255
     t.string   "name",         limit: 255
     t.string   "last_name",    limit: 255
     t.string   "phone_number", limit: 255
@@ -103,6 +103,7 @@ ActiveRecord::Schema.define(version: 20160426030212) do
     t.decimal  "monto_contrato",                precision: 15, scale: 2, null: false
     t.datetime "created_at",                                             null: false
     t.datetime "updated_at",                                             null: false
+    t.string   "alias",           limit: 255
   end
 
   add_index "odts", ["code"], name: "index_odts_on_code", unique: true, using: :btree
@@ -143,7 +144,7 @@ ActiveRecord::Schema.define(version: 20160426030212) do
   add_index "razon_socials", ["rif_ci"], name: "index_razon_socials_on_rif_ci", unique: true, using: :btree
 
   create_table "retenciones", force: :cascade do |t|
-    t.string   "code",            limit: 255,                            null: false
+    t.string   "code_factura",    limit: 255,                            null: false
     t.integer  "razon_social_id", limit: 4,                              null: false
     t.integer  "type",            limit: 4,                              null: false
     t.decimal  "monto",                         precision: 15, scale: 2, null: false
@@ -153,7 +154,7 @@ ActiveRecord::Schema.define(version: 20160426030212) do
     t.datetime "updated_at",                                             null: false
   end
 
-  add_index "retenciones", ["code"], name: "index_retenciones_on_code", unique: true, using: :btree
+  add_index "retenciones", ["code_factura"], name: "index_retenciones_on_code_factura", unique: true, using: :btree
   add_index "retenciones", ["razon_social_id"], name: "index_retenciones_on_razon_social_id", using: :btree
 
   create_table "users", force: :cascade do |t|

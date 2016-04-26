@@ -6,6 +6,7 @@
   <thead>
     <tr>
       <th>Code</th>
+      <th>Alias</th>
       <th>Description</th>
       <th>Razon social</th>
       <th>Monto contrato</th>
@@ -17,6 +18,7 @@
     <% @odts.each do |odt| %>
       <tr>
         <td><%= odt.code %></td>
+        <td><%= odt.alias %></td>
         <td><%= odt.description %></td>
         <td><%= odt.razon_social_id %></td>
         <td><%= odt.monto_contrato %></td>

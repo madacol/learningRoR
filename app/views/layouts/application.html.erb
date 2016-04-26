@@ -8,10 +8,6 @@
   <%= stylesheet_link_tag    'bootstrap', media: 'all', 'data-turbolinks-track' => true %>
   <%= stylesheet_link_tag    'responsive', media: 'all', 'data-turbolinks-track' => true %>
   <%= stylesheet_link_tag    'style', media: 'all', 'data-turbolinks-track' => true %>
-  <%= stylesheet_link_tag    'main', media: 'all', 'data-turbolinks-track' => true %>
-  <%= stylesheet_link_tag    'reset', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %> 
-  <%= javascript_include_tag 'js', 'data-turbolinks-track' => true %> 
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -21,5 +17,7 @@
 <p class="notice"><%= notice %></p>                                           │
 <p class="alert"><%= alert %></p> 
 
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %> 
+  <%= javascript_include_tag 'js', 'data-turbolinks-track' => true %> 
 </body>
 </html>

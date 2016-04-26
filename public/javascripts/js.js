@@ -9,11 +9,11 @@ function removeInput(boton){
 }
 
 $(document).ready(function(){
-  $('form#new_pool div.hidden select').each(function() {
+  $('form#new_pool div.hidden select').each(function() {    
     $(this).removeAttr('name');
   });
   var select = $("#pool_category_type");
-  select.data("previous",select.val());
+  select.data( "previous",select.val() );
   select.change( function (){
     old_select_category_id = $('#'+$(this).data('previous'));
     old_select_category_id.addClass('hidden');

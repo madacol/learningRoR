@@ -9,8 +9,8 @@ class CreatePools < ActiveRecord::Migration
       t.integer :cuenta
       t.integer :comprobante_type
       t.string :n_comprobante
-      t.decimal :monto, :precision => 10, :scale => 2
-      t.decimal :balance, :precision => 10, :scale => 2
+      t.decimal :monto, :precision => 15, :scale => 2
+      t.decimal :balance, :precision => 15, :scale => 2
       t.text :description
 
       t.timestamps null: false
