@@ -1,7 +1,7 @@
-class Pool < ActiveRecord::Base
-  belongs_to :odt
-  belongs_to :gg
-  belongs_to :inversion
-  belongs_to :loan
-  belongs_to :retencione
+class Pool < ActiveRecord::Base  
+  belongs_to :category, polymorphic: true
+  
+  def categories
+    return {'Odt'=>'Odt', 'Inversion'=>'Inversion', 'Gg'=>'Gastos Generales', 'Retencione'=>'Retenciones', 'Employee'=>'Empleado'}
+  end
 end

@@ -3,4 +3,5 @@ class Odt < ActiveRecord::Base
     has_many :deducciones_odts
     has_many :comision_odts
 	has_many :employees, through: :comision_odts
+	has_many :pools, as: :category
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160416054258) do
+ActiveRecord::Schema.define(version: 20160426030212) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title",      limit: 255
@@ -27,7 +27,6 @@ ActiveRecord::Schema.define(version: 20160416054258) do
     t.boolean  "odt",                      default: false, null: false
     t.boolean  "gg",                       default: false, null: false
     t.boolean  "inversion",                default: false, null: false
-    t.boolean  "loan",                     default: false, null: false
     t.boolean  "employee",                 default: false, null: false
     t.boolean  "retencione",               default: false, null: false
     t.boolean  "pool",                     default: false, null: false
@@ -67,7 +66,7 @@ ActiveRecord::Schema.define(version: 20160416054258) do
   add_index "employee_groups", ["employee_id"], name: "index_employee_groups_on_employee_id", using: :btree
 
   create_table "employees", force: :cascade do |t|
-    t.string   "cedula",       limit: 255
+    t.string   "code",         limit: 255
     t.string   "name",         limit: 255
     t.string   "last_name",    limit: 255
     t.string   "phone_number", limit: 255
@@ -101,7 +100,7 @@ ActiveRecord::Schema.define(version: 20160416054258) do
     t.string   "code",            limit: 255,                            null: false
     t.text     "description",     limit: 65535,                          null: false
     t.integer  "razon_social_id", limit: 4,                              null: false
-    t.decimal  "monto_contrato",                precision: 10, scale: 2, null: false
+    t.decimal  "monto_contrato",                precision: 15, scale: 2, null: false
     t.datetime "created_at",                                             null: false
     t.datetime "updated_at",                                             null: false
   end
@@ -110,26 +109,21 @@ ActiveRecord::Schema.define(version: 20160416054258) do
   add_index "odts", ["razon_social_id"], name: "index_odts_on_razon_social_id", using: :btree
 
   create_table "pools", force: :cascade do |t|
-    t.integer  "odt_id",           limit: 4
-    t.integer  "gg_id",            limit: 4
-    t.integer  "inversion_id",     limit: 4
-    t.integer  "employee_id",      limit: 4
-    t.integer  "retencione_id",    limit: 4
     t.integer  "cuenta",           limit: 4
     t.integer  "comprobante_type", limit: 4
     t.string   "n_comprobante",    limit: 255
-    t.decimal  "monto",                          precision: 10, scale: 2
-    t.decimal  "balance",                        precision: 10, scale: 2
+    t.decimal  "monto",                          precision: 15, scale: 2
+    t.decimal  "balance",                        precision: 15, scale: 2
     t.text     "description",      limit: 65535
     t.datetime "created_at",                                              null: false
     t.datetime "updated_at",                                              null: false
+    t.integer  "razon_social_id",  limit: 4
+    t.integer  "category_id",      limit: 4
+    t.string   "category_type",    limit: 255
   end
 
-  add_index "pools", ["employee_id"], name: "index_pools_on_employee_id", using: :btree
-  add_index "pools", ["gg_id"], name: "index_pools_on_gg_id", using: :btree
-  add_index "pools", ["inversion_id"], name: "index_pools_on_inversion_id", using: :btree
-  add_index "pools", ["odt_id"], name: "index_pools_on_odt_id", using: :btree
-  add_index "pools", ["retencione_id"], name: "index_pools_on_retencione_id", using: :btree
+  add_index "pools", ["category_type", "category_id"], name: "index_pools_on_category_type_and_category_id", using: :btree
+  add_index "pools", ["razon_social_id"], name: "index_pools_on_razon_social_id", using: :btree
 
   create_table "razon_socials", force: :cascade do |t|
     t.string   "rif_ci",        limit: 255,   null: false
@@ -149,17 +143,17 @@ ActiveRecord::Schema.define(version: 20160416054258) do
   add_index "razon_socials", ["rif_ci"], name: "index_razon_socials_on_rif_ci", unique: true, using: :btree
 
   create_table "retenciones", force: :cascade do |t|
-    t.string   "code_factura",    limit: 255,                            null: false
+    t.string   "code",            limit: 255,                            null: false
     t.integer  "razon_social_id", limit: 4,                              null: false
     t.integer  "type",            limit: 4,                              null: false
-    t.decimal  "monto",                         precision: 10, scale: 2, null: false
+    t.decimal  "monto",                         precision: 15, scale: 2, null: false
     t.text     "description",     limit: 65535
     t.integer  "status",          limit: 4
     t.datetime "created_at",                                             null: false
     t.datetime "updated_at",                                             null: false
   end
 
-  add_index "retenciones", ["code_factura"], name: "index_retenciones_on_code_factura", unique: true, using: :btree
+  add_index "retenciones", ["code"], name: "index_retenciones_on_code", unique: true, using: :btree
   add_index "retenciones", ["razon_social_id"], name: "index_retenciones_on_razon_social_id", using: :btree
 
   create_table "users", force: :cascade do |t|
@@ -186,10 +180,6 @@ ActiveRecord::Schema.define(version: 20160416054258) do
   add_foreign_key "employee_groups", "auth_groups"
   add_foreign_key "employee_groups", "employees"
   add_foreign_key "odts", "razon_socials"
-  add_foreign_key "pools", "employees"
-  add_foreign_key "pools", "ggs"
-  add_foreign_key "pools", "inversions"
-  add_foreign_key "pools", "odts"
-  add_foreign_key "pools", "retenciones"
+  add_foreign_key "pools", "razon_socials"
   add_foreign_key "retenciones", "razon_socials"
 end

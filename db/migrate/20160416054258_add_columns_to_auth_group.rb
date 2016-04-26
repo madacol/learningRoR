@@ -3,7 +3,6 @@ class AddColumnsToAuthGroup < ActiveRecord::Migration
 	  add_column :auth_groups, :odt, :boolean, null: false, default: false
 	  add_column :auth_groups, :gg, :boolean, null: false, default: false 
 	  add_column :auth_groups, :inversion, :boolean, null: false, default: false 
-	  add_column :auth_groups, :loan, :boolean, null: false, default: false 
 	  add_column :auth_groups, :employee, :boolean, null: false, default: false 
 	  add_column :auth_groups, :retencione, :boolean, null: false, default: false 
 	  add_column :auth_groups, :pool, :boolean, null: false, default: false 

@@ -1,28 +1,8 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Odt:</strong>
-  <%= @pool.odt %>
-</p>
-
-<p>
-  <strong>Gg:</strong>
-  <%= @pool.gg %>
-</p>
-
-<p>
-  <strong>Inversion:</strong>
-  <%= @pool.inversion %>
-</p>
-
-<p>
-  <strong>Loan:</strong>
-  <%= @pool.loan %>
-</p>
-
-<p>
-  <strong>Retencione:</strong>
-  <%= @pool.retencione %>
+  <strong><%= @pool.category_type %></strong>
+  <%= @pool.category.code %>  
 </p>
 
 <p>
@@ -33,6 +13,16 @@
 <p>
   <strong>Balance:</strong>
   <%= @pool.balance %>
+</p>
+
+<p>
+  <strong>cuenta:</strong>
+  <%= @pool.cuenta %>
+</p>
+
+<p>
+  <strong>comprobante_type:</strong>
+  <%= @pool.comprobante_type %>
 </p>
 
 <p>

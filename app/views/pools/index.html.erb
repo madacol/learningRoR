@@ -5,11 +5,8 @@
 <table>
   <thead>
     <tr>
-      <th>Odt</th>
-      <th>Gg</th>
-      <th>Inversion</th>
-      <th>Loan</th>
-      <th>Retencione</th>
+      <th>Categoria</th>
+      <th>Codigo</th>      
       <th>Monto</th>
       <th>Balance</th>
       <th>N comprobante</th>
@@ -21,11 +18,8 @@
   <tbody>
     <% @pools.each do |pool| %>
       <tr>
-        <td><%= pool.odt %></td>
-        <td><%= pool.gg %></td>
-        <td><%= pool.inversion %></td>
-        <td><%= pool.loan %></td>
-        <td><%= pool.retencione %></td>
+        <td><%= pool.category_type %></td>
+        <td><%= pool.category.code %></td>
         <td><%= pool.monto %></td>
         <td><%= pool.balance %></td>
         <td><%= pool.n_comprobante %></td>

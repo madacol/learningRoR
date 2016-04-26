@@ -12,25 +12,17 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :odt_id %><br>
-    <%= f.text_field :odt_id %>
+    <%= label_tag( 'pool_category_type', 'Categoría' ) %><br>
+    <%= f.select( :category_type, options_for_select( @pool.categories.collect {|c| c.reverse}), :prompt => '--Seleccionar--' ) %>
   </div>
-  <div class="field">
-    <%= f.label :gg_id %><br>
-    <%= f.text_field :gg_id %>
-  </div>
-  <div class="field">
-    <%= f.label :inversion_id %><br>
-    <%= f.text_field :inversion_id %>
-  </div>
-  <div class="field">
-    <%= f.label :loan_id %><br>
-    <%= f.text_field :loan_id %>
-  </div>
-  <div class="field">
-    <%= f.label :retencione_id %><br>
-    <%= f.text_field :retencione_id %>
-  </div>
+
+  <% @pool.categories.keys.each do |category| %>
+    <div id= <%= category %> class="field hidden">
+      <%= label_tag( 'pool_category_id', 'Código' ) %><br>
+      <%= select_tag( :category_id, options_for_select( eval( category+'.all.collect {|k| [k.code,k.id] }') ), class: 'asd', :prompt => '--Seleccionar--' ) %>
+    </div>
+  <% end %>
+   
   <div class="field">
     <%= f.label :monto %><br>
     <%= f.text_field :monto %>

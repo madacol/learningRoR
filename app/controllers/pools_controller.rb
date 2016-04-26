@@ -69,6 +69,6 @@ class PoolsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pool_params
-      params.require(:pool).permit(:odt_id, :gg_id, :inversion_id, :loan_id, :retencione_id, :monto, :balance, :n_comprobante, :description)
+      params.require(:pool).permit(:category_id, :category_type, :monto, :balance, :cuenta, :comprobante_type, :n_comprobante, :description, :razon_social_id)
     end
 end

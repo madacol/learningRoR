@@ -1,0 +1,44 @@
+@media (max-width: 768px){
+  .content {
+	padding: 40% 0 0;
+	}
+}
+
+@media (max-width: 603px){
+#tf-menu.navbar-default {
+	background-color: rgb(51, 122, 183);
+	}
+
+label{
+    float: none !important
+}
+.pull-left.fnav,
+.pull-right.fnav {
+    float: none !important;
+    text-align: center;
+}
+
+.hover-bg .hover-text {
+    padding: 12% 10%;
+}
+#iconcontact{
+ width: 80%;
+ float: left;
+
+}
+}
+@media (max-width: 360px){
+.hover-bg .hover-text {
+    padding: 22% 10%;
+}
+
+#iconcontact{
+width: 80%;
+float: left;
+}
+#map1{
+width: 100%;
+
+}
+
+}

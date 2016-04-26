@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   resources :pools
-  resources :loans
   resources :auth_groups
   resources :employee_groups
   resources :employees

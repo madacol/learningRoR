@@ -4,6 +4,7 @@ class Employee < ActiveRecord::Base
 	has_many :comision_odts
 	has_many :odts, through: :comision_odts
 	has_many :auth_groups, through: :employee_groups
+	has_many :pools, as: :category
 
 	def has_auth_to(action)
 		self.auth_groups.each do |group|
@@ -13,7 +14,7 @@ class Employee < ActiveRecord::Base
 			when false
 				return false
 			when nil
-				return 'Action '+action.to_s+' not found'
+				return 'Action "'+action.to_s+'" not found'
 			else
 				return 'Not boolean'
 			end
