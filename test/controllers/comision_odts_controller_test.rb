@@ -18,7 +18,7 @@ class ComisionOdtsControllerTest < ActionController::TestCase
 
   test "should create comision_odt" do
     assert_difference('ComisionOdt.count') do
-      post :create, comision_odt: { employee_id_id: @comision_odt.employee_id_id, odt_id_id: @comision_odt.odt_id_id, p_comision: @comision_odt.p_comision }
+      post :create, comision_odt: { employee_id: @comision_odt.employee_id, odt_id: @comision_odt.odt_id, p_comision: @comision_odt.p_comision }
     end
 
     assert_redirected_to comision_odt_path(assigns(:comision_odt))
@@ -35,7 +35,7 @@ class ComisionOdtsControllerTest < ActionController::TestCase
   end
 
   test "should update comision_odt" do
-    patch :update, id: @comision_odt, comision_odt: { employee_id_id: @comision_odt.employee_id_id, odt_id_id: @comision_odt.odt_id_id, p_comision: @comision_odt.p_comision }
+    patch :update, id: @comision_odt, comision_odt: { employee_id: @comision_odt.employee_id, odt_id: @comision_odt.odt_id, p_comision: @comision_odt.p_comision }
     assert_redirected_to comision_odt_path(assigns(:comision_odt))
   end
 

@@ -18,7 +18,7 @@ class DeduccionesOdtsControllerTest < ActionController::TestCase
 
   test "should create deducciones_odt" do
     assert_difference('DeduccionesOdt.count') do
-      post :create, deducciones_odt: { name: @deducciones_odt.name, odt_id_id: @deducciones_odt.odt_id_id, p_gasto: @deducciones_odt.p_gasto }
+      post :create, deducciones_odt: { name: @deducciones_odt.name, odt_id: @deducciones_odt.odt_id, p_gasto: @deducciones_odt.p_gasto }
     end
 
     assert_redirected_to deducciones_odt_path(assigns(:deducciones_odt))
@@ -35,7 +35,7 @@ class DeduccionesOdtsControllerTest < ActionController::TestCase
   end
 
   test "should update deducciones_odt" do
-    patch :update, id: @deducciones_odt, deducciones_odt: { name: @deducciones_odt.name, odt_id_id: @deducciones_odt.odt_id_id, p_gasto: @deducciones_odt.p_gasto }
+    patch :update, id: @deducciones_odt, deducciones_odt: { name: @deducciones_odt.name, odt_id: @deducciones_odt.odt_id, p_gasto: @deducciones_odt.p_gasto }
     assert_redirected_to deducciones_odt_path(assigns(:deducciones_odt))
   end
 

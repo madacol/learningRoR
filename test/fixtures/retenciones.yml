@@ -2,7 +2,7 @@
 
 one:
   code_factura: MyString
-  razon_social_id_id: 
+  razon_social_id: 
   type: 1
   monto: 9.99
   description: MyText
@@ -10,7 +10,7 @@ one:
 
 two:
   code_factura: MyString
-  razon_social_id_id: 
+  razon_social_id: 
   type: 1
   monto: 9.99
   description: MyText

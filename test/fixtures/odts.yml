@@ -3,11 +3,11 @@
 one:
   code: MyString
   description: MyText
-  razon_social_id_id: 
+  razon_social_id: 
   monto_contrato: 9.99
 
 two:
   code: MyString
   description: MyText
-  razon_social_id_id: 
+  razon_social_id: 
   monto_contrato: 9.99

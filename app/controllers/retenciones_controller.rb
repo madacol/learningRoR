@@ -69,6 +69,6 @@ class RetencionesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def retencione_params
-      params.require(:retencione).permit(:code_factura, :razon_social_id_id, :type, :monto, :description, :status)
+      params.require(:retencione).permit(:code_factura, :razon_social_id, :type, :monto, :description, :status)
     end
 end

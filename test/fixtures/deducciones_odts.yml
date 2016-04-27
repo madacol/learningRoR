@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  odt_id_id: 
+  odt_id: 
   name: MyString
   p_gasto: 9.99
 
 two:
-  odt_id_id: 
+  odt_id: 
   name: MyString
   p_gasto: 9.99

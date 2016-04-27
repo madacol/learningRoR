@@ -18,7 +18,7 @@ class OdtsControllerTest < ActionController::TestCase
 
   test "should create odt" do
     assert_difference('Odt.count') do
-      post :create, odt: { code: @odt.code, description: @odt.description, monto_contrato: @odt.monto_contrato, razon_social_id_id: @odt.razon_social_id_id }
+      post :create, odt: { code: @odt.code, description: @odt.description, monto_contrato: @odt.monto_contrato, razon_social_id: @odt.razon_social_id }
     end
 
     assert_redirected_to odt_path(assigns(:odt))
@@ -35,7 +35,7 @@ class OdtsControllerTest < ActionController::TestCase
   end
 
   test "should update odt" do
-    patch :update, id: @odt, odt: { code: @odt.code, description: @odt.description, monto_contrato: @odt.monto_contrato, razon_social_id_id: @odt.razon_social_id_id }
+    patch :update, id: @odt, odt: { code: @odt.code, description: @odt.description, monto_contrato: @odt.monto_contrato, razon_social_id: @odt.razon_social_id }
     assert_redirected_to odt_path(assigns(:odt))
   end
 

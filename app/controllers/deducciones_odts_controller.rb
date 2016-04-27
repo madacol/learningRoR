@@ -69,6 +69,6 @@ class DeduccionesOdtsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def deducciones_odt_params
-      params.require(:deducciones_odt).permit(:odt_id_id, :name, :p_gasto)
+      params.require(:deducciones_odt).permit(:odt_id, :name, :p_gasto)
     end
 end

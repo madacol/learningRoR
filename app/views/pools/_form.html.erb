@@ -19,7 +19,7 @@
   <% categories.each do |category, attribute| %>
     <div id= <%= category %> class="field <%= 'hidden' if @pool.category_type != category %>">
       <%= label_tag( 'pool_category_id', 'Código' ) %><br>
-      <%= select_tag_for(@pool, category) %>
+      <%= select_tag_for(@pool, category, f) %>
     </div>
   <% end %>
    

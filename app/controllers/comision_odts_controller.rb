@@ -69,6 +69,6 @@ class ComisionOdtsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def comision_odt_params
-      params.require(:comision_odt).permit(:odt_id_id, :employee_id_id, :p_comision)
+      params.require(:comision_odt).permit(:odt_id, :employee_id, :p_comision)
     end
 end
