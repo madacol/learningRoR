@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160426205007) do
+ActiveRecord::Schema.define(version: 20160427045901) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title",      limit: 255
@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(version: 20160426205007) do
     t.text     "description", limit: 65535, null: false
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.string   "alias",       limit: 255
   end
 
   add_index "ggs", ["code"], name: "index_ggs_on_code", unique: true, using: :btree
@@ -92,6 +93,7 @@ ActiveRecord::Schema.define(version: 20160426205007) do
     t.text     "description", limit: 65535, null: false
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.string   "alias",       limit: 255
   end
 
   add_index "inversions", ["code"], name: "index_inversions_on_code", unique: true, using: :btree
@@ -146,7 +148,7 @@ ActiveRecord::Schema.define(version: 20160426205007) do
   create_table "retenciones", force: :cascade do |t|
     t.string   "code_factura",    limit: 255,                            null: false
     t.integer  "razon_social_id", limit: 4,                              null: false
-    t.integer  "type",            limit: 4,                              null: false
+    t.integer  "tipo",            limit: 4,                              null: false
     t.decimal  "monto",                         precision: 15, scale: 2, null: false
     t.text     "description",     limit: 65535
     t.integer  "status",          limit: 4

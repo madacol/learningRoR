@@ -20,8 +20,11 @@ class Employee < ActiveRecord::Base
 			end
 		end
 	end
-	def full_name
+    def table_name_to_show
+    	'Empleado'
+    end
+	def record_name_to_show
 		return self.name+' '+self.last_name
-	end
+	end	
 
 end

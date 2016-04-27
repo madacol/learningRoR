@@ -1,12 +1,12 @@
 module PoolsHelper
 
 	def categories
-		return {'Odt'=> {'show' => 'Odt', 'method' => 'alias' }, 'Inversion'=> {'show' => 'Inversion', 'method' => 'code' }, 'Gg'=> {'show' => 'Gastos Generales', 'method' => 'code' }, 'Retencione'=> {'show' => 'Retenciones', 'method' => 'code_factura' }, 'Employee'=> {'show' => 'Empleado', 'method' => 'full_name' } }
+		return [ 'Odt', 'Inversion', 'Gg', 'Retencione', 'Employee' ]
 	end
 
 	def select_tag_for(pool, category, f)		
 		f.select( :category_id, options_for_select( eval( 
-			category+'.all.collect {|k| [k.'+categories[category]['method']+', k.id] }'), 
+			category+'.all.collect {|k| [k.record_name_to_show, k.id] }'), 
 			(pool.category_id if pool.category_type == category) ), :prompt => '--Seleccionar--' )		
 	end
 

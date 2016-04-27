@@ -3,7 +3,7 @@ class CreateRetenciones < ActiveRecord::Migration
     create_table :retenciones do |t|
       t.string :code_factura, :null => false
       t.references :razon_social, index: true, foreign_key: true, :null => false
-      t.integer :type, :null => false
+      t.integer :tipo, :null => false
       t.decimal :monto, :null => false
       t.text :description
       t.integer :status

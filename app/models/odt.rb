@@ -4,4 +4,11 @@ class Odt < ActiveRecord::Base
     has_many :comision_odts
 	has_many :employees, through: :comision_odts
 	has_many :pools, as: :category
+
+	def table_name_to_show
+		'Odt'
+	end
+	def record_name_to_show
+		return self.alias
+	end
 end
