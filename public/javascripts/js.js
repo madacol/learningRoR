@@ -9,7 +9,7 @@ function removeInput(boton){
 }
 
 $(document).ready(function(){
-  $('form#new_pool div.hidden select').each(function() {    
+  $('form div.hidden select').each(function() {    
     $(this).removeAttr('name');
   });
   var select = $("#pool_category_type");

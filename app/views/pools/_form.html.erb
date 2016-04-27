@@ -16,7 +16,7 @@
     <%= f.select( :category_type, options_for_select( categories.collect { |category| [eval(category+'.first.table_name_to_show'), category] }, @pool.category_type ), :prompt => '--Seleccionar--' ) %>
   </div>
 
-  <% categories.each do |category, attribute| %>
+  <% categories.each do |category| %>
     <div id= <%= category %> class="field <%= 'hidden' if @pool.category_type != category %>">
       <%= label_tag( 'pool_category_id', 'Código' ) %><br>
       <%= select_tag_for(@pool, category, f) %>
