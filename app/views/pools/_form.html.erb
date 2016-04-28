@@ -23,8 +23,8 @@
     </div>
   <% end %>
   <div class="field">
-    <%= label_tag( 'pool_razon_social_id', 'Razón Social' ) %><br>
-    <%= f.select( :razon_social_id, options_for_select( RazonSocial.all.collect { |e| [e.name, e.id]}), :prompt => '--Seleccionar--' ) %>
+    <%= label_tag( 'pool_razon_social_id', RazonSocial.new.table_name_to_show ) %><br>
+    <%= f.select( :razon_social_id, options_for_select( RazonSocial.all.collect { |e| [ e.name, e.id ] }, @pool.razon_social_id ), :prompt => '--Seleccionar--' ) %>
   </div>
     <div class="field">
     <%= f.label :monto %><br>
