@@ -24,8 +24,8 @@
     <%= f.text_area :description %>
   </div>
   <div class="field">
-    <%= f.label :razon_social_id %><br>
-    <%= f.text_field :razon_social_id %>
+    <%= label_tag( 'odt_razon_social_id', 'Razón Social' ) %><br>
+    <%= f.select( :razon_social_id, options_for_select( RazonSocial.all.collect { |e| [e.name, e.id]}), :prompt => '--Seleccionar--' ) %>
   </div>
   <div class="field">
     <%= f.label :monto_contrato %><br>

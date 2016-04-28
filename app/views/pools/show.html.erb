@@ -4,7 +4,10 @@
   <strong><%= @pool.category.table_name_to_show if @pool.category  %></strong>
   <%= @pool.category.record_name_to_show if @pool.category  %>  
 </p>
-
+<p>
+  <strong>Razón  Social:</strong>
+  <%= @pool.razon_social.record_name_to_show if @pool.razon_social %>
+</p>
 <p>
   <strong>Monto:</strong>
   <%= @pool.monto %>
