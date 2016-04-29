@@ -1,9 +1,41 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+  <strong>Nombre:</strong>
   <%= @auth_group.name %>
 </p>
+<p>
+  <strong><%= link_to Odt.new.table_name_to_show, odts_path %>:</strong>
+  <%= @auth_group.odt %>
+</p>
+<p>
+  <strong><%= link_to Gg.new.table_name_to_show, ggs_path %>:</strong>
+  <%= @auth_group.gg %>
+</p>
+<p>
+  <strong><%= link_to Inversion.new.table_name_to_show, inversions_path %>:</strong>
+  <%= @auth_group.inversion %>
+</p>
+<p>
+  <strong><%= link_to Employee.new.table_name_to_show, employees_path %>:</strong>
+  <%= @auth_group.employee %>
+</p>
+<p>
+  <strong><%= link_to Retencione.new.table_name_to_show, retenciones_path %>:</strong>
+  <%= @auth_group.retencione %>
+</p>
+<p>
+  <strong><%= link_to Pool.new.table_name_to_show, pools_path %>:</strong>
+  <%= @auth_group.pool %>
+</p>
+<p>
+  <strong><%= link_to RazonSocial.new.table_name_to_show, razon_socials_path %>:</strong>
+  <%= @auth_group.razon_social %>
+</p>
+<p>
+  <strong><%= link_to AuthGroup.new.table_name_to_show, auth_groups_path %>:</strong>
+  <%= @auth_group.auth_group %>
+</p>
 
-<%= link_to 'Edit', edit_auth_group_path(@auth_group) %> |
+<%= link_to 'Edit', edit_auth_group_path(@auth_group) %>
 <%= link_to 'Back', auth_groups_path %>

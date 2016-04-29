@@ -12,8 +12,8 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :odt_id %><br>
-    <%= f.text_field :odt_id %>
+    <%= label_tag( 'deducciones_odt_odt_id', Odt.new.table_name_to_show ) %><br>
+    <%= f.select( :odt_id, options_for_select( Odt.all.collect{ |e| [e.record_name_to_show, e.id ] }, @deducciones_odt.odt_id ), :prompt => '--Seleccionar--' ) %>
   </div>
   <div class="field">
     <%= f.label :name %><br>

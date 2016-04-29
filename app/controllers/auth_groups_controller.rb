@@ -28,7 +28,7 @@ class AuthGroupsController < ApplicationController
 
     respond_to do |format|
       if @auth_group.save
-        format.html { redirect_to @auth_group, notice: 'Auth group was successfully created.' }
+        format.html { redirect_to @auth_group, notice: AuthGroup.new.table_name_to_show.concat(' was successfully created.') }
         format.json { render :show, status: :created, location: @auth_group }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class AuthGroupsController < ApplicationController
   def update
     respond_to do |format|
       if @auth_group.update(auth_group_params)
-        format.html { redirect_to @auth_group, notice: 'Auth group was successfully updated.' }
+        format.html { redirect_to @auth_group, notice: AuthGroup.new.table_name_to_show.concat(' was successfully updated.') }
         format.json { render :show, status: :ok, location: @auth_group }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class AuthGroupsController < ApplicationController
   def destroy
     @auth_group.destroy
     respond_to do |format|
-      format.html { redirect_to auth_groups_url, notice: 'Auth group was successfully destroyed.' }
+      format.html { redirect_to auth_groups_url, notice: AuthGroup.new.table_name_to_show.concat(' was successfully destroyed.') }
       format.json { head :no_content }
     end
   end
@@ -69,6 +69,6 @@ class AuthGroupsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def auth_group_params
-      params.require(:auth_group).permit(:name)
+      params.require(:auth_group).permit(:name, :odt, :gg, :inversion, :employee, :retencione, :pool, :razon_social, :auth_group)
     end
 end

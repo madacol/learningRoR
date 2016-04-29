@@ -6,7 +6,7 @@
   <thead>
     <tr>
       <th>Categoria</th>
-      <th>Nombre o Código</th>      
+      <th>Nombre o Alias</th>      
       <th>Monto</th>
       <th>Balance</th>
       <th>Cuenta</th>
@@ -20,8 +20,8 @@
   <tbody>
     <% @pools.each do |pool| %>
       <tr>
-        <td><%= pool.category.table_name_to_show if pool.category %></td>
-        <td><%= pool.category.record_name_to_show if pool.category %></td>
+        <td><%= (link_to pool.category.table_name_to_show, pool.category.class) if pool.category %></td>
+        <td><%= (link_to pool.category.record_name_to_show, pool.category) if pool.category %></td>
         <td><%= pool.monto %></td>
         <td><%= pool.balance %></td>
         <td><%= pool.cuenta %></td>

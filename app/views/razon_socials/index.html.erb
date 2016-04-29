@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Razon Socials</h1>
+<h1>Listing <%= RazonSocial.new.table_name_to_show %></h1>
 
 <table>
   <thead>
@@ -40,4 +40,4 @@
 
 <br>
 
-<%= link_to 'New Razon social', new_razon_social_path %>
+<%= link_to 'New '+ RazonSocial.new.table_name_to_show, new_razon_social_path %>

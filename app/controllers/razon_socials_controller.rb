@@ -31,7 +31,7 @@ class RazonSocialsController < ApplicationController
 
     respond_to do |format|
       if @razon_social.save
-        format.html { redirect_to @razon_social, notice: 'Razon social was successfully created.' }
+        format.html { redirect_to @razon_social, notice: @razon_social.table_name_to_show+' was successfully created.' }
         format.json { render :show, status: :created, location: @razon_social }
       else
         format.html { render :new }
@@ -45,7 +45,7 @@ class RazonSocialsController < ApplicationController
   def update
     respond_to do |format|
       if @razon_social.update(razon_social_params)
-        format.html { redirect_to @razon_social, notice: 'Razon social was successfully updated.' }
+        format.html { redirect_to @razon_social, notice: @razon_social.table_name_to_show+' was successfully updated.' }
         format.json { render :show, status: :ok, location: @razon_social }
       else
         format.html { render :edit }
@@ -59,7 +59,7 @@ class RazonSocialsController < ApplicationController
   def destroy
     @razon_social.destroy
     respond_to do |format|
-      format.html { redirect_to razon_socials_url, notice: 'Razon social was successfully destroyed.' }
+      format.html { redirect_to razon_socials_url, notice: @razon_social.table_name_to_show+' was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

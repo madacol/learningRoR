@@ -69,6 +69,6 @@ class InversionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def inversion_params
-      params.require(:inversion).permit(:code, :description)
+      params.require(:inversion).permit(:code, :description, :alias)
     end
 end

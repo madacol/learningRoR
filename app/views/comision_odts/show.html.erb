@@ -1,17 +1,17 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Odt:</strong>
-  <%= @comision_odt.odt_id %>
+  <strong><%= Odt.new.table_name_to_show %>:</strong>
+  <%= ( link_to @comision_odt.odt.record_name_to_show, @comision_odt.odt ) if @comision_odt.odt %>
 </p>
 
 <p>
-  <strong>Employee:</strong>
-  <%= @comision_odt.employee_id %>
+  <strong><%= Employee.new.table_name_to_show %>:</strong>
+  <%= ( link_to @comision_odt.employee.record_name_to_show, @comision_odt.employee ) if @comision_odt.employee %>
 </p>
 
 <p>
-  <strong>P comision:</strong>
+  <strong><%= ComisionOdt.new.table_name_to_show %>:</strong>
   <%= @comision_odt.p_comision %>
 </p>
 

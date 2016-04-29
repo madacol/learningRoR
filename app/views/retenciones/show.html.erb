@@ -6,8 +6,8 @@
 </p>
 
 <p>
-  <strong>Razon social:</strong>
-  <%= @retencione.razon_social_id %>
+  <strong><%= RazonSocial.new.table_name_to_show %>:</strong>
+  <%= @retencione.razon_social.record_name_to_show if @retencione.razon_social%>
 </p>
 
 <p>

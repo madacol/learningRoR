@@ -1,17 +1,17 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Odt:</strong>
-  <%= @deducciones_odt.odt_id %>
+  <strong><%= Odt.new.table_name_to_show %>:</strong>
+  <%= ( link_to @deducciones_odt.odt.record_name_to_show, @deducciones_odt.odt ) if @deducciones_odt.odt %>
 </p>
 
 <p>
-  <strong>Name:</strong>
+  <strong>Nombre:</strong>
   <%= @deducciones_odt.name %>
 </p>
 
 <p>
-  <strong>P gasto:</strong>
+  <strong><%= DeduccionesOdt.new.table_name_to_show %>:</strong>
   <%= @deducciones_odt.p_gasto %>
 </p>
 

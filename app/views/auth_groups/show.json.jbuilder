@@ -1,1 +1,1 @@
-json.extract! @auth_group, :id, :name, :created_at, :updated_at
+json.extract! @auth_group, :id, :name, :created_at, :updated_at, :odt, :gg, :inversion, :employee, :retencione, :pool, :razon_social, :auth_group

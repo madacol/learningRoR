@@ -5,8 +5,8 @@
 <table>
   <thead>
     <tr>
-      <th>Employee</th>
-      <th>Auth group</th>
+      <th><%= link_to Employee.new.table_name_to_show, employees_path %></th>
+      <th><%= link_to AuthGroup.new.table_name_to_show, auth_groups_path %></th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -14,8 +14,8 @@
   <tbody>
     <% @employee_groups.each do |employee_group| %>
       <tr>
-        <td><%= employee_group.employee %></td>
-        <td><%= employee_group.auth_group %></td>
+        <td><%= (link_to employee_group.employee.record_name_to_show, employee_group.employee) if employee_group.employee %></td>
+        <td><%= (link_to employee_group.auth_group.record_name_to_show, employee_group.auth_group) if employee_group.auth_group %></td>
         <td><%= link_to 'Show', employee_group %></td>
         <td><%= link_to 'Edit', edit_employee_group_path(employee_group) %></td>
         <td><%= link_to 'Destroy', employee_group, method: :delete, data: { confirm: 'Are you sure?' } %></td>

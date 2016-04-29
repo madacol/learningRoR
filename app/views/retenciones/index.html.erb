@@ -1,12 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Retenciones</h1>
+<h1>Listing <%= Retencione.new.table_name_to_show %></h1>
 
 <table>
   <thead>
     <tr>
       <th>Code factura</th>
-      <th>Razon social</th>
+      <th><%= RazonSocial.new.table_name_to_show %></th>
       <th>Tipo</th>
       <th>Monto</th>
       <th>Description</th>
@@ -19,7 +19,7 @@
     <% @retenciones.each do |retencione| %>
       <tr>
         <td><%= retencione.code_factura %></td>
-        <td><%= retencione.razon_social_id %></td>
+        <td><%= link_to retencione.razon_social.record_name_to_show, retencione.razon_social %></td>
         <td><%= retencione.tipo %></td>
         <td><%= retencione.monto %></td>
         <td><%= retencione.description %></td>
@@ -34,4 +34,4 @@
 
 <br>
 
-<%= link_to 'New Retencione', new_retencione_path %>
+<%= link_to 'New '+ Retencione.new.table_name_to_show, new_retencione_path %>

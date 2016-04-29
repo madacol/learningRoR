@@ -16,8 +16,8 @@
     <%= f.text_field :code_factura %>
   </div>
   <div class="field">
-    <%= f.label :razon_social_id %><br>
-    <%= f.text_field :razon_social_id %>
+    <%= label_tag( 'retencione_razon_social_id', RazonSocial.new.table_name_to_show ) %><br>
+    <%= f.select( :razon_social_id, options_for_select( RazonSocial.all.collect { |e| [ e.name, e.id ] }, @retencione.razon_social_id ), :prompt => '--Seleccionar--' ) %>
   </div>
   <div class="field">
     <%= f.label :tipo %><br>

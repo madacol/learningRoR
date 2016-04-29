@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Odts</h1>
+<h1>Listing <%= Odt.new.table_name_to_show %></h1>
 
 <table>
   <thead>
@@ -8,7 +8,7 @@
       <th>Code</th>
       <th>Alias</th>
       <th>Description</th>
-      <th>Razon social</th>
+      <th><%= link_to RazonSocial.new.table_name_to_show, razon_socials_path %></th>
       <th>Monto contrato</th>
       <th colspan="3"></th>
     </tr>
@@ -20,7 +20,7 @@
         <td><%= odt.code %></td>
         <td><%= odt.alias %></td>
         <td><%= odt.description %></td>
-        <td><%= odt.razon_social_id %></td>
+        <td><%= link_to odt.razon_social.record_name_to_show, odt.razon_social %></td>
         <td><%= odt.monto_contrato %></td>
         <td><%= link_to 'Show', odt %></td>
         <td><%= link_to 'Edit', edit_odt_path(odt) %></td>
@@ -32,4 +32,4 @@
 
 <br>
 
-<%= link_to 'New Odt', new_odt_path %>
+<%= link_to 'New '.concat(Odt.new.table_name_to_show), new_odt_path %>

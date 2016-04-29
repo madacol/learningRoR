@@ -5,9 +5,9 @@
 <table>
   <thead>
     <tr>
-      <th>Odt</th>
+      <th><%= link_to Odt.new.table_name_to_show, odts_path  %></th>
       <th>Name</th>
-      <th>P gasto</th>
+      <th><%= DeduccionesOdt.new.table_name_to_show %></th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,7 +15,7 @@
   <tbody>
     <% @deducciones_odts.each do |deducciones_odt| %>
       <tr>
-        <td><%= deducciones_odt.odt_id %></td>
+        <td><%= link_to deducciones_odt.odt.record_name_to_show, deducciones_odt.odt %></td>
         <td><%= deducciones_odt.name %></td>
         <td><%= deducciones_odt.p_gasto %></td>
         <td><%= link_to 'Show', deducciones_odt %></td>

@@ -12,12 +12,12 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :employee_id %><br>
-    <%= f.text_field :employee_id %>
+    <%= label_tag( 'employee_group_employee_id', Employee.new.table_name_to_show ) %><br>
+    <%= f.select( :employee_id, options_for_select( Employee.all.collect{ |e| [e.record_name_to_show, e.id ] }, @employee_group.employee_id ), :prompt => '--Seleccionar--' ) %>
   </div>
   <div class="field">
-    <%= f.label :auth_group_id %><br>
-    <%= f.text_field :auth_group_id %>
+    <%= label_tag( 'employee_group_auth_group_id', AuthGroup.new.table_name_to_show ) %><br>
+    <%= f.select( :auth_group_id, options_for_select( AuthGroup.all.collect{ |e| [e.record_name_to_show, e.id ] }, @employee_group.auth_group_id ), :prompt => '--Seleccionar--' ) %>
   </div>
   <div class="actions">
     <%= f.submit %>
