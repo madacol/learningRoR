@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+gem 'bootstrap', '~> 4.0.0.alpha3'
+gem 'rails-assets-tether'
+
 gem 'tzinfo-data'
 # Authetication
 gem 'devise'
