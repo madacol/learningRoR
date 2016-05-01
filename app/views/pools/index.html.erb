@@ -2,7 +2,7 @@
 
 <h1>Listing Pools</h1>
 
-<table class="table table-hover">
+<table class="table table-hover table-striped">
   <thead>
     <tr>
       <th>Categoria</th>
@@ -22,6 +22,7 @@
       <tr>
         <td><%= (link_to pool.category.table_name_to_show, pool.category.class) if pool.category %></td>
         <td><%= (link_to pool.category.record_name_to_show, pool.category) if pool.category %></td>
+        <td><%= (link_to pool.razon_social.record_name_to_show, pool.razon_social) if pool.razon_social %></td>
         <td><%= pool.monto %></td>
         <td><%= pool.balance %></td>
         <td><%= pool.cuenta %></td>
@@ -33,8 +34,12 @@
         <td><%= link_to 'Destroy', pool, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
+
+    <%= render 'form_table' %>
+
   </tbody>
 </table>
+
 
 <br>
 
