@@ -15,11 +15,11 @@
       <td>
         <div class="form-group">        
           <%= f.select( :razon_social_id, options_for_select( RazonSocial.all.collect { |e| [ e.name, e.id ] }, @pool.razon_social_id ), :class => 'form-control form-control-sm', :prompt => '--Seleccionar--' ) %>
-      </div>
+        </div>
       </td>
       <td>
-          <div class="form-group">        
-          <%= f.text_field :monto, class: "form-control form-control-sm" %>
+        <div class="form-group">        
+        <%= f.text_field :monto, class: "form-control form-control-sm" %>
         </div>
       </td>
       <td>

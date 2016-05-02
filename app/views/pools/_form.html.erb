@@ -15,32 +15,63 @@
     <%= label_tag( 'pool_category_type', 'Categoría' ) %><br>
     <%= f.select( :category_type, options_for_select( categories.collect { |category| [eval(category+'.new.table_name_to_show'), category] }, @pool.category_type ), :prompt => '--Seleccionar--' ) %>
   </div>
+  <div class="form-group">
+    <% categories.each do |category| %>
+      <div id= <%= category %> class="field <%= 'hidden' if @pool.category_type != category %>">
+        <div class="col-sm-2">
+          <label class="control-label" for="pool_category_id">Código</label>
+        </div>
+        <div class="col-sm-8">
+            <select class="form-control" id="pool_category_id" name="pool[category_id]">
+             <option <%=  "@pool.category_id" if @pool.category_type == category %> value="<%= @pool.category_id %>"> <%= @pool.category_id %> </option>
+            </select>
+        </div>
+        <div class="col-sm-2">
+            <button type="button" class="btn btn-info">Añadir</button>
+        </div>
+      </div>
+    <% end %>
+  </div>
 
-  <% categories.each do |category| %>
-    <div id= <%= category %> class="field <%= 'hidden' if @pool.category_type != category %>">
-      <%= label_tag( 'pool_category_id', 'Código' ) %><br>
-      <%= select_tag_for(@pool, category, f) %>
+
+  <div class="form-group">
+    <div class="col-sm-2">
+      <label class="control-label" for="pool_razon_social_id"><%= ( RazonSocial.new.table_name_to_show ) %></label>
     </div>
-  <% end %>
-  <div class="field">
-    <%= label_tag( 'pool_razon_social_id', RazonSocial.new.table_name_to_show ) %><br>
-    <%= f.select( :razon_social_id, options_for_select( RazonSocial.all.collect { |e| [ e.name, e.id ] }, @pool.razon_social_id ), :prompt => '--Seleccionar--' ) %>
+    <div class="col-sm-8">
+        <select class="form-control" id="pool_razon_social_id" name="pool[razon_social_id]">
+          <%= RazonSocial.all.collect do |e| %>
+            <option <%= 'selected="selected"' if @pool.razon_social_id == e.id %> value="<%= e.id %>"><%= e.name %></option>
+          <% end %>
+        </select>
+    </div>
+    <div class="col-sm-2">
+        <button type="button" class="btn btn-info">Añadir</button>
+    </div>
   </div>
-    <div class="field">
-    <%= f.label :monto %><br>
-    <%= f.text_field :monto %>
+  <div class="form-group">
+    <div class="col-sm-2" id="f-titles">
+      <label class="control-label" for="pool_monto">Monto</label>
+    </div>
+    <div class="col-sm-10">
+    <input type="text" class="form-control" id="pool_monto" name="pool[monto]" placeholder="Monto total de la operación"> 
+    </div>  
   </div>
-  <div class="field">
-    <%= f.label :balance %><br>
-    <%= f.text_field :balance %>
+  <div class="form-group">
+    <div class="col-sm-2" id="f-titles">
+      <label class="control-label" for="pool_n_comprobante">Comprobante</label>
+    </div>
+    <div class="col-sm-10">
+    <input type="text" class="form-control" id="pool_n_comprobante" name="pool[n_comprobante]" placeholder="Código del comprobante"> 
+    </div>  
   </div>
-  <div class="field">
-    <%= f.label :n_comprobante %><br>
-    <%= f.text_field :n_comprobante %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
+  <div class="form-group">
+    <div class="col-sm-2" id="f-titles">
+      <label class="control-label" for="pool_description" >Descripción</label>
+    </div>
+    <div class="col-sm-10">
+    <textarea type="text" class="form-control" id="pool_description" name="pool[description]" placeholder="Describe los detalles de la transacción"></textarea> 
+    </div>  
   </div>
   <div class="actions">
     <%= f.submit %>
