@@ -1,0 +1,110 @@
+
+<br>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+  New Pool
+</button>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+       </div>
+      <div class="modal-body">
+        <%= form_for(@pool) do |f| %>
+          <% if @pool.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@pool.errors.count, "error") %> prohibited this pool from being saved:</h2>
+
+              <ul>
+              <% @pool.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <div class="form-group row">
+            <div class="col-sm-2">
+              <%= label_tag( 'pool_category_type', 'Categoría' ) %><br>
+            </div>
+            <div class="col-sm-10">
+              <%= f.select(:category_type, options_for_select( categories.collect { |category| [eval(category+'.new.table_name_to_show'), category] }, @pool.category_type ), { prompt: '--Seleccionar--'}, { class: "form-control" } ) %>
+            </div>
+          </div>
+          <div class="form-group row">
+            <% categories.each do |category| %>
+              <div id= <%= category %> class="field <%= 'hidden' if @pool.category_type != category %>">
+                <div class="col-sm-2">
+                  <label class="control-label" for="pool_category_id">Código</label>
+                </div>
+                <div class="col-sm-8">
+                  <select class="form-control" id="pool_category_id" name="pool[category_id]">
+                    <% eval(category).all.each do |option| %>
+                      <option <%= 'selected="selected"' if @pool.category_id == option.id %> value="<%= option.id %>"> <%= option.record_name_to_show %> </option>
+                    <% end %>
+                  </select>
+                </div>
+                <div class="col-sm-2">
+                    <button type="button" class="btn btn-info">Añadir</button>
+                </div>
+              </div>
+            <% end %>
+          </div>
+
+
+          <div class="form-group row">
+            <div class="col-sm-2">
+              <label class="control-label" for="pool_razon_social_id"><%= ( RazonSocial.new.table_name_to_show ) %></label>
+            </div>
+            <div class="col-sm-8">
+                <select class="form-control" id="pool_razon_social_id" name="pool[razon_social_id]">
+                  <%= RazonSocial.all.collect do |e| %>
+                    <option <%= 'selected="selected"' if @pool.razon_social_id == e.id %> value="<%= e.id %>"><%= e.record_name_to_show%></option>
+                  <% end %>
+                </select>
+            </div>
+            <div class="col-sm-2">
+                <button type="button" class="btn btn-info">Añadir</button>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-2" id="f-titles">
+              <label class="control-label" for="pool_monto">Monto</label>
+            </div>
+            <div class="col-sm-10">
+            <input type="text" class="form-control" id="pool_monto" name="pool[monto]" placeholder="Monto total de la operación"> 
+            </div>  
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-2" id="f-titles">
+              <label class="control-label" for="pool_n_comprobante">Comprobante</label>
+            </div>
+            <div class="col-sm-10">
+            <input type="text" class="form-control" id="pool_n_comprobante" name="pool[n_comprobante]" placeholder="Código del comprobante"> 
+            </div>  
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-2" id="f-titles">
+              <label class="control-label" for="pool_description" >Descripción</label>
+            </div>
+            <div class="col-sm-10">
+            <textarea type="text" class="form-control" id="pool_description" name="pool[description]" placeholder="Describe los detalles de la transacción"></textarea> 
+            </div>  
+          </div>
+          <div class="actions">
+            <%= f.submit class: "btn btn-primary" %>
+          </div>
+        <% end %>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

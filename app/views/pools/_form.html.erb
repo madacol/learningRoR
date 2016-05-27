@@ -22,9 +22,11 @@
           <label class="control-label" for="pool_category_id">Código</label>
         </div>
         <div class="col-sm-8">
-            <select class="form-control" id="pool_category_id" name="pool[category_id]">
-             <option <%=  "@pool.category_id" if @pool.category_type == category %> value="<%= @pool.category_id %>"> <%= @pool.category_id %> </option>
-            </select>
+          <select class="form-control" id="pool_category_id" name="pool[category_id]">
+            <% eval(category).all.each do |option| %>
+              <option <%= 'selected="selected"' if @pool.category_id == option.id %> value="<%= option.id %>"> <%= option.record_name_to_show %> </option>
+            <% end %>
+          </select>
         </div>
         <div class="col-sm-2">
             <button type="button" class="btn btn-info">Añadir</button>
@@ -41,7 +43,7 @@
     <div class="col-sm-8">
         <select class="form-control" id="pool_razon_social_id" name="pool[razon_social_id]">
           <%= RazonSocial.all.collect do |e| %>
-            <option <%= 'selected="selected"' if @pool.razon_social_id == e.id %> value="<%= e.id %>"><%= e.name %></option>
+            <option <%= 'selected="selected"' if @pool.razon_social_id == e.id %> value="<%= e.id %>"><%= e.record_name_to_show%></option>
           <% end %>
         </select>
     </div>

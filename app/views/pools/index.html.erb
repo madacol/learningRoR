@@ -1,12 +1,17 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Pools</h1>
+
+<%= render 'form_modal' %>
+<br>
+
 <div class="table-responsive">
   <table class="table table-hover table-striped">
     <thead>
       <tr>
         <th>Categoria</th>
         <th>Nombre o Alias</th>      
+        <th><%= RazonSocial.new.table_name_to_show %></th>   
         <th>Monto</th>
         <th>Balance</th>
         <th>Cuenta</th>
@@ -18,7 +23,7 @@
     </thead>
 
     <tbody>
-      <% @pools.each do |pool| %>
+      <% @pools.reverse.each do |pool| %>
         <tr>
           <td><%= (link_to pool.category.table_name_to_show, pool.category.class) if pool.category %></td>
           <td><%= (link_to pool.category.record_name_to_show, pool.category) if pool.category %></td>
@@ -29,18 +34,10 @@
           <td><%= pool.comprobante_type %></td>
           <td><%= pool.n_comprobante %></td>
           <td><%= pool.description %></td>
-          <td><%= link_to 'Show', pool %></td>
-          <td><%= link_to 'Edit', edit_pool_path(pool) %></td>
-          <td><%= link_to 'Destroy', pool, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Editar', edit_pool_path(pool), class: "btn btn-primary btn-sm" %></td>
+          <td><%= link_to '×', pool, method: :delete, data: { confirm: 'Are you sure?' }, class: "close equis" %></td>
         </tr>
       <% end %>
-
-      <%= render 'form_table' %>
-
     </tbody>
   </table>
 </div>
-
-<br>
-
-<%= link_to 'New Pool', new_pool_path %>
