@@ -258,4 +258,6 @@ label+button.equis{
 	display: none;
 }
 
+.table td, .table th {
+	vertical-align: middle;
 }

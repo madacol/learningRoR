@@ -17,11 +17,12 @@ $(document).ready(function(){
     var select = $(this);
     select.data( "previous",select.val() );
     select.change( function (){
-      old_select_category_id = $('#'+$(this).data('previous')+$(this).parents('form').attr('id') );
-      old_select_category_id.addClass('hidden');
-      old_select_category_id.hide();
-      old_select_category_id.find('select').removeAttr('name');
-
+      if ( $(this).data("previous") ) {
+        old_select_category_id = $('#'+$(this).data('previous')+$(this).parents('form').attr('id') );
+        old_select_category_id.addClass('hidden');
+        old_select_category_id.hide();
+        old_select_category_id.find('select').removeAttr('name');
+      }
       new_select_category_id = $('#'+$(this).val()+$(this).parents('form').attr('id') );
       new_select_category_id.removeClass('hidden');
       new_select_category_id.show();

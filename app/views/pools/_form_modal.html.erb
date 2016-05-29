@@ -27,13 +27,13 @@
               <%= label_tag( "pool_category_type_#{id}", 'Categoría' ) %><br>
             </div>
             <div class="col-sm-4">
-              <%= f.select(:category_type, options_for_select( categories.collect { |category| [eval(category).new.table_name_to_show, category] }, pool.category_type ), { prompt: '--Seleccionar--'}, { class: "form-control", id: "pool_category_type_#{id}" } ) %>
+              <%= f.select(:category_type, options_for_select( categories.collect { |category| [eval(category).new.table_name_to_show, category] }, pool.category_type ), { prompt: '--Seleccionar--'}, { class: "form-control c-select", id: "pool_category_type_#{id}" } ) %>
             </div>
 
             <% categories.each do |category| %>
               <div id= <%= category+id %> class="<%= 'hidden' if pool.category_type != category %>">
                 <div class="col-sm-4">
-                  <select class="form-control" id="pool_category_id_<%=id%>" name="pool[category_id]">
+                  <select class="form-control c-select" id="pool_category_id_<%=id%>" name="pool[category_id]">
                     <% eval(category).all.each do |option| %>
                       <option <%= 'selected="selected"' if pool.category_id == option.id %> value="<%= option.id %>"> <%= option.record_name_to_show %> </option>
                     <% end %>
@@ -53,7 +53,7 @@
               <label class="control-label" for="pool_razon_social_id_<%=id%>"><%= ( RazonSocial.new.table_name_to_show ) %></label>
             </div>
             <div class="col-sm-8">
-                <select class="form-control" id="pool_razon_social_id_<%=id%>" name="pool[razon_social_id]">
+                <select class="form-control c-select" id="pool_razon_social_id_<%=id%>" name="pool[razon_social_id]">
                   <%= RazonSocial.all.collect do |e| %>
                     <option <%= 'selected="selected"' if pool.razon_social_id == e.id %> value="<%= e.id %>"><%= e.record_name_to_show%></option>
                   <% end %>

@@ -10,18 +10,25 @@
 </head>
 <body>
   <nav id="tf-menu" class="navbar navbar-dark navbar-fixed-top bg-inverse">
-    <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2">
-      &#9776;
-    </button>
+    <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2">&#9776;</button>
     <div class="collapse navbar-toggleable-xs" id="exCollapsingNavbar2">
       <a class="navbar-brand">ODT TAIONCA</a>
       <ul class="nav navbar-nav pull-xs-right">
-        <li class="nav-item active">
-          <a href="#tf-cajachica" class="nav-link">Operaciones</a>
+        <li class="nav-item">
+          <a href="/odts" class="nav-link"><%= Odt.new.table_name_to_show %></a>
         </li>
         <li class="nav-item">
-          <a href="#tf-odt" class="nav-link">Nuevos Registros</a>
-        </li>     
+          <a href="/pools" class="nav-link">Caja Chica</a>
+        </li>
+        <li class="nav-item">
+          <a href="#tf-odt" class="nav-link">Cuentas</a>
+        </li>
+        <li class="nav-item">
+          <a href="/razon_socials" class="nav-link"><%= RazonSocial.new.table_name_to_show %></a>
+        </li>
+        <li class="nav-item">
+          <a href="/retenciones" class="nav-link"><%= Retencione.new.table_name_to_show %></a>
+        </li>
       </ul>
     </div>
   </nav>
