@@ -5,6 +5,7 @@ class OdtsController < ApplicationController
   # GET /odts.json
   def index
     @odts = Odt.all
+    @odt = Odt.new
   end
 
   # GET /odts/1
@@ -28,7 +29,7 @@ class OdtsController < ApplicationController
 
     respond_to do |format|
       if @odt.save
-        format.html { redirect_to @odt, notice: 'Odt was successfully created.' }
+        format.html { redirect_to odts_url, notice: @odt.table_name_to_show.concat(' was successfully created.') }
         format.json { render :show, status: :created, location: @odt }
       else
         format.html { render :new }
@@ -42,7 +43,7 @@ class OdtsController < ApplicationController
   def update
     respond_to do |format|
       if @odt.update(odt_params)
-        format.html { redirect_to @odt, notice: 'Odt was successfully updated.' }
+        format.html { redirect_to odts_url, notice: @odt.table_name_to_show.concat(' was successfully updated.') }
         format.json { render :show, status: :ok, location: @odt }
       else
         format.html { render :edit }

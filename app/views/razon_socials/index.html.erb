@@ -2,42 +2,41 @@
 
 <h1>Listing <%= RazonSocial.new.table_name_to_show %></h1>
 
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th>Rif ci</th>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Phone</th>
-      <th>Email</th>
-      <th>Address</th>
-      <th>Contact name</th>
-      <th>Contact phone</th>
-      <th>Contact email</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<p><%= render 'form', razon_social: @razon_social, btn_name: 'Nuevo Registro', id: 'new_razon_social' %> </p>
 
-  <tbody>
-    <% @razon_socials.each do |razon_social| %>
+<div class="table-responsive">
+  <table class="table table-sm table-hover table-striped table-bordered">
+    <thead>
       <tr>
-        <td><%= razon_social.rif_ci %></td>
-        <td><%= razon_social.name %></td>
-        <td><%= razon_social.description %></td>
-        <td><%= razon_social.phone %></td>
-        <td><%= razon_social.email %></td>
-        <td><%= razon_social.address %></td>
-        <td><%= razon_social.contact_name %></td>
-        <td><%= razon_social.contact_phone %></td>
-        <td><%= razon_social.contact_email %></td>
-        <td><%= link_to 'Show', razon_social %></td>
-        <td><%= link_to 'Edit', edit_razon_social_path(razon_social) %></td>
-        <td><%= link_to 'Destroy', razon_social, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Rif ci</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th>Contact name</th>
+        <th>Contact phone</th>
+        <th>Contact email</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
-
-<%= link_to 'New '+ RazonSocial.new.table_name_to_show, new_razon_social_path %>
+    <tbody>
+      <% @razon_socials.reverse.each do |razon_social| %>
+        <tr>
+          <td><%= razon_social.rif_ci %></td>
+          <td><%= razon_social.name %></td>
+          <td><%= razon_social.description %></td>
+          <td><%= razon_social.phone %></td>
+          <td><%= razon_social.email %></td>
+          <td><%= razon_social.address %></td>
+          <td><%= razon_social.contact_name %></td>
+          <td><%= razon_social.contact_phone %></td>
+          <td><%= razon_social.contact_email %></td>
+          <td><%= render 'form', razon_social: razon_social, btn_name: 'Editar', id: "edit_razon_social_#{razon_social.id}" %></td>
+          <td><%= link_to '×', razon_social, method: :delete, data: { confirm: 'Are you sure?' }, class: "close equis" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
