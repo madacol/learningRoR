@@ -3,7 +3,7 @@ class Pool < ActiveRecord::Base
 	belongs_to :razon_social   
 
 	def table_name_to_show
-		'Pool'
+		'Caja chica'
 	end
 	def record_name_to_show
 		return self.description

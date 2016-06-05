@@ -1,41 +1,38 @@
 <p id="notice"><%= notice %></p>
-
-<h1>Listing Employees</h1>
-
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th>Cedula</th>
-      <th>Name</th>
-      <th>Last name</th>
-      <th>Phone number</th>
-      <th>Email</th>
-      <th>Address</th>
-      <th>Startdate</th>
-      <th>Note</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @employees.each do |employee| %>
+<h1>Listing Pools</h1>
+<p><%= render 'form', employee: @employee, btn_name: 'Nuevo Registro', id: 'new_pool' %></p>
+<div class="table-responsive">
+  <table class="table table-sm table-hover table-striped table-bordered">
+    <thead>
       <tr>
-        <td><%= employee.cedula %></td>
-        <td><%= employee.name %></td>
-        <td><%= employee.last_name %></td>
-        <td><%= employee.phone_number %></td>
-        <td><%= employee.email %></td>
-        <td><%= employee.address %></td>
-        <td><%= employee.startdate %></td>
-        <td><%= employee.note %></td>
-        <td><%= link_to 'Show', employee %></td>
-        <td><%= link_to 'Edit', edit_employee_path(employee) %></td>
-        <td><%= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Cedula</th>
+        <th>Name</th>
+        <th>Last name</th>
+        <th>Phone number</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th>Startdate</th>
+        <th>Note</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @employees.each do |employee| %>
+        <tr>
+          <td><%= employee.cedula %></td>
+          <td><%= employee.name %></td>
+          <td><%= employee.last_name %></td>
+          <td><%= employee.phone_number %></td>
+          <td><%= employee.email %></td>
+          <td><%= employee.address %></td>
+          <td><%= employee.startdate %></td>
+          <td><%= employee.note %></td>
+          <td><%= render 'form', employee: employee, btn_name: 'Editar', id: "edit_pool_#{employee.id}" %></td>
+          <td><%= link_to '×', employee, method: :delete, data: { confirm: 'Are you sure?' }, class: "close equis" %></td>
+        </tr>
+      <% end %>
+    </tbody>  
+  </table>
+</div>
 
-<%= link_to 'New Employee', new_employee_path %>

@@ -5,6 +5,7 @@ class GgsController < ApplicationController
   # GET /ggs.json
   def index
     @ggs = Gg.all
+    @gg = Gg.new
   end
 
   # GET /ggs/1
@@ -28,7 +29,7 @@ class GgsController < ApplicationController
 
     respond_to do |format|
       if @gg.save
-        format.html { redirect_to @gg, notice: 'Gg was successfully created.' }
+        format.html { redirect_to ggs_url, notice: @gg.table_name_to_show.concat( ' was successfully created.') }
         format.json { render :show, status: :created, location: @gg }
       else
         format.html { render :new }
@@ -42,7 +43,7 @@ class GgsController < ApplicationController
   def update
     respond_to do |format|
       if @gg.update(gg_params)
-        format.html { redirect_to @gg, notice: 'Gg was successfully updated.' }
+        format.html { redirect_to gg_url, notice: @gg.table_name_to_show.concat( ' was successfully updated.') }
         format.json { render :show, status: :ok, location: @gg }
       else
         format.html { render :edit }

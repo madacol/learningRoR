@@ -12,13 +12,22 @@
   <nav id="tf-menu" class="navbar navbar-dark navbar-fixed-top bg-inverse">
     <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2">&#9776;</button>
     <div class="collapse navbar-toggleable-xs" id="exCollapsingNavbar2">
-      <a class="navbar-brand">ODT TAIONCA</a>
+      <a class="navbar-brand">ODT</a>
       <ul class="nav navbar-nav pull-xs-right">
         <li class="nav-item">
           <a href="/odts" class="nav-link"><%= Odt.new.table_name_to_show %></a>
         </li>
         <li class="nav-item">
-          <a href="/pools" class="nav-link">Caja Chica</a>
+          <a href="/ggs" class="nav-link"><%= Gg.new.table_name_to_show %></a>
+        </li>
+        <li class="nav-item">
+          <a href="/employees" class="nav-link"><%= Employee.new.table_name_to_show %></a>
+        </li>
+        <li class="nav-item">
+          <a href="/inversions" class="nav-link"><%= Inversion.new.table_name_to_show %></a>
+        </li>
+        <li class="nav-item">
+          <a href="/pools" class="nav-link"><%= Pool.new.table_name_to_show %></a>
         </li>
         <li class="nav-item">
           <a href="#tf-odt" class="nav-link">Cuentas</a>

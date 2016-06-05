@@ -1,8 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Inversions</h1>
+<h1>Listing <%= Inversion.new.table_name_to_show %></h1>
 
-<table class="table table-hover">
+<p><%= render 'form', inversion: @inversion, btn_name: 'Nuevo Registro', id: 'new_inversions' %> </p>
+
+<div class="table-responsive">
+<table class="table table-sm table-hover table-striped table-bordered">
   <thead>
     <tr>
       <th>Code</th>
@@ -18,14 +21,9 @@
         <td><%= inversion.code %></td>
         <td><%= inversion.alias %></td>
         <td><%= inversion.description %></td>
-        <td><%= link_to 'Show', inversion %></td>
-        <td><%= link_to 'Edit', edit_inversion_path(inversion) %></td>
-        <td><%= link_to 'Destroy', inversion, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= render 'form', inversion: inversion, btn_name: 'Editar', id: "edit_inversion_#{inversion.id}" %></td>
+        <td><%= link_to '×', inversion, method: :delete, data: { confirm: 'Are you sure?' }, class: "close equis" %></td></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Inversion', new_inversion_path %>

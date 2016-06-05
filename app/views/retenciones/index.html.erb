@@ -2,36 +2,35 @@
 
 <h1>Listing <%= Retencione.new.table_name_to_show %></h1>
 
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th>Code factura</th>
-      <th><%= RazonSocial.new.table_name_to_show %></th>
-      <th>Tipo</th>
-      <th>Monto</th>
-      <th>Description</th>
-      <th>Status</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<p><%= render 'form', retencione: @retencione, btn_name: 'Nuevo Registro', id: 'new_retencione' %> </p>
 
-  <tbody>
-    <% @retenciones.each do |retencione| %>
+<div class="table-responsive">
+  <table  class="table table-sm table-hover table-striped table-bordered">
+    <thead>
       <tr>
-        <td><%= retencione.code_factura %></td>
-        <td><%= link_to retencione.razon_social.record_name_to_show, retencione.razon_social %></td>
-        <td><%= retencione.tipo %></td>
-        <td><%= retencione.monto %></td>
-        <td><%= retencione.description %></td>
-        <td><%= retencione.status %></td>
-        <td><%= link_to 'Show', retencione %></td>
-        <td><%= link_to 'Edit', edit_retencione_path(retencione) %></td>
-        <td><%= link_to 'Destroy', retencione, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Código</th>
+        <th><%= RazonSocial.new.table_name_to_show %></th>
+        <th>Tipo</th>
+        <th>Monto</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
-
-<%= link_to 'New '+ Retencione.new.table_name_to_show, new_retencione_path %>
+    <tbody>
+      <% @retenciones.each do |retencione| %>
+        <tr>
+          <td><%= retencione.code_factura %></td>
+          <td><%= link_to retencione.razon_social.record_name_to_show, retencione.razon_social %></td>
+          <td><%= retencione.tipo %></td>
+          <td><%= retencione.monto %></td>
+          <td><%= retencione.description %></td>
+          <td><%= retencione.status %></td>
+          <td><%= render 'form', retencione: retencione, btn_name: 'Editar', id: "edit_retencione_#{retencione.id}" %></td>
+          <td><%= link_to '×', retencione, method: :delete, data: { confirm: 'Are you sure?' }, class: "close equis" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

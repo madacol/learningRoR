@@ -29,7 +29,7 @@ class PoolsController < ApplicationController
 
     respond_to do |format|
       if @pool.save
-        format.html { redirect_to action: 'index', notice: @pool.table_name_to_show.concat(' was successfully created.') }
+        format.html { redirect_to pools_url, notice: @pool.table_name_to_show.concat(' was successfully created.') }
         format.json { render :show, status: :created, location: @pool }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class PoolsController < ApplicationController
   def update
     respond_to do |format|
       if @pool.update(pool_params)
-        format.html { redirect_to action: 'index', notice: @pool.table_name_to_show.concat(' was successfully updated.') }
+        format.html { redirect_to pools_url, notice: @pool.table_name_to_show.concat(' was successfully updated.') }
         format.json { render :show, status: :ok, location: @pool }
       else
         format.html { render :edit }

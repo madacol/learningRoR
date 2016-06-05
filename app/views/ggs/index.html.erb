@@ -1,11 +1,15 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Ggs</h1>
+<h1>Listing <%= Gg.new.table_name_to_show %></h1>
 
-<table class="table table-hover">
+<p><%= render 'form', gg: @gg, btn_name: 'Nuevo Registro', id: 'new_gg' %> </p>
+
+<div class="table-responsive">
+  <table  class="table table-sm table-hover table-striped table-bordered">
   <thead>
     <tr>
       <th>Code</th>
+      <th>Alias</th>
       <th>Description</th>
       <th colspan="3"></th>
     </tr>
@@ -16,14 +20,9 @@
       <tr>
         <td><%= gg.code %></td>
         <td><%= gg.description %></td>
-        <td><%= link_to 'Show', gg %></td>
-        <td><%= link_to 'Edit', edit_gg_path(gg) %></td>
-        <td><%= link_to 'Destroy', gg, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= render 'form', gg: gg, btn_name: 'Editar', id: "edit_gg_#{gg.id}" %></td>
+        <td><%= link_to '×', gg, method: :delete, data: { confirm: 'Are you sure?' }, class: "close equis" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Gg', new_gg_path %>

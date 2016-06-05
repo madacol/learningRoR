@@ -4,7 +4,8 @@ class RetencionesController < ApplicationController
   # GET /retenciones
   # GET /retenciones.json
   def index
-    @retenciones = Retencione.all
+    @retenciones = Retencione.all    
+    @retencione = Retencione.new
   end
 
   # GET /retenciones/1
@@ -28,7 +29,7 @@ class RetencionesController < ApplicationController
 
     respond_to do |format|
       if @retencione.save
-        format.html { redirect_to @retencione, notice: 'Retencione was successfully created.' }
+        format.html { redirect_to retenciones_url, notice: @retencione.table_name_to_show.concat(' was successfully created.') }
         format.json { render :show, status: :created, location: @retencione }
       else
         format.html { render :new }
@@ -42,7 +43,7 @@ class RetencionesController < ApplicationController
   def update
     respond_to do |format|
       if @retencione.update(retencione_params)
-        format.html { redirect_to @retencione, notice: 'Retencione was successfully updated.' }
+        format.html { redirect_to retenciones_url, notice: @retencione.table_name_to_show.concat( ' was successfully updated.') }
         format.json { render :show, status: :ok, location: @retencione }
       else
         format.html { render :edit }

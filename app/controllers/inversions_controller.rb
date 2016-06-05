@@ -5,6 +5,7 @@ class InversionsController < ApplicationController
   # GET /inversions.json
   def index
     @inversions = Inversion.all
+    @inversion = Inversion.new
   end
 
   # GET /inversions/1
@@ -28,7 +29,7 @@ class InversionsController < ApplicationController
 
     respond_to do |format|
       if @inversion.save
-        format.html { redirect_to @inversion, notice: 'Inversion was successfully created.' }
+        format.html { redirect_to inversions_url, notice: @inversion.table_name_to_show.concat( ' was successfully created.') }
         format.json { render :show, status: :created, location: @inversion }
       else
         format.html { render :new }
@@ -42,7 +43,7 @@ class InversionsController < ApplicationController
   def update
     respond_to do |format|
       if @inversion.update(inversion_params)
-        format.html { redirect_to @inversion, notice: 'Inversion was successfully updated.' }
+        format.html { redirect_to inversion_url, notice: @inversion.table_name_to_show.concat( ' was successfully updated.') }
         format.json { render :show, status: :ok, location: @inversion }
       else
         format.html { render :edit }

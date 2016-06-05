@@ -5,6 +5,7 @@ class EmployeesController < ApplicationController
   # GET /employees.json
   def index
     @employees = Employee.all
+    @employee = Employee.new
   end
 
   # GET /employees/1
@@ -28,7 +29,7 @@ class EmployeesController < ApplicationController
 
     respond_to do |format|
       if @employee.save
-        format.html { redirect_to @employee, notice: 'Employee was successfully created.' }
+        format.html { redirect_to employee_url, notice: @employee.table_name_to_show.concat(' was successfully created.') }
         format.json { render :show, status: :created, location: @employee }
       else
         format.html { render :new }
@@ -42,7 +43,7 @@ class EmployeesController < ApplicationController
   def update
     respond_to do |format|
       if @employee.update(employee_params)
-        format.html { redirect_to @employee, notice: 'Employee was successfully updated.' }
+        format.html { redirect_to employee_url, notice: @employee.table_name_to_show.concat(' was successfully updated.') }
         format.json { render :show, status: :ok, location: @employee }
       else
         format.html { render :edit }
