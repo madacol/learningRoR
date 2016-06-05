@@ -16,7 +16,7 @@
   </thead>
 
   <tbody>
-    <% @inversions.each do |inversion| %>
+    <% @inversions.reverse.each do |inversion| %>
       <tr>
         <td><%= inversion.code %></td>
         <td><%= inversion.alias %></td>

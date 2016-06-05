@@ -43,7 +43,7 @@ class GgsController < ApplicationController
   def update
     respond_to do |format|
       if @gg.update(gg_params)
-        format.html { redirect_to gg_url, notice: @gg.table_name_to_show.concat( ' was successfully updated.') }
+        format.html { redirect_to ggs_url, notice: @gg.table_name_to_show.concat( ' was successfully updated.') }
         format.json { render :show, status: :ok, location: @gg }
       else
         format.html { render :edit }

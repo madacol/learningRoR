@@ -18,7 +18,7 @@
     </thead>
 
     <tbody>
-      <% @employees.each do |employee| %>
+      <% @employees.reverse.each do |employee| %>
         <tr>
           <td><%= employee.cedula %></td>
           <td><%= employee.name %></td>

@@ -19,7 +19,7 @@
     </thead>
 
     <tbody>
-      <% @retenciones.each do |retencione| %>
+      <% @retenciones.reverse.each do |retencione| %>
         <tr>
           <td><%= retencione.code_factura %></td>
           <td><%= link_to retencione.razon_social.record_name_to_show, retencione.razon_social %></td>
