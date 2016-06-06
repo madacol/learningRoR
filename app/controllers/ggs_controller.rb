@@ -70,6 +70,6 @@ class GgsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def gg_params
-      params.require(:gg).permit(:code, :description)
+      params.require(:gg).permit(:code, :alias, :description)
     end
 end
