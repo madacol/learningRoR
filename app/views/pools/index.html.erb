@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-<h1>Listing Pools</h1>
+<h1>Listing <%= Pool.new.table_name_to_show %></h1>
 <p><%= render 'form_modal', pool: @pool, btn_name: 'Nuevo Registro', id: 'new_pool' %></p>
 <div class="table-responsive">
   <table class="table table-sm table-hover table-striped table-bordered">

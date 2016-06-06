@@ -29,7 +29,7 @@ class EmployeesController < ApplicationController
 
     respond_to do |format|
       if @employee.save
-        format.html { redirect_to employee_url, notice: @employee.table_name_to_show.concat(' was successfully created.') }
+        format.html { redirect_to employees_url, notice: @employee.table_name_to_show.concat(' was successfully created.') }
         format.json { render :show, status: :created, location: @employee }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class EmployeesController < ApplicationController
   def update
     respond_to do |format|
       if @employee.update(employee_params)
-        format.html { redirect_to employee_url, notice: @employee.table_name_to_show.concat(' was successfully updated.') }
+        format.html { redirect_to employees_url, notice: @employee.table_name_to_show.concat(' was successfully updated.') }
         format.json { render :show, status: :ok, location: @employee }
       else
         format.html { render :edit }
