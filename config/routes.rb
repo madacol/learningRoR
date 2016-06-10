@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root "pools#index"
+
   resources :pools
   resources :auth_groups
   resources :employee_groups
@@ -11,7 +13,6 @@ Rails.application.routes.draw do
   resources :odts
   resources :razon_socials
   resources :testtts
-  resources :testtts
 
   devise_for :users
   
@@ -20,8 +21,6 @@ Rails.application.routes.draw do
   get 'testing/test'
 
   get 'welcome/index'
-
-  root 'welcome#index'
 
   resources :articles
 
