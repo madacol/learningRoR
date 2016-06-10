@@ -61,6 +61,20 @@
                 <%= f.text_field :monto_contrato, class: "form-control" %>
               </div>
             </div>
+            <% f.fields_for :comision_odts do |comision_odt_form| %>
+              <div class="field">
+                <%= comision_odt_form.label( 'comision_odt_odt_id', Odt.new.table_name_to_show ) %><br>
+                <%= comision_odt_form.select( :odt_id, options_for_select( Odt.all.collect{ |e| [e.record_name_to_show, e.id ] }, odt.comision_odts.new.odt_id ), :prompt => '--Seleccionar--' ) %>
+              </div>
+              <div class="field">
+                <%= comision_odt_form.label( 'comision_odt_employee_id', Employee.new.table_name_to_show ) %><br>
+                <%= comision_odt_form.select( :employee_id, options_for_select( Employee.all.collect{ |e| [e.record_name_to_show, e.id ] }, odt.comision_odts.new.employee_id ), :prompt => '--Seleccionar--' ) %>
+              </div>
+              <div class="field">
+                <%= comision_odt_form.label :p_comision %><br>
+                <%= comision_odt_form.text_field :p_comision %>
+              </div>
+            <% end %>
           <% end %>
         </div>
         <div class="modal-footer">
