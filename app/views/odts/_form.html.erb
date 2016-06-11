@@ -10,12 +10,12 @@
         <h4 class="modal-title" id="Modal_<%=id%>Label">Nuevo registro</h4>
        </div>
         <div class="modal-body">
-          <%= form_for(odt) do |f| %>
-            <% if odt.errors.any? %>
+          <%= form_for(@odt) do |f| %>
+            <% if @odt.errors.any? %>
               <div id="error_explanation">
-                <h2><%= pluralize(odt.errors.count, "error") %> prohibited this odt from being saved:</h2>
+                <h2><%= pluralize(@odt.errors.count, "error") %> prohibited this odt from being saved:</h2>
                   <ul>
-                    <% odt.errors.full_messages.each do |message| %>
+                    <% @odt.errors.full_messages.each do |message| %>
                       <li><%= message %></li>
                     <% end %>
                   </ul>
@@ -47,10 +47,10 @@
             </div>
             <div class="form-group row">
               <div class="col-sm-2">
-              <%= label_tag( 'odt_razon_social_id', RazonSocial.new.table_name_to_show) %>
+                <%= label_tag( 'odt_razon_social_id', RazonSocial.new.table_name_to_show, class: "control-label") %>
               </div>
               <div class="col-sm-10">
-              <%= f.select( :razon_social_id, options_for_select( RazonSocial.all.collect{ |e| [e.record_name_to_show, e.id ] }, odt.razon_social_id ), { prompt: '--Seleccionar--'}, { class: "form-control c-select" }) %>
+                <%= f.select( :razon_social_id, options_for_select( RazonSocial.all.collect{ |e| [e.record_name_to_show, e.id ] }, @odt.razon_social_id ), { prompt: '--Seleccionar--'}, { class: "form-control c-select" }) %>
               </div>
             </div>
             <div class="form-group row">
@@ -61,18 +61,18 @@
                 <%= f.text_field :monto_contrato, class: "form-control" %>
               </div>
             </div>
-            <% f.fields_for :comision_odts do |comision_odt_form| %>
-              <div class="field">
-                <%= comision_odt_form.label( 'comision_odt_odt_id', Odt.new.table_name_to_show ) %><br>
-                <%= comision_odt_form.select( :odt_id, options_for_select( Odt.all.collect{ |e| [e.record_name_to_show, e.id ] }, odt.comision_odts.new.odt_id ), :prompt => '--Seleccionar--' ) %>
-              </div>
-              <div class="field">
-                <%= comision_odt_form.label( 'comision_odt_employee_id', Employee.new.table_name_to_show ) %><br>
-                <%= comision_odt_form.select( :employee_id, options_for_select( Employee.all.collect{ |e| [e.record_name_to_show, e.id ] }, odt.comision_odts.new.employee_id ), :prompt => '--Seleccionar--' ) %>
-              </div>
-              <div class="field">
-                <%= comision_odt_form.label :p_comision %><br>
-                <%= comision_odt_form.text_field :p_comision %>
+            <%= f.fields_for :comision_odts, @odt.comision_odts do |comision_odt_form| %>
+
+              <div class="form-group row">
+                <div class="col-sm-2">
+                  <%= comision_odt_form.label( 'comision_odt_employee_id', Employee.new.table_name_to_show ) %><br>
+                </div>
+                <div class="col-sm-5">
+                  <%= comision_odt_form.select( :employee_id, options_for_select( Employee.all.collect{ |e| [e.record_name_to_show, e.id ] }, @odt.comision_odts.new.employee_id ), { prompt: '--Seleccionar--'}, { class: "form-control c-select" }) %>
+                </div>
+                <div class="col-sm-5">
+                  <%= comision_odt_form.text_field :p_comision, class: "form-control" %>
+                </div>
               </div>
             <% end %>
           <% end %>
