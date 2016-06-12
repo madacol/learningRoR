@@ -4,7 +4,8 @@ class ComisionOdtsController < ApplicationController
   # GET /comision_odts
   # GET /comision_odts.json
   def index
-    @comision_odts = ComisionOdt.all
+    @comision_odts = ComisionOdt.all    
+    @comision_odt = ComisionOdt.new
   end
 
   # GET /comision_odts/1
@@ -28,7 +29,7 @@ class ComisionOdtsController < ApplicationController
 
     respond_to do |format|
       if @comision_odt.save
-        format.html { redirect_to @comision_odt, notice: 'Comision odt was successfully created.' }
+        format.html { redirect_to comision_odts_url, notice: @comision_odt.table_name_to_show.concat(' was successfully created.') }
         format.json { render :show, status: :created, location: @comision_odt }
       else
         format.html { render :new }
@@ -42,7 +43,7 @@ class ComisionOdtsController < ApplicationController
   def update
     respond_to do |format|
       if @comision_odt.update(comision_odt_params)
-        format.html { redirect_to @comision_odt, notice: 'Comision odt was successfully updated.' }
+        format.html { redirect_to comision_odts_url, notice: @comision_odt.table_name_to_show.concat(' was successfully updated.') }
         format.json { render :show, status: :ok, location: @comision_odt }
       else
         format.html { render :edit }
