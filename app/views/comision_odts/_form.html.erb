@@ -1,29 +1,47 @@
-<%= form_for(@comision_odt) do |f| %>
-  <% if @comision_odt.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@comision_odt.errors.count, "error") %> prohibited this comision_odt from being saved:</h2>
-
-      <ul>
-      <% @comision_odt.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal_<%=id%>"><%=btn_name%>
+</button>
+<div class="modal fade" id="Modal_<%=id%>" tabindex="-1" role="dialog" aria-labelledby="Modal_<%=id%>Label" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="Modal_<%=id%>Label">Nuevo registro</h4>
+       </div>
+        <div class="modal-body">
+          <%= form_for(@comision_odt) do |f| %>
+            <% if @comision_odt.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= pluralize(@comision_odt.errors.count, "error") %> prohibited this comision_odt from being saved:</h2>
+                <ul>
+                <% @comision_odt.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+                </ul>
+              </div>
+            <% end %>
+            <div class="field">
+              <%= label_tag( 'comision_odt_odt_id', Odt.new.table_name_to_show ) %><br>
+              <%= f.select( :odt_id, options_for_select( Odt.all.collect{ |e| [e.record_name_to_show, e.id ] }, @comision_odt.odt_id ), :prompt => '--Seleccionar--' ) %>
+            </div>
+            <div class="field">
+              <%= label_tag( 'comision_odt_employee_id', Employee.new.table_name_to_show ) %><br>
+              <%= f.select( :employee_id, options_for_select( Employee.all.collect{ |e| [e.record_name_to_show, e.id ] }, @comision_odt.employee_id ), :prompt => '--Seleccionar--' ) %>
+            </div>
+            <div class="field">
+              <%= f.label :p_comision %><br>
+              <%= f.text_field :p_comision %>
+            </div>
+            <div class="actions">
+              <%= f.submit %>
+            </div>
+          <% end %>
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <%= submit_tag 'Guardar registro', class: "btn btn-primary", form: id %>
+        </div>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= label_tag( 'comision_odt_odt_id', Odt.new.table_name_to_show ) %><br>
-    <%= f.select( :odt_id, options_for_select( Odt.all.collect{ |e| [e.record_name_to_show, e.id ] }, @comision_odt.odt_id ), :prompt => '--Seleccionar--' ) %>
   </div>
-  <div class="field">
-    <%= label_tag( 'comision_odt_employee_id', Employee.new.table_name_to_show ) %><br>
-    <%= f.select( :employee_id, options_for_select( Employee.all.collect{ |e| [e.record_name_to_show, e.id ] }, @comision_odt.employee_id ), :prompt => '--Seleccionar--' ) %>
-  </div>
-  <div class="field">
-    <%= f.label :p_comision %><br>
-    <%= f.text_field :p_comision %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>

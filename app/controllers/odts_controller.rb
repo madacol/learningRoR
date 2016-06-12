@@ -6,6 +6,7 @@ class OdtsController < ApplicationController
   def index
     @odts = Odt.all
     @odt = Odt.new
+    @odt.comision_odts.build
   end
 
   # GET /odts/1
@@ -70,6 +71,6 @@ class OdtsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def odt_params
-      params.require(:odt).permit(:code, :alias, :description, :razon_social_id, :monto_contrato)
+      params.require(:odt).permit(:code, :alias, :description, :razon_social_id, :monto_contrato, comision_odts_attributes: [:p_comision, :employee_id, :_destroy])
     end
 end
