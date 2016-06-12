@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 <h1>Listing <%= Employee.new.table_name_to_show %></h1>
-<p><%= render 'form', employee: @employee, btn_name: 'Nuevo Registro', id: 'new_pool' %></p>
+<p><%= render 'layouts/modal', employee: @employee, btn_name: 'Nuevo Registro', id: 'new_pool' %></p>
 <div class="table-responsive">
   <table class="table table-sm table-hover table-striped table-bordered">
     <thead>
@@ -28,7 +28,7 @@
           <td><%= employee.address %></td>
           <td><%= employee.startdate %></td>
           <td><%= employee.note %></td>
-          <td><%= render 'form', employee: employee, btn_name: 'Editar', id: "edit_employee_#{employee.id}" %></td>
+          <td><%= render 'layouts/modal', employee: employee, btn_name: 'Editar', id: "edit_employee_#{employee.id}" %></td>
           <td><%= link_to '×', employee, method: :delete, data: { confirm: 'Are you sure?' }, class: "close equis" %></td>
         </tr>
       <% end %>

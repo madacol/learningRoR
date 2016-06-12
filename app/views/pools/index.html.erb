@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 <h1>Listing <%= Pool.new.table_name_to_show %></h1>
-<p><%= render 'form_modal', pool: @pool, btn_name: 'Nuevo Registro', id: 'new_pool' %></p>
+<p><%= render 'layouts/modal', pool: @pool, btn_name: 'Nuevo Registro', id: 'new_pool' %></p>
 <div class="table-responsive">
   <table class="table table-sm table-hover table-striped table-bordered">
     <thead>
@@ -29,7 +29,7 @@
           <td><%= pool.comprobante_type %></td>
           <td><%= pool.n_comprobante %></td>
           <td><%= pool.description %></td>
-          <td><%= render 'form_modal', pool: pool, btn_name: 'Editar', id: "edit_pool_#{pool.id}" %></td>
+          <td><%= render 'layouts/modal', pool: pool, btn_name: 'Editar', id: "edit_pool_#{pool.id}" %></td>
           <td><%= link_to '×', pool, method: :delete, data: { confirm: 'Are you sure?' }, class: "close equis" %></td>
         </tr>
       <% end %>

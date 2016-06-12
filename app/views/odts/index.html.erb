@@ -2,9 +2,7 @@
 
 <h1>Listing <%= Odt.new.table_name_to_show %></h1>
 
-<p><%= render 'form', :@odt => @odt, btn_name: 'Nuevo Registro', id: 'new_odt' %> </p>
-
-
+<p><%= render "layouts/modal", :@odt => @odt, btn_name: 'Nuevo Registro', id: 'new_odt' %> </p>
 <div class="table-responsive">
   <table  class="table table-sm table-hover table-striped table-bordered">
     <thead>
@@ -28,11 +26,17 @@
           <td><%= odt.description %></td>
           <td><%= link_to odt.razon_social.record_name_to_show, odt.razon_social%></td>
           <td><%= odt.monto_contrato %></td>
-          <% odt.comision_odts.each do |c| %>
-            <td><%= link_to c.employee.record_name_to_show, c.employee %></td>
-            <td><%= c.p_comision %></td>
-          <% end %>
-          <td><%= render 'form', :@odt => odt, btn_name: 'Editar', id: "edit_odt_#{odt.id}" %></td>
+          <td>
+              <% odt.comision_odts.each do |c| %>
+                <%= link_to c.employee.record_name_to_show, c.employee %><br>
+              <% end %>
+          </td>  
+          <td>
+              <% odt.comision_odts.each do |c| %>
+                <%= c.p_comision %><br>
+              <% end %>
+          </td>  
+          <td><%= render "layouts/modal", :@odt => odt, btn_name: 'Editar', id: "edit_odt_#{odt.id}" %></td>
           <td><%= link_to '×', odt, method: :delete, data: { confirm: 'Are you sure?' }, class: "close equis" %></td>
         </tr>
       <% end %>
