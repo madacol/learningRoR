@@ -9,56 +9,58 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <nav id="tf-menu" class="navbar navbar-dark navbar-fixed-top bg-inverse">
-    <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2">&#9776;</button>
-    <div class="collapse navbar-toggleable-xs" id="exCollapsingNavbar2">
-      <a class="navbar-brand">ODT</a>
-      <ul class="nav navbar-nav pull-xs-right">
-        <li class="nav-item">
-          <a href="/odts" class="nav-link"><%= Odt.new.table_name_to_show %></a>
-        </li>
-        <li class="nav-item">
-          <a href="/ggs" class="nav-link"><%= Gg.new.table_name_to_show %></a>
-        </li>
-        <li class="nav-item">
-          <a href="/employees" class="nav-link"><%= Employee.new.table_name_to_show %></a>
-        </li>
-        <li class="nav-item">
-          <a href="/inversions" class="nav-link"><%= Inversion.new.table_name_to_show %></a>
-        </li>
-        <li class="nav-item">
-          <a href="/pools" class="nav-link"><%= Pool.new.table_name_to_show %></a>
-        </li>
-        <li class="nav-item">
-          <a href="#tf-odt" class="nav-link">Cuentas</a>
-        </li>
-        <li class="nav-item">
-          <a href="/razon_socials" class="nav-link"><%= RazonSocial.new.table_name_to_show %></a>
-        </li>
-        <li class="nav-item">
-          <a href="/retenciones" class="nav-link"><%= Retencione.new.table_name_to_show %></a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-
-
-<div class=class="row">
-  <p class="notice"><%= notice %></p>                                           │
-  <p class="alert"><%= alert %></p> 
-
-  <%= yield %>
-  
-</div>
-<nav id="footer">
-      <div class="container">
-        <div class="pull-left fnav">
-            <p>Todos los derechos reservados. Copyright © 2016. Creado por <a href="#">Taionca</a></p>
-        </div>
-        <div class="pull-right fnav">
-        </div>
+  <div class="container-fluid">
+    <nav id="tf-menu" class="navbar navbar-dark navbar-fixed-top bg-inverse">
+      <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2">&#9776;</button>
+      <div class="collapse navbar-toggleable-xs" id="exCollapsingNavbar2">
+        <a class="navbar-brand">ODT</a>
+        <ul class="nav navbar-nav pull-xs-right">
+          <li class="nav-item">
+            <a href="/odts" class="nav-link"><%= Odt.new.table_name_to_show %></a>
+          </li>
+          <li class="nav-item">
+            <a href="/ggs" class="nav-link"><%= Gg.new.table_name_to_show %></a>
+          </li>
+          <li class="nav-item">
+            <a href="/employees" class="nav-link"><%= Employee.new.table_name_to_show %></a>
+          </li>
+          <li class="nav-item">
+            <a href="/inversions" class="nav-link"><%= Inversion.new.table_name_to_show %></a>
+          </li>
+          <li class="nav-item">
+            <a href="/pools" class="nav-link"><%= Pool.new.table_name_to_show %></a>
+          </li>
+          <li class="nav-item">
+            <a href="#tf-odt" class="nav-link">Cuentas</a>
+          </li>
+          <li class="nav-item">
+            <a href="/razon_socials" class="nav-link"><%= RazonSocial.new.table_name_to_show %></a>
+          </li>
+          <li class="nav-item">
+            <a href="/retenciones" class="nav-link"><%= Retencione.new.table_name_to_show %></a>
+          </li>
+        </ul>
       </div>
-</nav>
+    </nav>
+
+
+    <div class=class="row">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+    </div>
+
+      <%= yield %>
+      
+    <nav id="footer">
+          <div class="container">
+            <div class="pull-left fnav">
+                <p>Todos los derechos reservados. Copyright © 2016. Creado por <a href="#">Taionca</a></p>
+            </div>
+            <div class="pull-right fnav">
+            </div>
+          </div>
+    </nav>
+  </div>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %> 
   <%= javascript_include_tag 'js', 'data-turbolinks-track' => true %>  
 </body>
