@@ -2,7 +2,7 @@
 
 <h1>Listing <%= Inversion.new.table_name_to_show %></h1>
 
-<p><%= render 'layouts/modal', inversion: @inversion, btn_name: 'Nuevo Registro', id: 'new_inversions' %> </p>
+<p><%= render 'layouts/modal', :@inversion => @new_inversion, :@btn_name => 'Nuevo Registro', :@id => 'new_inversions' %> </p>
 
 <div class="table-responsive">
 <table class="table table-sm table-hover table-striped table-bordered">
@@ -21,7 +21,7 @@
         <td><%= inversion.code %></td>
         <td><%= inversion.alias %></td>
         <td><%= inversion.description %></td>
-        <td><%= render 'layouts/modal', inversion: inversion, btn_name: 'Editar', id: "edit_inversion_#{inversion.id}" %></td>
+        <td><%= render 'layouts/modal', :@inversion => inversion, :@btn_name => 'Editar', :@id => "edit_inversion_#{inversion.id}" %></td>
         <td><%= link_to '×', inversion, method: :delete, data: { confirm: 'Are you sure?' }, class: "close equis" %></td></td>
       </tr>
     <% end %>

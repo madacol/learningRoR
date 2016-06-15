@@ -71,7 +71,7 @@ ul, ol{
 }
 /* Navigation */
 #tf-menu {
-	padding: 14px;
+	padding: 8px;
 	transition: all 0.8s;
 }
 #tf-menu.navbar-dark {
@@ -79,10 +79,10 @@ ul, ol{
 	border-color: rgba(231, 231, 231, 0);
 }
 #tf-menu a.navbar-brand {
-text-transform: uppercase;
-font-size: 22px;
-color: #fff;
-font-weight: 900;
+	text-transform: uppercase;
+	font-size: 22px;
+	color: #fff;
+	font-weight: 900;
 }
 
 #tf-menu.navbar-dark .navbar-nav > li > a {

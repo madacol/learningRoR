@@ -5,7 +5,7 @@ class GgsController < ApplicationController
   # GET /ggs.json
   def index
     @ggs = Gg.all
-    @gg = Gg.new
+    @new_gg = Gg.new
   end
 
   # GET /ggs/1

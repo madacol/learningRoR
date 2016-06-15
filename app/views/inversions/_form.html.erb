@@ -1,10 +1,10 @@
-<%= form_for(inversion) do |f| %>
-  <% if inversion.errors.any? %>
+<%= form_for(@inversion) do |f| %>
+  <% if @inversion.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(inversion.errors.count, "error") %> prohibited this inversion from being saved:</h2>
+      <h2><%= pluralize(@inversion.errors.count, "error") %> prohibited this inversion from being saved:</h2>
 
       <ul>
-      <% inversion.errors.full_messages.each do |message| %>
+      <% @inversion.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>

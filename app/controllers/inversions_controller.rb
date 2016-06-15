@@ -5,7 +5,7 @@ class InversionsController < ApplicationController
   # GET /inversions.json
   def index
     @inversions = Inversion.all
-    @inversion = Inversion.new
+    @new_inversion = Inversion.new
   end
 
   # GET /inversions/1

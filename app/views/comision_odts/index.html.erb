@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 <h1>Listing <%= ComisionOdt.new.table_name_to_show %></h1>
-<p><%= render "layouts/modal", comision_odt: @comision_odt, btn_name: 'Añadir Comision', id: 'new_comision_odt' %> </p>
+<p><%= render "layouts/modal", :@comision_odt => @new_comision_odt, :@btn_name => 'Añadir Comision', :@id => 'new_comision_odt' %> </p>
 <div class="table-responsive">
   <table  class="table table-sm table-hover table-striped table-bordered">
     <thead>
@@ -17,7 +17,7 @@
           <td><%= link_to comision_odt.odt.record_name_to_show, comision_odt.odt %></td>
           <td><%= link_to comision_odt.employee.record_name_to_show, comision_odt.employee %></td>
           <td><%= comision_odt.p_comision %></td>
-          <td><%= render "layouts/modal", comision_odt: comision_odt, btn_name: 'Editar', id: "edit_comision_odt_#{comision_odt.id}" %></td>
+          <td><%= render "layouts/modal", :@comision_odt => comision_odt, :@btn_name => 'Editar', :@id => "edit_comision_odt_#{comision_odt.id}" %></td>
           <td><%= link_to '×', comision_odt, method: :delete, data: { confirm: 'Are you sure?' }, class: "close equis" %></td>
         </tr>
       <% end %>

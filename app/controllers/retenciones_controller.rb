@@ -5,7 +5,7 @@ class RetencionesController < ApplicationController
   # GET /retenciones.json
   def index
     @retenciones = Retencione.all    
-    @retencione = Retencione.new
+    @new_retencione = Retencione.new
   end
 
   # GET /retenciones/1

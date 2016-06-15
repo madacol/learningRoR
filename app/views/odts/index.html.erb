@@ -2,7 +2,7 @@
 
 <h1>Listing <%= Odt.new.table_name_to_show %></h1>
 
-<p><%= render "layouts/modal", :@odt => @odt, btn_name: 'Nuevo Registro', id: 'new_odt' %> </p>
+<p><%= render "layouts/modal", :@odt => @new_odt, :@btn_name => 'Nuevo Registro', :@id => 'new_odt' %> </p>
 <div class="table-responsive">
   <table  class="table table-sm table-hover table-striped table-bordered">
     <thead>
@@ -36,7 +36,7 @@
                 <%= c.p_comision %><br>
               <% end %>
           </td>  
-          <td><%= render "layouts/modal", :@odt => odt, btn_name: 'Editar', id: "edit_odt_#{odt.id}" %></td>
+          <td><%= render "layouts/modal", :@odt => odt, :@btn_name => 'Editar', :@id => "edit_odt_#{odt.id}" %></td>
           <td><%= link_to '×', odt, method: :delete, data: { confirm: 'Are you sure?' }, class: "close equis" %></td>
         </tr>
       <% end %>

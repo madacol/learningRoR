@@ -1,20 +1,20 @@
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal_<%=id%>"><%=btn_name%>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal_<%=@id%>"><%=@btn_name%>
 </button>
-<div class="modal fade" id="Modal_<%=id%>" tabindex="-1" role="dialog" aria-labelledby="Modal_<%=id%>Label" aria-hidden="true">
+<div class="modal fade" id="Modal_<%=@id%>" tabindex="-1" role="dialog" aria-labelledby="Modal_<%=@id%>Label" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h4 class="modal-title" id="Modal_<%=id%>Label">Nuevo registro</h4>
+        <h4 class="modal-title" id="Modal_<%=@id%>Label">Nuevo registro</h4>
        </div>
         <div class="modal-body">
         <%= render partial: "form" %>
         </div>
         <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <%= submit_tag 'Guardar registro', class: "btn btn-primary", form: id %>
+        <%= submit_tag 'Guardar registro', class: "btn btn-primary", form: @id %>
         </div>
     </div>
   </div>

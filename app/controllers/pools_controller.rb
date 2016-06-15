@@ -5,7 +5,7 @@ class PoolsController < ApplicationController
   # GET /pools.json
   def index
     @pools = Pool.all
-    @pool = Pool.new
+    @new_pool = Pool.new
   end
 
   # GET /pools/1

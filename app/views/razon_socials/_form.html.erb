@@ -1,9 +1,9 @@
-<%= form_for(razon_social) do |f| %>
-  <% if razon_social.errors.any? %>
+<%= form_for(@razon_social) do |f| %>
+  <% if @razon_social.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(razon_social.errors.count, "error") %> prohibited this razon_social from being saved:</h2>
+      <h2><%= pluralize(@razon_social.errors.count, "error") %> prohibited this razon_social from being saved:</h2>
       <ul>
-      <% razon_social.errors.full_messages.each do |message| %>
+      <% @razon_social.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>

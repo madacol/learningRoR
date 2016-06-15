@@ -5,8 +5,8 @@ class OdtsController < ApplicationController
   # GET /odts.json
   def index
     @odts = Odt.all
-    @odt = Odt.new
-    @odt.comision_odts.build
+    @new_odt = Odt.new
+    @new_odt.comision_odts.build
   end
 
   # GET /odts/1

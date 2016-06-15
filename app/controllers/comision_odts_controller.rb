@@ -5,7 +5,7 @@ class ComisionOdtsController < ApplicationController
   # GET /comision_odts.json
   def index
     @comision_odts = ComisionOdt.all    
-    @comision_odt = ComisionOdt.new
+    @new_comision_odt = ComisionOdt.new
   end
 
   # GET /comision_odts/1

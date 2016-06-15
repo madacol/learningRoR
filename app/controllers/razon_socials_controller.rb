@@ -7,7 +7,7 @@ class RazonSocialsController < ApplicationController
   # GET /razon_socials.json
   def index
     @razon_socials = RazonSocial.all
-    @razon_social = RazonSocial.new
+    @new_razon_social = RazonSocial.new
   end
 
   # GET /razon_socials/1
