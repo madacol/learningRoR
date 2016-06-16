@@ -13,7 +13,22 @@
     <nav id="tf-menu" class="navbar navbar-dark navbar-fixed-top bg-inverse">
       <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2">&#9776;</button>
       <div class="collapse navbar-toggleable-xs" id="exCollapsingNavbar2">
-        <a class="navbar-brand">ODT</a>
+        <div class="navbar-brand">
+          <% if user_signed_in? %>
+            <li class="dropdown">
+              <a class="dropdown-toggle" role="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <%= current_user.record_name_to_show %>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li><%= link_to 'Profile', edit_user_registration_path, class: "dropdown-item" %></li>
+                <li><%= link_to 'Log out', destroy_user_session_path, method: :delete, class: "dropdown-item" %></li>
+              </ul>
+            </li>
+          <% else %>
+            <li><%= link_to 'Log In', new_user_session_path %></li>
+            <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+          <% end %>
+        </div>
         <ul class="nav navbar-nav pull-xs-right">
           <li class="nav-item">
             <a href="/odts" class="nav-link"><%= Odt.new.table_name_to_show %></a>

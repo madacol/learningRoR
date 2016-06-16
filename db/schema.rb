@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160605183427) do
+ActiveRecord::Schema.define(version: 20160616014821) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title",      limit: 255
@@ -172,9 +172,11 @@ ActiveRecord::Schema.define(version: 20160605183427) do
     t.string   "last_sign_in_ip",        limit: 255
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
+    t.integer  "employee_id",            limit: 4
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["employee_id"], name: "index_users_on_employee_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "comision_odts", "employees"

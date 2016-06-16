@@ -78,11 +78,11 @@ ul, ol{
 	background-color: rgb(51, 122, 183);
 	border-color: rgba(231, 231, 231, 0);
 }
-#tf-menu a.navbar-brand {
-	text-transform: uppercase;
-	font-size: 22px;
+#tf-menu .navbar-brand > li > a {
+	/*text-transform: uppercase;*/
+	/*font-size: 22px;*/
 	color: #fff;
-	font-weight: 900;
+	/*font-weight: 900;*/
 }
 
 #tf-menu.navbar-dark .navbar-nav > li > a {

@@ -5,6 +5,7 @@ class Employee < ActiveRecord::Base
 	has_many :odts, through: :comision_odts
 	has_many :auth_groups, through: :employee_groups
 	has_many :pools, as: :category
+	has_one :user
 
 	def has_auth_to(action)
 		self.auth_groups.each do |group|
@@ -20,6 +21,7 @@ class Employee < ActiveRecord::Base
 			end
 		end
 	end
+	
     def table_name_to_show
     	'Empleado'
     end
