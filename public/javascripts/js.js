@@ -1,5 +1,5 @@
 function addInput(boton){
-  clonador=$(boton).parents('div.form-group').prev()
+  clonador=$(boton).parents('div.form-group').prevAll(".form-group").first()
   clon=$(clonador).clone()
   $(clon).find('label').remove()
   $(clon).insertAfter(clonador)

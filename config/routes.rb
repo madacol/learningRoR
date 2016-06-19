@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   resources :razon_socials
   resources :testtts
 
-  devise_for :users
+  devise_for :users, :controllers => { registrations: 'registrations' }
   
   get 'test/a'
 
