@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'bootstrap', '~> 4.0.0.alpha3'
 gem 'rails-assets-tether'
+gem 'jquery-turbolinks'
 
 gem 'tzinfo-data'
 # Authetication

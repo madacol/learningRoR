@@ -8,13 +8,13 @@
           <span aria-hidden="true">&times;</span>
         </button>
         <h4 class="modal-title" id="Modal_<%=@id%>Label">Nuevo registro</h4>
-       </div>
+      </div>
         <div class="modal-body">
-        <%= render partial: "form" %>
+          <%= render partial: "form" %>
         </div>
         <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <%= submit_tag 'Guardar registro', class: "btn btn-primary", form: @id %>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <%= submit_tag 'Guardar registro', class: "btn btn-primary", form: @id %>
         </div>
     </div>
   </div>
