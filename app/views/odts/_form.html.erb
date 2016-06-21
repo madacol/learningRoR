@@ -53,7 +53,7 @@
     <div class="form-group row">
       <div class="col-sm-2">
         <%= comision_odt_form.label( 'comision_odt_employee_id', Employee.new.table_name_to_show ) %><br> 
-        <%= f.button "x", class: "close equis", onClick: "removeInput(this)" %>
+      <button type="button" class="close equis remover">x</button> 
       </div>
       <div class="col-sm-5">
         <%= comision_odt_form.collection_select( :employee_id, Employee.all, :id, :record_name_to_show, { prompt: '-Seleccionar-'}, { class: "form-control c-select" } ) %>
@@ -67,7 +67,7 @@
     <div class="col-sm-2">
     </div>
     <div class="col-sm-10">
-      <button type="button" class="btn btn-info" value="Add another text input" onClick="addInput(this)">Añadir</button>   
+      <button type="button" class="btn btn-info adder">Añadir</button>   
     </div>
   </div>  
 <% end %>
