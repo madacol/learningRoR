@@ -205,15 +205,17 @@ button.btn.tf-btn.btn-default {
 nav#footer{
 	background: #4995d6;
 	color: #ffffff;
+	padding: 1rem;
+	border-radius: 0;
 }
-nav#footer .fnav{ vertical-align: top;}
+nav#footer p{
+	vertical-align: center;
+	margin: 0;
+}
+
 ul.footer-social li{
 	display: inline-block;
 	margin-right: 10px;
-}
-nav#footer p{
-	font-size: 12px;
-	margin-top: 10px;
 }
 #footer i.fa {
 	height: 30px;
