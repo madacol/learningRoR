@@ -1,6 +1,5 @@
 class AuthGroup < ActiveRecord::Base
-	has_many :employee_groups
-	has_many :employees, through: :employee_groups
+	has_and_belongs_to_many :users
 
 
 	def table_name_to_show

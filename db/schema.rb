@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160616014821) do
+ActiveRecord::Schema.define(version: 20160621164607) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title",      limit: 255
@@ -34,6 +34,14 @@ ActiveRecord::Schema.define(version: 20160616014821) do
     t.boolean  "auth_group",               default: false, null: false
   end
 
+  create_table "auth_groups_users", id: false, force: :cascade do |t|
+    t.integer "user_id",       limit: 4
+    t.integer "auth_group_id", limit: 4
+  end
+
+  add_index "auth_groups_users", ["auth_group_id"], name: "index_auth_groups_users_on_auth_group_id", using: :btree
+  add_index "auth_groups_users", ["user_id"], name: "index_auth_groups_users_on_user_id", using: :btree
+
   create_table "comision_odts", force: :cascade do |t|
     t.integer  "odt_id",      limit: 4,                         null: false
     t.integer  "employee_id", limit: 4,                         null: false
@@ -54,16 +62,6 @@ ActiveRecord::Schema.define(version: 20160616014821) do
   end
 
   add_index "deducciones_odts", ["odt_id"], name: "index_deducciones_odts_on_odt_id", using: :btree
-
-  create_table "employee_groups", force: :cascade do |t|
-    t.integer  "employee_id",   limit: 4
-    t.integer  "auth_group_id", limit: 4
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-  end
-
-  add_index "employee_groups", ["auth_group_id"], name: "index_employee_groups_on_auth_group_id", using: :btree
-  add_index "employee_groups", ["employee_id"], name: "index_employee_groups_on_employee_id", using: :btree
 
   create_table "employees", force: :cascade do |t|
     t.string   "cedula",       limit: 255
@@ -179,13 +177,12 @@ ActiveRecord::Schema.define(version: 20160616014821) do
   add_index "users", ["employee_id"], name: "index_users_on_employee_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "auth_groups_users", "auth_groups"
+  add_foreign_key "auth_groups_users", "users"
   add_foreign_key "comision_odts", "employees"
   add_foreign_key "comision_odts", "odts"
   add_foreign_key "deducciones_odts", "odts"
-  add_foreign_key "employee_groups", "auth_groups"
-  add_foreign_key "employee_groups", "employees"
   add_foreign_key "odts", "razon_socials"
   add_foreign_key "pools", "razon_socials"
   add_foreign_key "retenciones", "razon_socials"
-  add_foreign_key "users", "employees"
 end
