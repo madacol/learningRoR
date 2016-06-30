@@ -1,9 +1,14 @@
 class PoolsController < ApplicationController
+  before_action :authenticate_user! #, except: [:index]
   before_action :set_pool, only: [:show, :edit, :update, :destroy]
 
   # GET /pools
   # GET /pools.json
   def index
+    if current_user.cannot? 'read_pool'
+      permission_denied
+    end
+
     @pools = Pool.all
     @new_pool = Pool.new
   end
@@ -25,6 +30,10 @@ class PoolsController < ApplicationController
   # POST /pools
   # POST /pools.json
   def create
+    if current_user.cannot? 'create_pool'
+      permission_denied
+    end
+
     @pool = Pool.new(pool_params)
 
     respond_to do |format|
@@ -71,5 +80,9 @@ class PoolsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def pool_params
       params.require(:pool).permit(:category_id, :category_type, :monto, :balance, :cuenta, :comprobante_type, :n_comprobante, :description, :razon_social_id)
+    end
+
+    def permission_denied
+      render :file => "public/404.html", :status => :unauthorized
     end
 end

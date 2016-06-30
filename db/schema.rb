@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160621164607) do
+ActiveRecord::Schema.define(version: 20160629186252) do
+
+  create_table "actions", force: :cascade do |t|
+    t.string "name", limit: 255
+  end
 
   create_table "articles", force: :cascade do |t|
     t.string   "title",      limit: 255
@@ -21,17 +25,9 @@ ActiveRecord::Schema.define(version: 20160621164607) do
   end
 
   create_table "auth_groups", force: :cascade do |t|
-    t.string   "name",         limit: 255
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
-    t.boolean  "odt",                      default: false, null: false
-    t.boolean  "gg",                       default: false, null: false
-    t.boolean  "inversion",                default: false, null: false
-    t.boolean  "employee",                 default: false, null: false
-    t.boolean  "retencione",               default: false, null: false
-    t.boolean  "pool",                     default: false, null: false
-    t.boolean  "razon_social",             default: false, null: false
-    t.boolean  "auth_group",               default: false, null: false
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "auth_groups_users", id: false, force: :cascade do |t|
@@ -95,6 +91,18 @@ ActiveRecord::Schema.define(version: 20160621164607) do
   end
 
   add_index "inversions", ["code"], name: "index_inversions_on_code", unique: true, using: :btree
+
+  create_table "is_allowed_tos", force: :cascade do |t|
+    t.integer "auth_group_id", limit: 4,                 null: false
+    t.integer "action_id",     limit: 4,                 null: false
+    t.boolean "create?",                 default: false, null: false
+    t.boolean "read?",                   default: false, null: false
+    t.boolean "update?",                 default: false, null: false
+    t.boolean "destroy?",                default: false, null: false
+  end
+
+  add_index "is_allowed_tos", ["action_id"], name: "index_is_allowed_tos_on_action_id", using: :btree
+  add_index "is_allowed_tos", ["auth_group_id"], name: "index_is_allowed_tos_on_auth_group_id", using: :btree
 
   create_table "odts", force: :cascade do |t|
     t.string   "code",            limit: 255,                            null: false
@@ -182,6 +190,8 @@ ActiveRecord::Schema.define(version: 20160621164607) do
   add_foreign_key "comision_odts", "employees"
   add_foreign_key "comision_odts", "odts"
   add_foreign_key "deducciones_odts", "odts"
+  add_foreign_key "is_allowed_tos", "actions"
+  add_foreign_key "is_allowed_tos", "auth_groups"
   add_foreign_key "odts", "razon_socials"
   add_foreign_key "pools", "razon_socials"
   add_foreign_key "retenciones", "razon_socials"

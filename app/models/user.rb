@@ -15,6 +15,19 @@ class User < ActiveRecord::Base
 	def record_name_to_show
 		return self.employee.record_name_to_show
 	end
+
+	def can?(action)
+		self.auth_groups.each do |group|
+			if group.can? action
+				return true
+			end
+		end
+
+		return false
+	end
+	def cannot?(action)
+		not self.can? action
+	end
 	
 	private
 
