@@ -11,10 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160629186252) do
+ActiveRecord::Schema.define(version: 20160702052139) do
 
   create_table "actions", force: :cascade do |t|
-    t.string "name", limit: 255
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "articles", force: :cascade do |t|
@@ -93,12 +95,14 @@ ActiveRecord::Schema.define(version: 20160629186252) do
   add_index "inversions", ["code"], name: "index_inversions_on_code", unique: true, using: :btree
 
   create_table "is_allowed_tos", force: :cascade do |t|
-    t.integer "auth_group_id", limit: 4,                 null: false
-    t.integer "action_id",     limit: 4,                 null: false
-    t.boolean "create?",                 default: false, null: false
-    t.boolean "read?",                   default: false, null: false
-    t.boolean "update?",                 default: false, null: false
-    t.boolean "destroy?",                default: false, null: false
+    t.integer  "auth_group_id", limit: 4,                 null: false
+    t.integer  "action_id",     limit: 4,                 null: false
+    t.boolean  "create?",                 default: false, null: false
+    t.boolean  "read?",                   default: false, null: false
+    t.boolean  "update?",                 default: false, null: false
+    t.boolean  "destroy?",                default: false, null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
   end
 
   add_index "is_allowed_tos", ["action_id"], name: "index_is_allowed_tos_on_action_id", using: :btree
@@ -116,6 +120,18 @@ ActiveRecord::Schema.define(version: 20160629186252) do
 
   add_index "odts", ["code"], name: "index_odts_on_code", unique: true, using: :btree
   add_index "odts", ["razon_social_id"], name: "index_odts_on_razon_social_id", using: :btree
+
+  create_table "permission_requests", force: :cascade do |t|
+    t.integer  "auth_record_id",   limit: 4
+    t.string   "auth_record_type", limit: 255
+    t.string   "token",            limit: 255,                null: false
+    t.boolean  "is_pending?",                  default: true, null: false
+    t.datetime "approved_at"
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+  end
+
+  add_index "permission_requests", ["auth_record_type", "auth_record_id"], name: "index_permission_requests_on_auth_record_type_and_auth_record_id", using: :btree
 
   create_table "pools", force: :cascade do |t|
     t.integer  "cuenta",           limit: 4
