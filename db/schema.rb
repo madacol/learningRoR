@@ -125,7 +125,7 @@ ActiveRecord::Schema.define(version: 20160702052139) do
     t.integer  "auth_record_id",   limit: 4
     t.string   "auth_record_type", limit: 255
     t.string   "token",            limit: 255,                null: false
-    t.boolean  "is_pending?",                  default: true, null: false
+    t.boolean  "is_pending",                   default: true, null: false
     t.datetime "approved_at"
     t.datetime "created_at",                                  null: false
     t.datetime "updated_at",                                  null: false

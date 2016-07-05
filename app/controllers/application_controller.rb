@@ -5,6 +5,10 @@ class ApplicationController < ActionController::Base
 
   before_filter :configure_devise_permitted_parameters, if: :devise_controller?
 
+  def permission_denied
+    render :file => "public/422.html", :status => :unauthorized
+  end
+
   protected
 
   def configure_devise_permitted_parameters

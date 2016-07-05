@@ -12,17 +12,12 @@ Rails.application.routes.draw do
   resources :comision_odts
   resources :odts
   resources :razon_socials
-  resources :testtts
 
   devise_for :users, :controllers => { registrations: 'registrations' }
-  
-  get 'test/a'
 
-  get 'testing/test'
+  get 'approve/:token', to: 'approve_permission#approve'
+  get 'deny/:token', to: 'approve_permission#deny'
 
-  get 'welcome/index'
-
-  resources :articles
 
   
   # The priority is based upon order of creation: first created -> highest priority.

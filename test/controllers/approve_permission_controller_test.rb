@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ArticleTest < ActiveSupport::TestCase
+class ApprovePermissionControllerTest < ActionController::TestCase
   # test "the truth" do
   #   assert true
   # end
