@@ -195,4 +195,5 @@ ActiveRecord::Schema.define(version: 20160629186252) do
   add_foreign_key "odts", "razon_socials"
   add_foreign_key "pools", "razon_socials"
   add_foreign_key "retenciones", "razon_socials"
+  add_foreign_key "users", "employees"
 end
