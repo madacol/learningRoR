@@ -43,5 +43,13 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
   # Turn-Off SSL
-  ActionMailer::Base.smtp_settings[:enable_starttls_auto] = false
+  # ActionMailer::Base.smtp_settings[:enable_starttls_auto] = false
+  
+  # Mailer delivery method
+  config.action_mailer.delivery_method = :sendmail
+  config.action_mailer.sendmail_settings = {
+    :location => '/usr/sbin/exim4',
+    :arguments => '-i'
+  }
+  config.action_mailer.default_url_options = { :host => 'localhost' }
 end
