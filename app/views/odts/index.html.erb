@@ -14,6 +14,8 @@
         <th>Monto contrato</th>
         <th><%= link_to Employee.new.table_name_to_show, employees_path %></th>
         <th><%= link_to ComisionOdt.new.table_name_to_show, comision_odts_path %></th>
+        <th>Deduccion</th>
+        <th><%= DeduccionesOdt.new.table_name_to_show %></th>
         <th colspan="3"></th>
       </tr>
     </thead>
@@ -36,6 +38,17 @@
                 <%= c.p_comision %><br>
               <% end %>
           </td>  
+          <td>
+            <% odt.deducciones_odts.each do |d| %>
+              <%= d.name %>
+            <% end %>
+          </td>  
+          <td>
+            <% odt.deducciones_odts.each do |d| %>
+              <%= d.p_gasto %>
+            <% end %>
+          </td>
+
           <td><%= render "layouts/modal", :@odt => odt, :@btn_name => 'Editar', :@id => "edit_odt_#{odt.id}" %></td>
           <td><%= link_to '×', odt, method: :delete, data: { confirm: 'Are you sure?' }, class: "close equis" %></td>
         </tr>

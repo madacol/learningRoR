@@ -49,33 +49,66 @@
       <%= f.text_field :monto_contrato, class: "form-control" %>
     </div>
   </div>
-  <%= f.fields_for :comision_odts, @odt.comision_odts do |comision_odt_form| %>
-    <div class="form-group row comision">
-      <div class="col-sm-2">
-        <div class="row">
-          <div class="col-sm-8">
-            <% if comision_odt_form.index == 0 then %>
-              <%= comision_odt_form.label( 'comision_odt_employee_id', Employee.new.table_name_to_show ) %>
-            <% end %>
-          </div>
-          <div class="col-sm-4">
-            <button type="button" class="close equis remover">×</button> 
+  <div class="nested_attributes" data-nested-model="deduccion"> 
+    <%= f.fields_for :deducciones_odts, @odt.deducciones_odts do |deduccion_odt_form| %>
+      <div class="form-group row deduccion">
+        <div class="col-sm-2">
+          <div class="row">
+            <div class="col-sm-8">
+              <% if deduccion_odt_form.index == 0 then %>
+                <%= deduccion_odt_form.label 'Deduccion', class: "control-label" %>
+              <% end %>
+            </div>
+            <div class="col-sm-4">
+              <button type="button" class="close equis remover">×</button> 
+            </div>
           </div>
         </div>
+        <div class="col-sm-4">
+          <%= deduccion_odt_form.text_field :name, class: "form-control" %>
+        </div>
+        <div class="col-sm-6">
+          <%= deduccion_odt_form.text_field :p_gasto, class: "form-control", placeholder:"Porcentaje" %>
+        </div>
       </div>
-      <div class="col-sm-5">
-        <%= comision_odt_form.collection_select( :employee_id, Employee.all, :id, :record_name_to_show, { prompt: '-Seleccionar-'}, { class: "form-control c-select" } ) %>
+    <% end %>
+    <div class="form-group row">
+      <div class="col-sm-2">
       </div>
-      <div class="col-sm-5">
-        <%= comision_odt_form.text_field :p_comision, class: "form-control" %>
+      <div class="col-sm-10">
+        <button type="button" class="btn btn-info adder">Añadir</button>   
       </div>
     </div>
-  <% end %>
-  <div class="form-group row">
-    <div class="col-sm-2">
+  </div>   
+  <div class="nested_attributes" data-nested-model="comision">
+    <%= f.fields_for :comision_odts, @odt.comision_odts do |comision_odt_form| %>
+      <div class="form-group row comision">
+        <div class="col-sm-2">
+          <div class="row">
+            <div class="col-sm-8">
+              <% if comision_odt_form.index == 0 then %>
+                <%= comision_odt_form.label( 'comision_odt_employee_id', Employee.new.table_name_to_show ) %>
+              <% end %>
+            </div>
+            <div class="col-sm-4">
+              <button type="button" class="close equis remover">×</button> 
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-5">
+          <%= comision_odt_form.collection_select( :employee_id, Employee.all, :id, :record_name_to_show, { prompt: '-Seleccionar-'}, { class: "form-control c-select" } ) %>
+        </div>
+        <div class="col-sm-5">
+          <%= comision_odt_form.text_field :p_comision, class: "form-control", placeholder:"Porcentaje" %>
+        </div>
+      </div>
+    <% end %>
+    <div class="form-group row">
+      <div class="col-sm-2">
+      </div>
+      <div class="col-sm-10">
+        <button type="button" class="btn btn-info adder">Añadir</button>   
+      </div>
     </div>
-    <div class="col-sm-10">
-      <button type="button" class="btn btn-info adder">Añadir</button>   
-    </div>
-  </div>  
+  </div>   
 <% end %>

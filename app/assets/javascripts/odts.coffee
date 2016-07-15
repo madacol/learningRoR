@@ -21,13 +21,14 @@ addRemoveOnClickEvent = (boton) ->
 		$(boton).parents('div.form-group').remove()
 
 $ ->
-	new_model = $('.adder').first().parents('div.form-group').prevAll('.form-group').first()
-	model= new_model.clone(true, true)
-	$(model).attr id: 'new_com'
-	$(model).hide()
-	$(model).find('.form-control').each ->
-		$(this).prop('disabled', true)
-	$(model).insertBefore new_model
+	$('#new_odt .nested_attributes').each ->
+		new_model = $(this).find('div').first()
+		model= new_model.clone(true, true)
+		$(model).attr id: $(this).data('nestedModel')
+		$(model).hide()
+		$(model).find('.form-control').each ->
+			$(this).prop('disabled', true)
+		$(model).insertBefore new_model
 
 	$('.remover').each ->
 		addRemoveOnClickEvent this
@@ -35,32 +36,36 @@ $ ->
 	$('.adder').each ->
 		$(this).click (e) ->
 			e.preventDefault()
-			model_button = $(this).parents('div.form-group')
-			model = model_button.prevAll('.comision').first()		
-			is_comision = !(model == undefined || model.length == 0)				
-			new_comision = $('#new_com').clone(true, true)
-			$(new_comision).attr id: ''
-			$(new_comision).show()
-			$(new_comision).find('.form-control').each ->
+			form_group_button = $(this).parents('div.form-group')
+			previous_form_group = form_group_button.prevAll('.form-group').first()
+			previous_input = form_group_button.prevAll('input').first()
+			new_model_id = $(this).parents('div.nested_attributes').data('nestedModel')
+			new_nested_model = $('#' + new_model_id).clone(true, true)
+			$(new_nested_model).attr id: ''
+			$(new_nested_model).show()
+			$(new_nested_model).find('.form-control').each ->
 				$(this).prop('disabled', false)
 			closeButton = $('<button>×</button>').attr({type: 'button', class: 'close equis remover'})
 			addRemoveOnClickEvent(closeButton)
-			$(new_comision).find('div.col-sm-2').html(closeButton)
-			if is_comision
-				for input, i in $(model).find('.form-control') 			
+			$(new_nested_model).find('div.col-sm-2').html(closeButton)
+			id_input = -1
+			id_previous_form_group = -1
+			if previous_form_group.length
+				id_previous_form_group = Number($(previous_form_group).find('.form-control').first().attr('id').match(/_(\d+)_/i)[1])			
+			if previous_input.length
+				id_input = Number($(previous_input).attr('id').match(/_(\d+)_/i)[1])
+			id_max = Math.max(id_input, id_previous_form_group)
+			if id_max >= 0
+				id_max++
+				for input in $(new_nested_model).find('.form-control')
 					id = $(input).attr('id')
 					name = $(input).attr('name')
-					id_new = id.match(/_(\d+)_/i)
-					name_new = name.match(/\[(\d+)\]/i)
-					id_new = '_' + (Number(id_new[1]) + 1) + '_'
-					name_new = '[' + (Number(name_new[1]) + 1) + ']'
-					id = id.replace(/_\d+_/i, id_new)
-					name = name.replace(/\[\d+\]/i, name_new)
-					$($(new_comision).find('.form-control')[i]).attr
+					id = id.replace(/_\d+_/i, "_"+id_max+"_")
+					name = name.replace(/\[\d+\]/i, "["+id_max+"]")
+					$(input).attr
 						id: id
 						name: name
-			$(new_comision).insertBefore model_button
-
+			$(new_nested_model).insertBefore form_group_button
 	$('form').each ->
 		$(this).on("ajax:success", (e, data, status, xhr) ->
 			alert(e)

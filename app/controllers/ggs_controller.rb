@@ -1,9 +1,11 @@
 class GgsController < ApplicationController
+  before_action :authenticate_user! #, except: [:index]
   before_action :set_gg, only: [:show, :edit, :update, :destroy]
 
   # GET /ggs
   # GET /ggs.json
   def index
+    permission_denied and return  if current_user.cannot 'read_gg'
     @ggs = Gg.all
     @new_gg = Gg.new
   end
@@ -25,6 +27,7 @@ class GgsController < ApplicationController
   # POST /ggs
   # POST /ggs.json
   def create
+    permission_denied and return  if current_user.cannot 'create_gg'
     @gg = Gg.new(gg_params)
 
     respond_to do |format|

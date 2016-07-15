@@ -1,9 +1,11 @@
 class InversionsController < ApplicationController
+  before_action :authenticate_user! #, except: [:index]
   before_action :set_inversion, only: [:show, :edit, :update, :destroy]
 
   # GET /inversions
   # GET /inversions.json
   def index
+    permission_denied and return  if current_user.cannot 'read_inversion'
     @inversions = Inversion.all
     @new_inversion = Inversion.new
   end
@@ -25,6 +27,7 @@ class InversionsController < ApplicationController
   # POST /inversions
   # POST /inversions.json
   def create
+    permission_denied and return  if current_user.cannot 'create_inversion'
     @inversion = Inversion.new(inversion_params)
 
     respond_to do |format|
@@ -41,6 +44,7 @@ class InversionsController < ApplicationController
   # PATCH/PUT /inversions/1
   # PATCH/PUT /inversions/1.json
   def update
+    permission_denied and return  if current_user.cannot 'update_inversion'
     respond_to do |format|
       if @inversion.update(inversion_params)
         format.html { redirect_to inversion_url, notice: @inversion.table_name_to_show.concat( ' was successfully updated.') }
@@ -55,6 +59,7 @@ class InversionsController < ApplicationController
   # DELETE /inversions/1
   # DELETE /inversions/1.json
   def destroy
+    permission_denied and return  if current_user.cannot 'destroy_inversion'
     @inversion.destroy
     respond_to do |format|
       format.html { redirect_to inversions_url, notice: 'Inversion was successfully destroyed.' }

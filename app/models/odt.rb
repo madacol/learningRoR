@@ -5,7 +5,8 @@ class Odt < ActiveRecord::Base
 	has_many :comision_odts, :dependent => :destroy
 	has_many :employees, through: :comision_odts
 	has_many :pools, as: :category
-	accepts_nested_attributes_for :comision_odts, :allow_destroy => true
+	accepts_nested_attributes_for :comision_odts, :allow_destroy => true	
+	accepts_nested_attributes_for :deducciones_odts, :allow_destroy => true
 
 
 	def table_name_to_show

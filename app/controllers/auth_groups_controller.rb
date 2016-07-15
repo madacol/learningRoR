@@ -1,4 +1,5 @@
 class AuthGroupsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_auth_group, only: [:show, :edit, :update, :destroy]
 
   # GET /auth_groups

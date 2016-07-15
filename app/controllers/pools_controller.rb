@@ -45,6 +45,7 @@ class PoolsController < ApplicationController
   # PATCH/PUT /pools/1
   # PATCH/PUT /pools/1.json
   def update
+    permission_denied and return  if current_user.cannot 'update_pool'
     respond_to do |format|
       if @pool.update(pool_params)
         format.html { redirect_to pools_url, notice: @pool.table_name_to_show.concat(' was successfully updated.') }
@@ -59,6 +60,7 @@ class PoolsController < ApplicationController
   # DELETE /pools/1
   # DELETE /pools/1.json
   def destroy
+    permission_denied and return  if current_user.cannot 'destroy_pool'
     @pool.destroy
     respond_to do |format|
       format.html { redirect_to pools_url, notice: @pool.table_name_to_show.concat(' was successfully destroyed.') }

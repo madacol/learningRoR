@@ -1,11 +1,12 @@
 class RazonSocialsController < ApplicationController
   #before_filter :authenticate_user!
-
+  before_action :authenticate_user! #, except: [:index]
   before_action :set_razon_social, only: [:show, :edit, :update, :destroy]
 
   # GET /razon_socials
   # GET /razon_socials.json
   def index
+    permission_denied and return  if current_user.cannot 'read_razon_social'
     @razon_socials = RazonSocial.all
     @new_razon_social = RazonSocial.new
   end
@@ -27,6 +28,7 @@ class RazonSocialsController < ApplicationController
   # POST /razon_socials
   # POST /razon_socials.json
   def create
+    permission_denied and return  if current_user.cannot 'create_razon_social'
     @razon_social = RazonSocial.new(razon_social_params)
 
     respond_to do |format|
@@ -43,6 +45,7 @@ class RazonSocialsController < ApplicationController
   # PATCH/PUT /razon_socials/1
   # PATCH/PUT /razon_socials/1.json
   def update
+    permission_denied and return  if current_user.cannot 'update_razon_social'
     respond_to do |format|
       if @razon_social.update(razon_social_params)
         format.html { redirect_to razon_socials_url, notice: @razon_social.table_name_to_show.concat(' was successfully updated') }        
@@ -57,6 +60,7 @@ class RazonSocialsController < ApplicationController
   # DELETE /razon_socials/1
   # DELETE /razon_socials/1.json
   def destroy
+    permission_denied and return  if current_user.cannot 'destroy_razon_social'
     @razon_social.destroy
     respond_to do |format|
       format.html { redirect_to razon_socials_url, notice: @razon_social.table_name_to_show+' was successfully destroyed.' }

@@ -1,9 +1,11 @@
 class ComisionOdtsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_comision_odt, only: [:show, :edit, :update, :destroy]
 
   # GET /comision_odts
   # GET /comision_odts.json
   def index
+    permission_denied and return  if current_user.cannot 'read_comision_odt'
     @comision_odts = ComisionOdt.all    
     @new_comision_odt = ComisionOdt.new
   end
@@ -25,6 +27,7 @@ class ComisionOdtsController < ApplicationController
   # POST /comision_odts
   # POST /comision_odts.json
   def create
+    permission_denied and return  if current_user.cannot 'create_comision_odt'
     @comision_odt = ComisionOdt.new(comision_odt_params)
 
     respond_to do |format|
@@ -41,6 +44,7 @@ class ComisionOdtsController < ApplicationController
   # PATCH/PUT /comision_odts/1
   # PATCH/PUT /comision_odts/1.json
   def update
+    permission_denied and return  if current_user.cannot 'update_comision_odt'
     respond_to do |format|
       if @comision_odt.update(comision_odt_params)
         format.html { redirect_to comision_odts_url, notice: @comision_odt.table_name_to_show.concat(' was successfully updated.') }
