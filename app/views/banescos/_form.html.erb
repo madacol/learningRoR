@@ -1,0 +1,65 @@
+<%= form_for(@banesco) do |f| %>
+  <% if @banesco.errors.any? %>
+    <div id="error_explanation_<%=@id%>">
+      <h2><%= pluralize(@banesco.errors.count, "error") %> prohibited this banesco from being saved:</h2>
+      <ul>
+      <% @banesco.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-group row">
+    <div class="col-sm-2">
+      <%= label_tag( "banesco_category_type_#{@id}", 'Categoría' ) %><br>
+    </div>
+    <div class="col-sm-4"> 
+      <%= f.select(:category_type, options_for_select( categories.collect { |category| [eval(category).new.table_name_to_show, category] }, @banesco.category_type ), { prompt: '--Seleccionar--'}, { class: "form-control c-select", id: "banesco_category_type_#{@id}" } ) %>
+    </div>
+    <% categories.each do |category| %>
+      <div id= <%= category+@id %> class="<%= 'hidden' if @banesco.category_type != category %>">
+        <div class="col-sm-4">
+          <%= f.collection_select( :category_id, eval(category).all, :id, :record_name_to_show, { prompt: '-Seleccionar-'}, { class: "form-control c-select" }) %>       
+        </div>
+        <div class="col-sm-2">
+            <button type="button" class="btn btn-primary">Añadir</button>
+        </div>
+      </div>
+    <% end %>
+  </div>        
+  <div class="form-group row">
+    <div class="col-sm-2">
+      <%= f.label( 'banesco_razon_social_id_#{@id}', RazonSocial.new.table_name_to_show, class: "control-label") %>
+    </div>
+    <div class="col-sm-8">
+      <%= f.collection_select( :razon_social_id, RazonSocial.all, :id, :record_name_to_show, { prompt: '-Seleccionar-'}, { class: "form-control c-select" }) %>
+    </div>
+    <div class="col-sm-2">
+        <button type="button" class="btn btn-primary">Añadir</button>
+    </div>
+  </div> 
+  <div class="form-group row">
+    <div class="col-sm-2">
+      <%= f.label :monto, class: "control-label" %><br>
+    </div>
+    <div class="col-sm-10">
+      <%= f.text_field :monto, class: "form-control" %>
+    </div>  
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-2">
+      <%= f.label :n_comprobante, class: "control-label" %><br>
+    </div>
+    <div class="col-sm-10">
+      <%= f.text_field :n_comprobante, class: "form-control" %>
+    </div>  
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-2">
+      <%= f.label :description, class: "control-label" %><br>
+    </div>
+    <div class="col-sm-10">
+      <%= f.text_area :description, class: "form-control" %>
+    </div>  
+  </div>
+<% end %>

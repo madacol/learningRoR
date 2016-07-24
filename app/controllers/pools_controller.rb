@@ -6,7 +6,7 @@ class PoolsController < ApplicationController
   # GET /pools.json
   def index
     permission_denied and return  if current_user.cannot 'read_pool'
-    @pools = Pool.all
+    @pools = Pool.where("created_at >= ?", Time.zone.now.beginning_of_day)
     @new_pool = Pool.new
   end
 

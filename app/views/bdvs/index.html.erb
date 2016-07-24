@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+<h1><%= Bdv.new.table_name_to_show %></h1>
+<p><%= render 'layouts/modal', :@bdv => @new_bdv, :@btn_name => 'Nuevo Registro', :@id => 'new_bdv' %></p>
+<div class="table-responsive">
+  <table class="table table-sm table-hover table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>Categoria</th>
+        <th>Nombre o Alias</th>      
+        <th><%= RazonSocial.new.table_name_to_show %></th>   
+        <th>Monto</th>
+        <th>Balance</th>
+        <th>Tipo de comprobante</th>
+        <th>Nº comprobante</th>
+        <th>Description</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @bdvs.reverse.each do |bdv| %>
+        <tr>
+          <td><%= (link_to bdv.category.table_name_to_show, bdv.category.class) if bdv.category %></td>
+          <td><%= (link_to bdv.category.record_name_to_show, bdv.category) if bdv.category %></td>
+          <td><%= (link_to bdv.razon_social.record_name_to_show, bdv.razon_social) if bdv.razon_social %></td>
+          <td><%= bdv.monto %></td>
+          <td><%= bdv.balance %></td>
+          <td><%= bdv.comprobante_type %></td>
+          <td><%= bdv.n_comprobante %></td>
+          <td><%= bdv.description %></td>
+          <td><%= render 'layouts/modal', :@bdv => bdv, :@btn_name => 'Editar', :@id => "edit_bdv_#{bdv.id}" %></td>
+          <td><%= link_to '×', bdv, method: :delete, data: { confirm: 'Are you sure?' }, class: "close equis" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
