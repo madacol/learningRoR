@@ -5,7 +5,7 @@ class PoolsController < ApplicationController
   # GET /pools
   # GET /pools.json
   def index
-    permission_denied and return  if current_user.cannot 'read_pool'
+    permission_denied and return if current_user.cannot 'read_pool'
     @pools = Pool.all
     @new_pool = Pool.new
   end
@@ -27,10 +27,8 @@ class PoolsController < ApplicationController
   # POST /pools
   # POST /pools.json
   def create
-    permission_denied and return  if current_user.cannot 'create_pool'
-
     @pool = Pool.new(pool_params)
-
+    ask_for_permission(@pool, 'create_pool') and return if current_user.cannot 'create_pool'
     respond_to do |format|
       if @pool.save
         format.html { redirect_to pools_url, notice: @pool.table_name_to_show.concat(' was successfully created.') }
@@ -45,9 +43,10 @@ class PoolsController < ApplicationController
   # PATCH/PUT /pools/1
   # PATCH/PUT /pools/1.json
   def update
-    permission_denied and return  if current_user.cannot 'update_pool'
+    @pool.assign_attributes(pool_params)
+    ask_for_permission(@pool, 'update_pool') and return if current_user.cannot 'update_pool'
     respond_to do |format|
-      if @pool.update(pool_params)
+      if @pool.save
         format.html { redirect_to pools_url, notice: @pool.table_name_to_show.concat(' was successfully updated.') }
         format.json { render :show, status: :ok, location: @pool }
       else
@@ -60,7 +59,7 @@ class PoolsController < ApplicationController
   # DELETE /pools/1
   # DELETE /pools/1.json
   def destroy
-    permission_denied and return  if current_user.cannot 'destroy_pool'
+    ask_for_permission(@pool, 'destroy_pool') and return if current_user.cannot 'destroy_pool'
     @pool.destroy
     respond_to do |format|
       format.html { redirect_to pools_url, notice: @pool.table_name_to_show.concat(' was successfully destroyed.') }

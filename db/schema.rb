@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160702052139) do
+ActiveRecord::Schema.define(version: 20160729034356) do
 
   create_table "actions", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -122,13 +122,15 @@ ActiveRecord::Schema.define(version: 20160702052139) do
   add_index "odts", ["razon_social_id"], name: "index_odts_on_razon_social_id", using: :btree
 
   create_table "permission_requests", force: :cascade do |t|
-    t.integer  "auth_record_id",   limit: 4
-    t.string   "auth_record_type", limit: 255
-    t.string   "token",            limit: 255,                null: false
-    t.boolean  "is_pending",                   default: true, null: false
+    t.integer  "auth_record_id",     limit: 4
+    t.string   "auth_record_type",   limit: 255
+    t.string   "token",              limit: 255,                   null: false
+    t.boolean  "is_pending",                       default: false, null: false
     t.datetime "approved_at"
-    t.datetime "created_at",                                  null: false
-    t.datetime "updated_at",                                  null: false
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
+    t.text     "auth_record_object", limit: 65535
+    t.string   "action",             limit: 255
   end
 
   add_index "permission_requests", ["auth_record_type", "auth_record_id"], name: "index_permission_requests_on_auth_record_type_and_auth_record_id", using: :btree
@@ -181,6 +183,16 @@ ActiveRecord::Schema.define(version: 20160702052139) do
   add_index "retenciones", ["code_factura"], name: "index_retenciones_on_code_factura", unique: true, using: :btree
   add_index "retenciones", ["razon_social_id"], name: "index_retenciones_on_razon_social_id", using: :btree
 
+  create_table "sessions", force: :cascade do |t|
+    t.string   "session_id", limit: 255,   null: false
+    t.text     "data",       limit: 65535
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sessions", ["session_id"], name: "index_sessions_on_session_id", unique: true, using: :btree
+  add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
     t.string   "encrypted_password",     limit: 255, default: "", null: false
@@ -211,5 +223,4 @@ ActiveRecord::Schema.define(version: 20160702052139) do
   add_foreign_key "odts", "razon_socials"
   add_foreign_key "pools", "razon_socials"
   add_foreign_key "retenciones", "razon_socials"
-  add_foreign_key "users", "employees"
 end

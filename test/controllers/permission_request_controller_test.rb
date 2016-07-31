@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class UnauthorizedControllerTest < ActionController::TestCase
+class PermissionRequestControllerTest < ActionController::TestCase
   # test "the truth" do
   #   assert true
   # end
