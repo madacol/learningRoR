@@ -31,7 +31,7 @@ class PoolsController < ApplicationController
     ask_for_permission(@pool, 'create_pool') and return if current_user.cannot 'create_pool'
     respond_to do |format|
       if @pool.save
-        format.html { redirect_to pools_url, notice: @pool.table_name_to_show.concat(' was successfully created.') }
+        format.html { redirect_to pools_url, notice: @pool.table_name_to_show.concat(' fue creada satisfactoriamente.') }
         format.json { render :show, status: :created, location: @pool }
       else
         format.html { render :new }
@@ -47,8 +47,7 @@ class PoolsController < ApplicationController
     ask_for_permission(@pool, 'update_pool') and return if current_user.cannot 'update_pool'
     respond_to do |format|
       if @pool.save
-        format.html { redirect_to pools_url, notice: @pool.table_name_to_show.concat(' was successfully updated.') }
-        format.json { render :show, status: :ok, location: @pool }
+        format.html { redirect_to pools_url, notice: @pool.table_name_to_show.concat(' fue actualizado satisfactoriamente.') }
       else
         format.html { render :edit }
         format.json { render json: @pool.errors, status: :unprocessable_entity }
@@ -60,11 +59,12 @@ class PoolsController < ApplicationController
   # DELETE /pools/1.json
   def destroy
     ask_for_permission(@pool, 'destroy_pool') and return if current_user.cannot 'destroy_pool'
-    @pool.destroy
-    respond_to do |format|
-      format.html { redirect_to pools_url, notice: @pool.table_name_to_show.concat(' was successfully destroyed.') }
+   @pool.destroy   
+   respond_to do |format|
+      format.html { redirect_to pools_url, notice: @pool.table_name_to_show.concat(' fue eliminado satisfactoriamente.')}
       format.json { head :no_content }
-    end
+      format.js   { render :layout => false }
+   end
   end
 
   private

@@ -32,7 +32,7 @@ class RetencionesController < ApplicationController
 
     respond_to do |format|
       if @retencione.save
-        format.html { redirect_to retenciones_url, notice: @retencione.table_name_to_show.concat(' was successfully created.') }
+        format.html { redirect_to retenciones_url, notice: @retencione.table_name_to_show.concat(' fue creada satisfactoriamente.') }
         format.json { render :show, status: :created, location: @retencione }
       else
         format.html { render :new }
@@ -47,7 +47,7 @@ class RetencionesController < ApplicationController
     permission_denied and return  if current_user.cannot 'update_retencione'
     respond_to do |format|
       if @retencione.update(retencione_params)
-        format.html { redirect_to retenciones_url, notice: @retencione.table_name_to_show.concat( ' was successfully updated.') }
+        format.html { redirect_to retenciones_url, notice: @retencione.table_name_to_show.concat( ' fue actualizado satisfactoriamente.') }
         format.json { render :show, status: :ok, location: @retencione }
       else
         format.html { render :edit }
@@ -62,7 +62,7 @@ class RetencionesController < ApplicationController
     permission_denied and return  if current_user.cannot 'destroy_retencione'
     @retencione.destroy
     respond_to do |format|
-      format.html { redirect_to retenciones_url, notice: 'Retencione was successfully destroyed.' }
+      format.html { redirect_to retenciones_url, notice: 'Retencione fue eliminado satisfactoriamente.' }
       format.json { head :no_content }
     end
   end

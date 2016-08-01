@@ -30,7 +30,7 @@ class BanescosController < ApplicationController
 
     respond_to do |format|
       if @banesco.save
-        format.html { redirect_to banescos_url, notice: @banesco.table_name_to_show.concat(' was successfully created.') }
+        format.html { redirect_to banescos_url, notice: @banesco.table_name_to_show.concat(' fue creada satisfactoriamente.') }
         format.json { render :show, status: :created, location: @banesco }
       else
         format.html { render :new }
@@ -44,7 +44,7 @@ class BanescosController < ApplicationController
   def update
     respond_to do |format|
       if @banesco.update(banesco_params)
-        format.html { redirect_to banescos_url, notice: @banesco.table_name_to_show.concat(' was successfully created.') }
+        format.html { redirect_to banescos_url, notice: @banesco.table_name_to_show.concat(' fue creada satisfactoriamente.') }
         format.json { render :show, status: :ok, location: @banesco }
       else
         format.html { render :edit }
@@ -58,7 +58,7 @@ class BanescosController < ApplicationController
   def destroy
     @banesco.destroy
     respond_to do |format|
-      format.html { redirect_to banescos_url, notice: @banesco.table_name_to_show.concat(' was successfully destroyed.')}
+      format.html { redirect_to banescos_url, notice: @banesco.table_name_to_show.concat(' fue eliminado satisfactoriamente.')}
       format.json { head :no_content }
     end
   end

@@ -28,7 +28,7 @@
           <td><%= pool.n_comprobante %></td>
           <td><%= pool.description %></td>
           <td><%= render 'layouts/modal', :@pool => pool, :@btn_name => 'Editar', :@id => "edit_pool_#{pool.id}" %></td>
-          <td><%= link_to '×', pool, method: :delete, data: { confirm: 'Are you sure?' }, class: "close equis" %></td>
+          <td><%= link_to '×', pool, :method => :delete, :data => { :confirm => 'Are you sure?' },:remote => true, :class => "delete_row close equis" %></td>
         </tr>
       <% end %>
     </tbody>

@@ -29,7 +29,7 @@ class EmployeeGroupsController < ApplicationController
 
     respond_to do |format|
       if @employee_group.save
-        format.html { redirect_to @employee_group, notice: 'Employee group was successfully created.' }
+        format.html { redirect_to @employee_group, notice: 'Employee group fue creada satisfactoriamente.' }
         format.json { render :show, status: :created, location: @employee_group }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class EmployeeGroupsController < ApplicationController
   def update
     respond_to do |format|
       if @employee_group.update(employee_group_params)
-        format.html { redirect_to @employee_group, notice: 'Employee group was successfully updated.' }
+        format.html { redirect_to @employee_group, notice: 'Employee group fue actualizado satisfactoriamente.' }
         format.json { render :show, status: :ok, location: @employee_group }
       else
         format.html { render :edit }
@@ -57,7 +57,7 @@ class EmployeeGroupsController < ApplicationController
   def destroy
     @employee_group.destroy
     respond_to do |format|
-      format.html { redirect_to employee_groups_url, notice: 'Employee group was successfully destroyed.' }
+      format.html { redirect_to employee_groups_url, notice: 'Employee group fue eliminado satisfactoriamente.' }
       format.json { head :no_content }
     end
   end

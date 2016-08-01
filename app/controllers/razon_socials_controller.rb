@@ -33,7 +33,7 @@ class RazonSocialsController < ApplicationController
 
     respond_to do |format|
       if @razon_social.save
-        format.html { redirect_to razon_socials_url, notice: @razon_social.table_name_to_show.concat(' was successfully created.') }
+        format.html { redirect_to razon_socials_url, notice: @razon_social.table_name_to_show.concat(' fue creada satisfactoriamente.') }
         format.json { render :show, status: :created, location: @razon_social }
       else
         format.html { render :new }
@@ -63,7 +63,7 @@ class RazonSocialsController < ApplicationController
     permission_denied and return  if current_user.cannot 'destroy_razon_social'
     @razon_social.destroy
     respond_to do |format|
-      format.html { redirect_to razon_socials_url, notice: @razon_social.table_name_to_show+' was successfully destroyed.' }
+      format.html { redirect_to razon_socials_url, notice: @razon_social.table_name_to_show+' fue eliminado satisfactoriamente.' }
       format.json { head :no_content }
     end
   end
