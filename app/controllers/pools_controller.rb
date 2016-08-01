@@ -58,7 +58,7 @@ class PoolsController < ApplicationController
   # DELETE /pools/1
   # DELETE /pools/1.json
   def destroy
-    ask_for_permission(@pool, 'destroy_pool') and return if current_user.cannot 'destroy_pool'
+   ask_for_permission(@pool, 'destroy_pool') and return if current_user.cannot 'destroy_pool'
    @pool.destroy   
    respond_to do |format|
       format.html { redirect_to pools_url, notice: @pool.table_name_to_show.concat(' fue eliminado satisfactoriamente.')}

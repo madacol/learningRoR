@@ -10,6 +10,7 @@ class PermissionRequestController < ApplicationController
 		@permission_request.auth_record = YAML.load(@permission_request.auth_record_object) if @permission_request.action.starts_with?('create')
 		@permission_request.is_pending = false
 		@permission_request.approved_at = Time.now
+		@permission_request.save
 	end
 
 	# GET /deny/:token
@@ -24,8 +25,7 @@ class PermissionRequestController < ApplicationController
 		@permission_request = PermissionRequest.find permission_request_params[:id]
 		@permission_request.is_pending = true
 		@permission_request.auth_record = YAML.load(@permission_request.auth_record_object) unless @permission_request.action.starts_with?('create')		
-		puts '','#########################',@user.email,'#########################',''
-		puts '','#########################',@permission_request.auth_record_object,'#########################',''
+		@permission_request.save
 		UserMailer.send_request_to_approve(@user, @permission_request).deliver_now
 		redirect_to root_url
 	end
@@ -36,7 +36,7 @@ class PermissionRequestController < ApplicationController
 		unless defined? flash[:yamled_record_to_approve] and defined? flash[:action] and not flash[:yamled_record_to_approve].nil? and not flash[:action].nil?
 			redirect_to root_url, :status => :not_found and return
 		end		
-		puts '','#########################',YAML.load(flash[:yamled_record_to_approve]),'#########################',''
+		# puts '','#########################',YAML.load(flash[:yamled_record_to_approve]),'#########################',''
 		@permission_request = PermissionRequest.new
 		@permission_request.auth_record_object = flash[:yamled_record_to_approve]
 		@permission_request.action = flash[:action]
