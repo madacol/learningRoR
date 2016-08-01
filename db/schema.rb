@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20160729034356) do
-=======
-ActiveRecord::Schema.define(version: 20160723052522) do
->>>>>>> yuli
 
   create_table "actions", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -72,6 +68,9 @@ ActiveRecord::Schema.define(version: 20160723052522) do
     t.integer  "category_id",      limit: 4
     t.string   "category_type",    limit: 255
   end
+
+  add_index "bdvs", ["category_type", "category_id"], name: "index_bdvs_on_category_type_and_category_id", using: :btree
+  add_index "bdvs", ["razon_social_id"], name: "index_bdvs_on_razon_social_id", using: :btree
 
   create_table "bods", force: :cascade do |t|
     t.integer  "comprobante_type", limit: 4
