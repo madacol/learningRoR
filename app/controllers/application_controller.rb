@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   before_filter :configure_devise_permitted_parameters, if: :devise_controller?
 
   def ask_for_permission(auth_record, action)
-    flash[:yamled_record_to_approve] = auth_record.to_yaml
+    flash[:hashed_record_to_approve] = { "model" => auth_record.model_name.name, "attributes" => auth_record.attributes }
     flash[:action] = action
     redirect_to ask_permission_url
   end

@@ -4,9 +4,9 @@
 		<meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
 	</head>
 	<body>
-		<h1>Alguien necesita <%= @action %> el siguiente registro:</h1>
+		<h1>Alguien necesita <%= @action %> el siguiente registro en <%= @model %>:</h1>
 		<p>
-			<% @object.attributes.each do |key, value| %>
+			<% @attributes.each do |key, value| %>
 				<br>
 				<%= key %>: <%= value %>
 			<% end %>
