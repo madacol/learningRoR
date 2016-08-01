@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :provincials
+  resources :banescos
+  resources :mercantils
+  resources :bods
+  resources :bdvs
   root "pools#index"
 
   resources :pools

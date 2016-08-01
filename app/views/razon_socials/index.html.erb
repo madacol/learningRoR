@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing <%= RazonSocial.new.table_name_to_show %></h1>
+<h1><%= RazonSocial.new.table_name_to_show %></h1>
 
 <p><%= render 'layouts/modal', :@razon_social => @new_razon_social, :@btn_name => 'Nuevo Registro', :@id => 'new_razon_social' %> </p>
 

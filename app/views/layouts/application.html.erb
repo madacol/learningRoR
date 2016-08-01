@@ -22,8 +22,15 @@
           <li class="nav-item">
             <a href="/pools" class="nav-link"><%= Pool.new.table_name_to_show %></a>
           </li>
-          <li class="nav-item">
-            <a href="#tf-odt" class="nav-link disabled">Cuentas</a>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" role="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Cuentas</a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+              <a class="dropdown-item" type="button" href="/mercantils">Mercantil</a>
+              <a class="dropdown-item" type="button" href="/bdvs">BDV</a>
+              <a class="dropdown-item" type="button" href="/bods">BOD</a>
+              <a class="dropdown-item" type="button" href="/banescos">Banesco</a>
+              <a class="dropdown-item" type="button" href="/provincials">Provincial</a>
+            </div>
           </li>
           <li class="nav-item">
             <a href="/retenciones" class="nav-link"><%= Retencione.new.table_name_to_show %></a>
