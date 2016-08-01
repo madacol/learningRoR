@@ -1,7 +1,6 @@
 class PermissionRequestController < ApplicationController
-	before_action :is_token_missing?, only: [:approve, :deny]
 	before_action :set_token_record, only: [:approve, :deny]
-	before_action :set_auth_record, only: [:approve, :deny]
+	before_action :is_token_missing?, only: [:approve, :deny]
 	before_action :is_already_approved_or_denied?, only: [:approve, :deny]
 
 	# GET /approve/:token
@@ -12,7 +11,7 @@ class PermissionRequestController < ApplicationController
 		@permission_request.approved_at = Time.now
 		@permission_request.save
 	end
-
+4
 	# GET /deny/:token
 	def deny
 		 @permission_request.destroy
@@ -20,11 +19,14 @@ class PermissionRequestController < ApplicationController
 
 	# POST /set_permission
 	def set_permission
-		permission_request_params = params.require(:permission).permit(:id, :user_id)
-		@user = User.find permission_request_params[:user_id]
-		@permission_request = PermissionRequest.find permission_request_params[:id]
+		@permission_request = PermissionRequest.find params[:permission][:id]
+		@user = User.find_by id: params[:permission][:user_id]
+
+		redirect_to root_url, notice: 'Usuario no existe' and return if @user.nil?
+		redirect_to root_url, notice: "ERROR\n#{@user.record_name_to_show} no está autorizado" and return if @user.cannot @permission_request.action
+
 		@permission_request.is_pending = true
-		@permission_request.auth_record = YAML.load(@permission_request.auth_record_object) unless @permission_request.action.starts_with?('create')		
+		@permission_request.auth_record = YAML.load(@permission_request.auth_record_object) unless @permission_request.action.starts_with?('create')
 		@permission_request.save
 		UserMailer.send_request_to_approve(@user, @permission_request).deliver_now
 		redirect_to root_url
@@ -40,8 +42,6 @@ class PermissionRequestController < ApplicationController
 		@permission_request = PermissionRequest.new
 		@permission_request.auth_record_object = flash[:yamled_record_to_approve]
 		@permission_request.action = flash[:action]
-		flash[:yamled_record_to_approve] = nil
-		flash[:action] = nil
 		@permission_request.token = SecureRandom.urlsafe_base64
 		@permission_request.save
 		@authorized_users = get_users_who_can? @permission_request.action
@@ -50,19 +50,16 @@ class PermissionRequestController < ApplicationController
 	private
 		# Use callbacks to share common setup or constraints between actions.
 		def set_token_record
-			@permission_request = PermissionRequest.where(token: params[:token]).first
+			@permission_request = PermissionRequest.find_by token: params[:token]
 		end
-		def set_auth_record
-			@auth_record = @permission_request.auth_record
-		end			
 		def is_token_missing?
 			if @permission_request.nil?
-				render :file => "public/404.html", alert: 'Token no existe' and return
+				redirect_to root_url, notice: 'Token no existe' and return
 			end
 		end
 		def is_already_approved_or_denied?
 			unless @permission_request.is_pending
-				render :file => "public/404.html", alert: 'Ya fue aprobado', date: @permission_request.approved_at and return
+				redirect_to root_url, notice: 'Ya fue aprobado', date: @permission_request.approved_at and return
 			end
 		end
 		def get_users_who_can?(action)
