@@ -20,7 +20,7 @@ addRemoveOnClickEvent = (boton) ->
 			$(destroy_input).insertAfter input_array
 		$(boton).parents('div.form-group').remove()
 
-$ ->
+$(document).on "turbolinks:load", ->
 	$('#new_odt .nested_attributes').each ->
 		new_model = $(this).find('div').first()
 		model= new_model.clone(true, true)

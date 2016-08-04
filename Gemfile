@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 gem 'activerecord-session_store'
 gem 'bootstrap', '~> 4.0.0.alpha3'
 gem 'rails-assets-tether'
-gem 'jquery-turbolinks'
 
 gem 'tzinfo-data'
 # Authetication
