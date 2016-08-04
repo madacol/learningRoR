@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160729034356) do
+ActiveRecord::Schema.define(version: 20160804053817) do
 
   create_table "actions", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -118,8 +118,9 @@ ActiveRecord::Schema.define(version: 20160729034356) do
     t.text     "address",      limit: 65535
     t.date     "startdate"
     t.text     "note",         limit: 65535
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                                          null: false
+    t.datetime "updated_at",                                          null: false
+    t.decimal  "loan_balance",               precision: 15, scale: 2
   end
 
   create_table "ggs", force: :cascade do |t|
@@ -200,7 +201,6 @@ ActiveRecord::Schema.define(version: 20160729034356) do
   add_index "permission_requests", ["auth_record_type", "auth_record_id"], name: "index_permission_requests_on_auth_record_type_and_auth_record_id", using: :btree
 
   create_table "pools", force: :cascade do |t|
-    t.integer  "cuenta",           limit: 4
     t.integer  "comprobante_type", limit: 4
     t.string   "n_comprobante",    limit: 255
     t.decimal  "monto",                          precision: 15, scale: 2
@@ -303,5 +303,4 @@ ActiveRecord::Schema.define(version: 20160729034356) do
   add_foreign_key "odts", "razon_socials"
   add_foreign_key "pools", "razon_socials"
   add_foreign_key "retenciones", "razon_socials"
-  add_foreign_key "users", "employees"
 end
