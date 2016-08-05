@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   end
 
   def permission_denied
-    redirect_to :file => "public/422.html", :status => :unauthorized
+    redirect_to root_url, :status => :unauthorized
   end
 
   protected
