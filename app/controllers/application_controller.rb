@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   end
 
   def permission_denied
-    render :file => "public/422.html", :status => :unauthorized
+    redirect_to :file => "public/422.html", :status => :unauthorized
   end
 
   protected

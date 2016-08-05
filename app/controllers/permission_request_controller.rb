@@ -45,7 +45,7 @@ class PermissionRequestController < ApplicationController
 	end
 
 	# GET /ask
-	def ask		
+	def ask
 		puts '','#########################',flash[:hashed_record_to_approve],'#########################',''
 		@permission_request = PermissionRequest.new
 		@permission_request.auth_record_object = flash[:hashed_record_to_approve]
