@@ -50,7 +50,7 @@
           </td>
 
           <td><%= render "layouts/modal", :@odt => odt, :@btn_name => 'Editar', :@id => "edit_odt_#{odt.id}" %></td>
-          <td><%= link_to '×', odt, method: :delete, data: { confirm: 'Are you sure?' }, class: "close equis" %></td>
+          <td><%= link_to '×', odt, method: :delete, data: { confirm: '¿Está seguro?' }, class: "close equis" %></td>
         </tr>
       <% end %>
     </tbody>

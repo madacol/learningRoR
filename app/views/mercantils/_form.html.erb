@@ -1,9 +1,9 @@
-<%= form_for(@pool) do |f| %>
-  <% if @pool.errors.any? %>
+<%= form_for(@mercantil) do |f| %>
+  <% if @mercantil.errors.any? %>
     <div id="error_explanation_<%=@id%>">
-      <h2><%= pluralize(@pool.errors.count, "error") %> prohibited this pool from being saved:</h2>
+      <h2><%= pluralize(@mercantil.errors.count, "error") %> prohibited this mercantil from being saved:</h2>
       <ul>
-      <% @pool.errors.full_messages.each do |message| %>
+      <% @mercantil.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -19,13 +19,13 @@
   </div>
   <div class="form-group row">
     <div class="col-sm-2">
-      <%= label_tag( "pool_category_type_#{@id}", 'Categoría' ) %><br>
+      <%= label_tag( "bdv_category_type_#{@id}", 'Categoría' ) %><br>
     </div>
     <div class="col-sm-4"> 
-      <%= f.select(:category_type, options_for_select( categories.collect { |category| [eval(category).new.table_name_to_show, category] }, @pool.category_type ), { prompt: '--Seleccionar--'}, { class: "form-control c-select", id: "pool_category_type_#{@id}" } ) %>
+      <%= f.select(:category_type, options_for_select( categories.collect { |category| [eval(category).new.table_name_to_show, category] }, @mercantil.category_type ), { prompt: '--Seleccionar--'}, { class: "form-control c-select", id: "mercantil_category_type_#{@id}" } ) %>
     </div>
     <% categories.each do |category| %>
-      <div id= <%= category+@id %> class="<%= 'hidden' if @pool.category_type != category %>">
+      <div id= <%= category+@id %> class="<%= 'hidden' if @mercantil.category_type != category %>">
         <div class="col-sm-4">
           <%= f.collection_select( :category_id, eval(category).all, :id, :record_name_to_show, { prompt: '-Seleccionar-'}, { class: "form-control c-select" }) %>       
         </div>
@@ -34,10 +34,10 @@
         </div>
       </div>
     <% end %>
-  </div>         
+  </div>        
   <div class="form-group row">
     <div class="col-sm-2">
-      <%= f.label( 'pool_razon_social_id_#{@id}', RazonSocial.new.table_name_to_show, class: "control-label") %>
+      <%= f.label( 'mercantil_razon_social_id_#{@id}', RazonSocial.new.table_name_to_show, class: "control-label") %>
     </div>
     <div class="col-sm-8">
       <%= f.collection_select( :razon_social_id, RazonSocial.all, :id, :record_name_to_show, { prompt: '-Seleccionar-'}, { class: "form-control c-select" }) %>
@@ -45,7 +45,7 @@
     <div class="col-sm-2">
         <button type="button" class="btn btn-primary">Añadir</button>
     </div>
-  </div>
+  </div> 
   <div class="form-group row">
     <div class="col-sm-2">
       <%= f.label :monto, class: "control-label" %><br>
@@ -53,16 +53,6 @@
     <div class="col-sm-10">
       <%= f.text_field :monto, class: "form-control", :required => true %>
     </div>  
-  </div>
-  <div class="form-group row">
-    <div class="col-sm-2">
-      <%= f.label :comprobante_type %><br>
-    </div>
-    <div class="col-sm-10">
-      <%= f.collection_radio_buttons(:comprobante_type, Pool.comprobante_types, :first, :first) do |b|
-        b.label(class: "custom-control custom-radio") { b.radio_button(class: "custom-control-input") }
-        end %>
-    </div>
   </div>
   <div class="form-group row">
     <div class="col-sm-2">
@@ -81,3 +71,4 @@
     </div>  
   </div>
 <% end %>
+

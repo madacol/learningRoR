@@ -34,7 +34,7 @@
           <td><%= razon_social.contact_phone %></td>
           <td><%= razon_social.contact_email %></td>
           <td><%= render 'layouts/modal', :@razon_social => razon_social, :@btn_name => 'Editar', :@id => "edit_razon_social_#{razon_social.id}" %></td>
-          <td><%= link_to '×', razon_social, method: :delete, data: { confirm: 'Are you sure?' }, class: "close equis" %></td>
+          <td><%= link_to '×', razon_social, method: :delete, data: { confirm: '¿Está seguro?' }, class: "close equis" %></td>
         </tr>
       <% end %>
     </tbody>

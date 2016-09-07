@@ -18,7 +18,7 @@
           <td><%= link_to comision_odt.employee.record_name_to_show, comision_odt.employee %></td>
           <td><%= comision_odt.p_comision %></td>
           <td><%= render "layouts/modal", :@comision_odt => comision_odt, :@btn_name => 'Editar', :@id => "edit_comision_odt_#{comision_odt.id}" %></td>
-          <td><%= link_to '×', comision_odt, method: :delete, data: { confirm: 'Are you sure?' }, class: "close equis" %></td>
+          <td><%= link_to '×', comision_odt, method: :delete, data: { confirm: '¿Está seguro?' }, class: "close equis" %></td>
         </tr>
       <% end %>
     </tbody>

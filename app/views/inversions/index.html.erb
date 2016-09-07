@@ -22,7 +22,7 @@
         <td><%= inversion.alias %></td>
         <td><%= inversion.description %></td>
         <td><%= render 'layouts/modal', :@inversion => inversion, :@btn_name => 'Editar', :@id => "edit_inversion_#{inversion.id}" %></td>
-        <td><%= link_to '×', inversion, method: :delete, data: { confirm: 'Are you sure?' }, class: "close equis" %></td></td>
+        <td><%= link_to '×', inversion, method: :delete, data: { confirm: '¿Está seguro?' }, class: "close equis" %></td></td>
       </tr>
     <% end %>
   </tbody>

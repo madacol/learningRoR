@@ -28,7 +28,7 @@
           <td><%= retencione.description %></td>
           <td><%= retencione.status %></td>
           <td><%= render 'layouts/modal', :@retencione => retencione, :@btn_name => 'Editar', :@id => "edit_retencione_#{retencione.id}" %></td>
-          <td><%= link_to '×', retencione, method: :delete, data: { confirm: 'Are you sure?' }, class: "close equis" %></td>
+          <td><%= link_to '×', retencione, method: :delete, data: { confirm: '¿Está seguro?' }, class: "close equis" %></td>
         </tr>
       <% end %>
     </tbody>

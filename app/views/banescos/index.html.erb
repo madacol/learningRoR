@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+<h1><%= Banesco.new.table_name_to_show %></h1>
+<p><%= render 'layouts/modal', :@banesco => @new_banesco, :@btn_name => 'Nuevo Registro', :@id => 'new_banesco' %></p>
+<div class="table-responsive">
+  <table class="table table-sm table-hover table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>Fecha</th>
+        <th>Categoria</th>
+        <th>Nombre o Alias</th>      
+        <th><%= RazonSocial.new.table_name_to_show %></th>   
+        <th>Monto</th>
+        <th>Balance</th>
+        <th>Tipo de comprobante</th>
+        <th>Nº comprobante</th>
+        <th>Description</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @banescos.reverse.each do |banesco| %>
+        <tr>
+          <td><%= banesco.date_of %></td>
+          <td><%= (link_to banesco.category.table_name_to_show, banesco.category.class) if banesco.category %></td>
+          <td><%= (link_to banesco.category.record_name_to_show, banesco.category) if banesco.category %></td>
+          <td><%= (link_to banesco.razon_social.record_name_to_show, banesco.razon_social) if banesco.razon_social %></td>
+          <td><%= banesco.monto %></td>
+          <td><%= banesco.balance %></td>
+          <td><%= banesco.comprobante_type %></td>
+          <td><%= banesco.n_comprobante %></td>
+          <td><%= banesco.description %></td>
+          <td><%= render 'layouts/modal', :@banesco => banesco, :@btn_name => 'Editar', :@id => "edit_banesco_#{banesco.id}" %></td>
+          <td><%= link_to '×', banesco, method: :delete, data: { confirm: '¿Está seguro?' }, class: "close equis" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

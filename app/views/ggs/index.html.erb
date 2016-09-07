@@ -22,7 +22,7 @@
         <td><%= gg.alias %></td>
         <td><%= gg.description %></td>
         <td><%= render 'layouts/modal', :@gg => gg, :@btn_name => 'Editar', :@id => "edit_gg_#{gg.id}" %></td>
-        <td><%= link_to '×', gg, method: :delete, data: { confirm: 'Are you sure?' }, class: "close equis" %></td>
+        <td><%= link_to '×', gg, method: :delete, data: { confirm: '¿Está seguro?' }, class: "close equis" %></td>
       </tr>
     <% end %>
   </tbody>

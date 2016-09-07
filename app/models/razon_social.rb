@@ -1,5 +1,6 @@
 class RazonSocial < ActiveRecord::Base
-    has_many :odts
+    validates_presence_of :name, presence: true, :message => "no puede estar vacío"
+    validates_presence_of :rif_ci, presence: true, :message => "no puede estar vacío"
     has_many :retenciones
     has_many :pools
 

@@ -40,7 +40,9 @@ p.intro{
 	line-height: 24px;
 	font-family: 'Open Sans', sans-serif;
 }
-a{ color: #58b1fd;}
+a{ 
+	color: #69B6F6;
+}
 a:hover,
 a:focus{
 	text-decoration: none;
@@ -76,8 +78,9 @@ ul, ol{
 	transition: all 0.8s;
 }
 #tf-menu.navbar-dark {
-	background-color: rgb(51, 122, 183);
+	background-color: #050183;
 	border-color: rgba(231, 231, 231, 0);
+	box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.15);
 }
 #tf-menu .navbar-brand > li > a {
 	/*text-transform: uppercase;*/
@@ -92,6 +95,10 @@ ul, ol{
 	font-size: 20px;
 	letter-spacing: 1px;
 }
+#tf-menu.navbar-dark .navbar-nav > li > a:focus{
+	text-decoration: none;
+	color: #69B6F6;
+}
 #icon-plus{
 	font-size: 20px;
 	float: left;
@@ -103,7 +110,7 @@ ul, ol{
 .navbar-dark .navbar-nav > .active > a, 
 .navbar-dark .navbar-nav > .active > a:hover, 
 .navbar-dark .navbar-nav > .active > a:focus {
-	color: #32B742 !important;
+	color: #236ADB !important;
 	background-color: transparent;
 	font-weight: 700;
 }
@@ -204,10 +211,12 @@ button.btn.tf-btn.btn-default {
 }
 /* Footer */
 nav#footer{
-	background: #4995d6;
+	background: #050183;
 	color: #ffffff;
 	padding: 1rem;
 	border-radius: 0;
+	border-color: rgba(231, 231, 231, 0);
+	box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.15);
 }
 nav#footer p{
 	vertical-align: center;

@@ -40,6 +40,54 @@ ActiveRecord::Schema.define(version: 20160702052139) do
   add_index "auth_groups_users", ["auth_group_id"], name: "index_auth_groups_users_on_auth_group_id", using: :btree
   add_index "auth_groups_users", ["user_id"], name: "index_auth_groups_users_on_user_id", using: :btree
 
+  create_table "banescos", force: :cascade do |t|
+    t.integer  "comprobante_type", limit: 4
+    t.string   "n_comprobante",    limit: 255
+    t.decimal  "monto",                          precision: 15, scale: 2
+    t.decimal  "balance",                        precision: 15, scale: 2
+    t.text     "description",      limit: 65535
+    t.datetime "created_at",                                              null: false
+    t.datetime "updated_at",                                              null: false
+    t.integer  "razon_social_id",  limit: 4
+    t.integer  "category_id",      limit: 4
+    t.string   "category_type",    limit: 255
+    t.date     "date_of"
+  end
+
+  add_index "banescos", ["category_type", "category_id"], name: "index_banescos_on_category_type_and_category_id", using: :btree
+  add_index "banescos", ["razon_social_id"], name: "index_banescos_on_razon_social_id", using: :btree
+
+  create_table "bdvs", force: :cascade do |t|
+    t.integer  "comprobante_type", limit: 4
+    t.string   "n_comprobante",    limit: 255
+    t.decimal  "monto",                          precision: 15, scale: 2
+    t.decimal  "balance",                        precision: 15, scale: 2
+    t.text     "description",      limit: 65535
+    t.datetime "created_at",                                              null: false
+    t.datetime "updated_at",                                              null: false
+    t.integer  "razon_social_id",  limit: 4
+    t.integer  "category_id",      limit: 4
+    t.string   "category_type",    limit: 255
+    t.date     "date_of"
+  end
+
+  create_table "bods", force: :cascade do |t|
+    t.integer  "comprobante_type", limit: 4
+    t.string   "n_comprobante",    limit: 255
+    t.decimal  "monto",                          precision: 15, scale: 2
+    t.decimal  "balance",                        precision: 15, scale: 2
+    t.text     "description",      limit: 65535
+    t.datetime "created_at",                                              null: false
+    t.datetime "updated_at",                                              null: false
+    t.integer  "razon_social_id",  limit: 4
+    t.integer  "category_id",      limit: 4
+    t.string   "category_type",    limit: 255
+    t.date     "date_of"
+  end
+
+  add_index "bods", ["category_type", "category_id"], name: "index_bods_on_category_type_and_category_id", using: :btree
+  add_index "bods", ["razon_social_id"], name: "index_bods_on_razon_social_id", using: :btree
+
   create_table "comision_odts", force: :cascade do |t|
     t.integer  "odt_id",      limit: 4,                         null: false
     t.integer  "employee_id", limit: 4,                         null: false
@@ -108,6 +156,22 @@ ActiveRecord::Schema.define(version: 20160702052139) do
   add_index "is_allowed_tos", ["action_id"], name: "index_is_allowed_tos_on_action_id", using: :btree
   add_index "is_allowed_tos", ["auth_group_id"], name: "index_is_allowed_tos_on_auth_group_id", using: :btree
 
+  create_table "mercantils", force: :cascade do |t|
+    t.integer  "comprobante_type", limit: 4
+    t.string   "n_comprobante",    limit: 255
+    t.decimal  "monto",                          precision: 15, scale: 2
+    t.decimal  "balance",                        precision: 15, scale: 2
+    t.text     "description",      limit: 65535
+    t.datetime "created_at",                                              null: false
+    t.datetime "updated_at",                                              null: false
+    t.integer  "razon_social_id",  limit: 4
+    t.integer  "category_id",      limit: 4
+    t.string   "category_type",    limit: 255
+    t.date     "date_of"
+  end
+
+  add_index "mercantils", ["category_type", "category_id"], name: "index_mercantils_on_category_type_and_category_id", using: :btree
+  add_index "mercantils", ["razon_social_id"], name: "index_mercantils_on_razon_social_id", using: :btree
   create_table "odts", force: :cascade do |t|
     t.string   "code",            limit: 255,                            null: false
     t.text     "description",     limit: 65535,                          null: false
@@ -145,11 +209,27 @@ ActiveRecord::Schema.define(version: 20160702052139) do
     t.integer  "razon_social_id",  limit: 4
     t.integer  "category_id",      limit: 4
     t.string   "category_type",    limit: 255
+    t.date     "date_of"
   end
 
   add_index "pools", ["category_type", "category_id"], name: "index_pools_on_category_type_and_category_id", using: :btree
   add_index "pools", ["razon_social_id"], name: "index_pools_on_razon_social_id", using: :btree
+  create_table "provincials", force: :cascade do |t|
+    t.integer  "comprobante_type", limit: 4
+    t.string   "n_comprobante",    limit: 255
+    t.decimal  "monto",                          precision: 15, scale: 2
+    t.decimal  "balance",                        precision: 15, scale: 2
+    t.text     "description",      limit: 65535
+    t.datetime "created_at",                                              null: false
+    t.datetime "updated_at",                                              null: false
+    t.integer  "razon_social_id",  limit: 4
+    t.integer  "category_id",      limit: 4
+    t.string   "category_type",    limit: 255
+    t.date     "date_of"
+  end
 
+  add_index "provincials", ["category_type", "category_id"], name: "index_provincials_on_category_type_and_category_id", using: :btree
+  add_index "provincials", ["razon_social_id"], name: "index_provincials_on_razon_social_id", using: :btree
   create_table "razon_socials", force: :cascade do |t|
     t.string   "rif_ci",        limit: 255,   null: false
     t.string   "name",          limit: 255,   null: false
