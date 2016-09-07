@@ -31,7 +31,6 @@
           <td><%= bdv.description %></td>
           <td><%= render 'layouts/modal', :@bdv => bdv, :@btn_name => 'Editar', :@id => "edit_bdv_#{bdv.id}" %></td>
           <td><%= link_to '×', bdv, method: :delete, data: { confirm: '¿Está seguro?' }, class: "close equis" %></td>
-          <td><%= link_to '×', bdv, method: :delete, data: { confirm: 'Are you sure?' }, class: "close equis" %></td>
         </tr>
       <% end %>
     </tbody>

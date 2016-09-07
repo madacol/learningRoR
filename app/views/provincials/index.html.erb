@@ -31,6 +31,7 @@
           <td><%= provincial.description %></td>
           <td><%= render 'layouts/modal', :@provincial => provincial, :@btn_name => 'Editar', :@id => "edit_provincial_#{provincial.id}" %></td>
           <td><%= link_to '×', provincial, method: :delete, data: { confirm: '¿Está seguro?' }, class: "close equis" %></td>
+        </tr>
       <% end %>
     </tbody>
   </table>
