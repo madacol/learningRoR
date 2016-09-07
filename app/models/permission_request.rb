@@ -1,5 +1,6 @@
 class PermissionRequest < ActiveRecord::Base
   belongs_to :auth_record, polymorphic: true
+  serialize :auth_record_object
 
 	def table_name_to_show
 		'Solicitud de Aprobacion'

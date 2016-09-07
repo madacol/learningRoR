@@ -29,7 +29,7 @@ class AuthGroupsController < ApplicationController
 
     respond_to do |format|
       if @auth_group.save
-        format.html { redirect_to @auth_group, notice: AuthGroup.new.table_name_to_show.concat(' was successfully created.') }
+        format.html { redirect_to @auth_group, notice: AuthGroup.new.table_name_to_show.concat(' fue creada satisfactoriamente.') }
         format.json { render :show, status: :created, location: @auth_group }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class AuthGroupsController < ApplicationController
   def update
     respond_to do |format|
       if @auth_group.update(auth_group_params)
-        format.html { redirect_to @auth_group, notice: AuthGroup.new.table_name_to_show.concat(' was successfully updated.') }
+        format.html { redirect_to @auth_group, notice: AuthGroup.new.table_name_to_show.concat(' fue actualizado satisfactoriamente.') }
         format.json { render :show, status: :ok, location: @auth_group }
       else
         format.html { render :edit }
@@ -57,7 +57,7 @@ class AuthGroupsController < ApplicationController
   def destroy
     @auth_group.destroy
     respond_to do |format|
-      format.html { redirect_to auth_groups_url, notice: AuthGroup.new.table_name_to_show.concat(' was successfully destroyed.') }
+      format.html { redirect_to auth_groups_url, notice: AuthGroup.new.table_name_to_show.concat(' fue eliminado satisfactoriamente.') }
       format.json { head :no_content }
     end
   end

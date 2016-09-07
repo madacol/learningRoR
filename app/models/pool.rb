@@ -1,5 +1,4 @@
-class Pool < ActiveRecord::Base  
-	belongs_to :category, polymorphic: true
+class Pool < ActiveRecord::Base
 	has_one :permission_request, as: :auth_record, :dependent => :destroy
 	belongs_to :razon_social
   	enum comprobante_type: [ "Recibo", "Factura", "Comprobante" ]

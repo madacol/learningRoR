@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ApprovePermissionControllerTest < ActionController::TestCase
+class BdvTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

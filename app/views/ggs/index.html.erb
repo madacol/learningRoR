@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing <%= Gg.new.table_name_to_show %></h1>
+<h1><%= Gg.new.table_name_to_show %></h1>
 
 <p><%= render 'layouts/modal', :@gg => @new_gg, :@btn_name => 'Nuevo Registro', :@id => 'new_gg' %> </p>
 

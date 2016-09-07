@@ -34,7 +34,7 @@ class OdtsController < ApplicationController
 
     respond_to do |format|
       if @odt.save
-        format.html { redirect_to odts_url, notice: @odt.table_name_to_show.concat(' was successfully created.') }
+        format.html { redirect_to odts_url, notice: @odt.table_name_to_show.concat(' fue creada satisfactoriamente.') }
         format.json { render :show, status: :created, location: @odt }
       else
         format.html { render :new }
@@ -49,7 +49,7 @@ class OdtsController < ApplicationController
     permission_denied and return  if current_user.cannot 'update_odt'
     respond_to do |format|
       if @odt.update(odt_params)
-        format.html { redirect_to odts_url, notice: @odt.table_name_to_show.concat(' was successfully updated.') }
+        format.html { redirect_to odts_url, notice: @odt.table_name_to_show.concat(' fue actualizado satisfactoriamente.') }
         format.json { render :show, status: :ok, location: @odt }
       else
         format.html { render :edit }
@@ -64,7 +64,7 @@ class OdtsController < ApplicationController
     permission_denied and return  if current_user.cannot 'destroy_odt'
     @odt.destroy
     respond_to do |format|
-      format.html { redirect_to odts_url, notice: 'Odt was successfully destroyed.' }
+      format.html { redirect_to odts_url, notice: 'Odt fue eliminado satisfactoriamente.' }
       format.json { head :no_content }
     end
   end

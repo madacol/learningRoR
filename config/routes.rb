@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :provincials
+  resources :banescos
+  resources :mercantils
+  resources :bods
+  resources :bdvs
   root "pools#index"
 
   resources :pools
@@ -15,9 +20,10 @@ Rails.application.routes.draw do
 
   devise_for :users, :controllers => { registrations: 'registrations' }
 
-  get 'approve/:token', to: 'approve_permission#approve'
-  get 'deny/:token', to: 'approve_permission#deny'
-
+  get '/approve/:token', to: 'permission_request#approve'
+  get '/deny/:token', to: 'permission_request#deny'
+  get '/ask', to: 'permission_request#ask', as: :ask_permission
+  post '/set_permission', to: 'permission_request#set_permission'
 
   
   # The priority is based upon order of creation: first created -> highest priority.

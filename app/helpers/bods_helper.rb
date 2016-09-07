@@ -1,0 +1,2 @@
+module BodsHelper
+end

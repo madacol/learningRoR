@@ -32,7 +32,7 @@ class ComisionOdtsController < ApplicationController
 
     respond_to do |format|
       if @comision_odt.save
-        format.html { redirect_to comision_odts_url, notice: @comision_odt.table_name_to_show.concat(' was successfully created.') }
+        format.html { redirect_to comision_odts_url, notice: @comision_odt.table_name_to_show.concat(' fue creada satisfactoriamente.') }
         format.json { render :show, status: :created, location: @comision_odt }
       else
         format.html { render :new }
@@ -47,7 +47,7 @@ class ComisionOdtsController < ApplicationController
     permission_denied and return  if current_user.cannot 'update_comision_odt'
     respond_to do |format|
       if @comision_odt.update(comision_odt_params)
-        format.html { redirect_to comision_odts_url, notice: @comision_odt.table_name_to_show.concat(' was successfully updated.') }
+        format.html { redirect_to comision_odts_url, notice: @comision_odt.table_name_to_show.concat(' fue actualizado satisfactoriamente.') }
         format.json { render :show, status: :ok, location: @comision_odt }
       else
         format.html { render :edit }
@@ -61,7 +61,7 @@ class ComisionOdtsController < ApplicationController
   def destroy
     @comision_odt.destroy
     respond_to do |format|
-      format.html { redirect_to comision_odts_url, notice: 'Comision odt was successfully destroyed.' }
+      format.html { redirect_to comision_odts_url, notice: 'Comision odt fue eliminado satisfactoriamente.' }
       format.json { head :no_content }
     end
   end

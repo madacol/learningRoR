@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+	</head>
+	<body>
+		<h1>Alguien necesita <%= @action %> el siguiente registro en <%= @model %>:</h1>
+		<p>
+			<% @attributes.each do |key, value| %>
+				<br>
+				<%= key %>: <%= value %>
+			<% end %>
+		</p>
+		<p>
+			<%= link_to 'Aceptar', '/approve/'.concat(@token), class: "btn btn-success" %>
+		</p>
+		<p>
+			<%= link_to 'Rechazar', '/deny/'.concat(@token), class: "btn btn-danger" %>
+		</p>
+	</body>
+</html>

@@ -7,6 +7,11 @@ class Employee < ActiveRecord::Base
 	has_many :comision_odts
 	has_many :odts, through: :comision_odts
 	has_many :pools, as: :category
+	has_many :bdvs, as: :category
+	has_many :bods, as: :category
+	has_many :banescos, as: :category
+	has_many :mercantils, as: :category
+	has_many :provincials, as: :category
 	has_one :user
 
 	def has_auth_to(action)

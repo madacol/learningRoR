@@ -1,18 +1,19 @@
 <p id="notice"><%= notice %></p>
-<h1>Listing <%= Employee.new.table_name_to_show %></h1>
+<h1><%= Employee.new.table_name_to_show %></h1>
 <p><%= render 'layouts/modal', :@employee => @new_employee, :@btn_name => 'Nuevo Registro', :@id => 'new_employee' %></p>
 <div class="table-responsive">
   <table class="table table-sm table-hover table-striped table-bordered">
     <thead>
       <tr>
         <th>Cedula</th>
-        <th>Name</th>
-        <th>Last name</th>
-        <th>Phone number</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Número de teléfono</th>
         <th>Email</th>
-        <th>Address</th>
-        <th>Startdate</th>
-        <th>Note</th>
+        <th>Direccion</th>
+        <th>Fecha de inicio</th>
+        <th>Balance de préstamo</th>
+        <th>Observaciones</th>
         <th colspan="3"></th>
       </tr>
     </thead>
@@ -27,6 +28,7 @@
           <td><%= employee.email %></td>
           <td><%= employee.address %></td>
           <td><%= employee.startdate %></td>
+          <td><%= employee.loan_balance %></td>
           <td><%= employee.note %></td>
           <td><%= render 'layouts/modal', :@employee => employee, :@btn_name => 'Editar', :@id => "edit_employee_#{employee.id}" %></td>
           <td><%= link_to '×', employee, method: :delete, data: { confirm: '¿Está seguro?' }, class: "close equis" %></td>

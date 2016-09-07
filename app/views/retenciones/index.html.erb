@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing <%= Retencione.new.table_name_to_show %></h1>
+<h1><%= Retencione.new.table_name_to_show %></h1>
 
 <p><%= render 'layouts/modal', :@retencione => @new_retencione, :@btn_name => 'Nuevo Registro', :@id => 'new_retencione' %> </p>
 

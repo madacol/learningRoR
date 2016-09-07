@@ -5,6 +5,7 @@
   <table class="table table-sm table-hover table-striped table-bordered">
     <thead>
       <tr>
+        <th>Fecha</th>
         <th>Categoria</th>
         <th>Nombre o Alias</th>      
         <th><%= RazonSocial.new.table_name_to_show %></th>   
@@ -30,7 +31,6 @@
           <td><%= provincial.description %></td>
           <td><%= render 'layouts/modal', :@provincial => provincial, :@btn_name => 'Editar', :@id => "edit_provincial_#{provincial.id}" %></td>
           <td><%= link_to '×', provincial, method: :delete, data: { confirm: '¿Está seguro?' }, class: "close equis" %></td>
-        </tr>
       <% end %>
     </tbody>
   </table>

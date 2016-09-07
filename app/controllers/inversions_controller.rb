@@ -32,7 +32,7 @@ class InversionsController < ApplicationController
 
     respond_to do |format|
       if @inversion.save
-        format.html { redirect_to inversions_url, notice: @inversion.table_name_to_show.concat( ' was successfully created.') }
+        format.html { redirect_to inversions_url, notice: @inversion.table_name_to_show.concat( ' fue creada satisfactoriamente.') }
         format.json { render :show, status: :created, location: @inversion }
       else
         format.html { render :new }
@@ -47,7 +47,7 @@ class InversionsController < ApplicationController
     permission_denied and return  if current_user.cannot 'update_inversion'
     respond_to do |format|
       if @inversion.update(inversion_params)
-        format.html { redirect_to inversion_url, notice: @inversion.table_name_to_show.concat( ' was successfully updated.') }
+        format.html { redirect_to inversion_url, notice: @inversion.table_name_to_show.concat( ' fue actualizado satisfactoriamente.') }
         format.json { render :show, status: :ok, location: @inversion }
       else
         format.html { render :edit }
@@ -62,7 +62,7 @@ class InversionsController < ApplicationController
     permission_denied and return  if current_user.cannot 'destroy_inversion'
     @inversion.destroy
     respond_to do |format|
-      format.html { redirect_to inversions_url, notice: 'Inversion was successfully destroyed.' }
+      format.html { redirect_to inversions_url, notice: 'Inversion fue eliminado satisfactoriamente.' }
       format.json { head :no_content }
     end
   end

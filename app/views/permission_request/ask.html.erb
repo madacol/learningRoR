@@ -1,0 +1,24 @@
+<%= form_tag('/set_permission', method: 'post') do %>
+	<% if @permission_request.errors.any? %>
+		<div id="error_explanation">
+			<h2><%= pluralize(@permission_request.errors.count, "error") %> prohibited this permission_request from being saved:</h2>
+				<ul>
+					<% @permission_request.errors.full_messages.each do |message| %>
+						<li><%= message %></li>
+					<% end %>
+				</ul>
+		</div>
+	<% end %>
+
+  <%= fields_for 'permission' do |f| %>
+		<%= f.hidden_field(:id, value: @permission_request.id.to_s) %>
+		<div class="form-group row">
+			<div class="col-sm-9">
+				<%= f.collection_select(:user_id, @authorized_users, :id, :record_name_to_show, { prompt: '-Seleccionar-'}, { class: "form-control c-select" }) %>
+			</div>
+			<div class="col-sm-3">
+				<%= submit_tag 'Enviar Peticion', class: "btn btn-primary"%>    	
+			</div>
+		</div>
+	<% end %>
+<% end %>

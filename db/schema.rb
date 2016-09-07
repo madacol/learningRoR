@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160702052139) do
+ActiveRecord::Schema.define(version: 20160819182238) do
 
   create_table "actions", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -118,8 +118,9 @@ ActiveRecord::Schema.define(version: 20160702052139) do
     t.text     "address",      limit: 65535
     t.date     "startdate"
     t.text     "note",         limit: 65535
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                                          null: false
+    t.datetime "updated_at",                                          null: false
+    t.decimal  "loan_balance",               precision: 15, scale: 2
   end
 
   create_table "ggs", force: :cascade do |t|
@@ -172,6 +173,7 @@ ActiveRecord::Schema.define(version: 20160702052139) do
 
   add_index "mercantils", ["category_type", "category_id"], name: "index_mercantils_on_category_type_and_category_id", using: :btree
   add_index "mercantils", ["razon_social_id"], name: "index_mercantils_on_razon_social_id", using: :btree
+
   create_table "odts", force: :cascade do |t|
     t.string   "code",            limit: 255,                            null: false
     t.text     "description",     limit: 65535,                          null: false
@@ -186,19 +188,20 @@ ActiveRecord::Schema.define(version: 20160702052139) do
   add_index "odts", ["razon_social_id"], name: "index_odts_on_razon_social_id", using: :btree
 
   create_table "permission_requests", force: :cascade do |t|
-    t.integer  "auth_record_id",   limit: 4
-    t.string   "auth_record_type", limit: 255
-    t.string   "token",            limit: 255,                null: false
-    t.boolean  "is_pending",                   default: true, null: false
+    t.integer  "auth_record_id",     limit: 4
+    t.string   "auth_record_type",   limit: 255
+    t.string   "token",              limit: 255,                   null: false
+    t.boolean  "is_pending",                       default: false, null: false
     t.datetime "approved_at"
-    t.datetime "created_at",                                  null: false
-    t.datetime "updated_at",                                  null: false
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
+    t.text     "auth_record_object", limit: 65535
+    t.string   "action",             limit: 255
   end
 
   add_index "permission_requests", ["auth_record_type", "auth_record_id"], name: "index_permission_requests_on_auth_record_type_and_auth_record_id", using: :btree
 
   create_table "pools", force: :cascade do |t|
-    t.integer  "cuenta",           limit: 4
     t.integer  "comprobante_type", limit: 4
     t.string   "n_comprobante",    limit: 255
     t.decimal  "monto",                          precision: 15, scale: 2
@@ -214,6 +217,7 @@ ActiveRecord::Schema.define(version: 20160702052139) do
 
   add_index "pools", ["category_type", "category_id"], name: "index_pools_on_category_type_and_category_id", using: :btree
   add_index "pools", ["razon_social_id"], name: "index_pools_on_razon_social_id", using: :btree
+
   create_table "provincials", force: :cascade do |t|
     t.integer  "comprobante_type", limit: 4
     t.string   "n_comprobante",    limit: 255
@@ -230,6 +234,7 @@ ActiveRecord::Schema.define(version: 20160702052139) do
 
   add_index "provincials", ["category_type", "category_id"], name: "index_provincials_on_category_type_and_category_id", using: :btree
   add_index "provincials", ["razon_social_id"], name: "index_provincials_on_razon_social_id", using: :btree
+
   create_table "razon_socials", force: :cascade do |t|
     t.string   "rif_ci",        limit: 255,   null: false
     t.string   "name",          limit: 255,   null: false
@@ -260,6 +265,16 @@ ActiveRecord::Schema.define(version: 20160702052139) do
 
   add_index "retenciones", ["code_factura"], name: "index_retenciones_on_code_factura", unique: true, using: :btree
   add_index "retenciones", ["razon_social_id"], name: "index_retenciones_on_razon_social_id", using: :btree
+
+  create_table "sessions", force: :cascade do |t|
+    t.string   "session_id", limit: 255,   null: false
+    t.text     "data",       limit: 65535
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sessions", ["session_id"], name: "index_sessions_on_session_id", unique: true, using: :btree
+  add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
