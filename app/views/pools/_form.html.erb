@@ -27,14 +27,14 @@
     <% categories.each do |category| %>
       <div id= <%= category+@id %> class="<%= 'hidden' if @pool.category_type != category %>">
         <div class="col-sm-4">
-          <%= f.collection_select( :category_id, eval(category).all, :id, :record_name_to_show, { prompt: '-Seleccionar-'}, { class: "form-control c-select" }) %>       
+          <%= f.collection_select( :category_id, eval(category).all, :id, :record_name_to_show, { prompt: '-Seleccionar-'}, { class: "form-control c-select" }) %>
         </div>
         <div class="col-sm-2">
             <button type="button" class="btn btn-primary">Añadir</button>
         </div>
       </div>
     <% end %>
-  </div>         
+  </div>
   <div class="form-group row">
     <div class="col-sm-2">
       <%= f.label( 'pool_razon_social_id_#{@id}', RazonSocial.new.table_name_to_show, class: "control-label") %>
@@ -60,8 +60,12 @@
     </div>
     <div class="col-sm-10">
       <%= f.collection_radio_buttons(:comprobante_type, Pool.comprobante_types, :first, :first) do |b|
-        b.label(class: "custom-control custom-radio") { b.radio_button(class: "custom-control-input") }
-        end %>
+        content_tag(:div, class: "form-check") do
+          b.label(class: "form-check-label") {
+            b.radio_button(class: "form-check-input") + b.text
+          }
+        end
+      end %>
     </div>
   </div>
   <div class="form-group row">
@@ -70,7 +74,7 @@
     </div>
     <div class="col-sm-10">
       <%= f.text_field :n_comprobante, class: "form-control" %>
-    </div>  
+    </div>
   </div>
   <div class="form-group row">
     <div class="col-sm-2">
@@ -78,6 +82,6 @@
     </div>
     <div class="col-sm-10">
       <%= f.text_area :description, class: "form-control" %>
-    </div>  
+    </div>
   </div>
 <% end %>
