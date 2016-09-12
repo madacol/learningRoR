@@ -2,7 +2,6 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-
 $(document).on "turbolinks:load", ->
 
   $('div.hidden').each ->
@@ -10,7 +9,7 @@ $(document).on "turbolinks:load", ->
     $(this).find('select').removeAttr 'name'
     return
     
-  $('select[id^=\'pool_category_type\']').each ->
+  $("select[id$='pool_category_type']").each ->
     select = $(this)
     select.data 'previous', select.val()
     select.change ->

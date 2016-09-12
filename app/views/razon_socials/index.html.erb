@@ -1,8 +1,9 @@
 <p id="notice"><%= notice %></p>
-
 <h1><%= RazonSocial.new.table_name_to_show %></h1>
-
-<p><%= render 'layouts/modal', :@razon_social => @new_razon_social, :@btn_name => 'Nuevo Registro', :@id => 'new_razon_social' %> </p>
+<p>
+  <%= render 'layouts/modal_button', :btn_name => 'Nuevo Registro', :namespace_id => 'new_razon_social' %>
+  <%= render 'layouts/modal', :@razon_social => @new_razon_social, :modal_title => 'Nuevo Registro', :namespace_id => 'new_razon_social' %>
+</p>
 
 <div class="table-responsive">
   <table class="table table-sm table-hover table-striped table-bordered">
@@ -33,7 +34,9 @@
           <td><%= razon_social.contact_name %></td>
           <td><%= razon_social.contact_phone %></td>
           <td><%= razon_social.contact_email %></td>
-          <td><%= render 'layouts/modal', :@razon_social => razon_social, :@btn_name => 'Editar', :@id => "edit_razon_social_#{razon_social.id}" %></td>
+          <td>
+            <%= render 'layouts/modal_button', :btn_name => 'Editar', :namespace_id => "edit_razon_social_#{razon_social.id}" %>
+            <%= render 'layouts/modal', :@razon_social => razon_social, :modal_title => 'Editar', :namespace_id => "edit_razon_social_#{razon_social.id}" %></td>
           <td><%= link_to '×', razon_social, method: :delete, data: { confirm: '¿Está seguro?' }, class: "close equis" %></td>
         </tr>
       <% end %>

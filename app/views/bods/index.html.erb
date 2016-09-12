@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 <h1><%= Bod.new.table_name_to_show %></h1>
-<p><%= render 'layouts/modal', :@bod => @new_bod, :@btn_name => 'Nuevo Registro', :@id => 'new_bod' %></p>
+<p><%= render 'layouts/modal', :@bod => @new_bod, :btn_name => 'Nuevo Registro', :namespace_id => 'new_bod' %></p>
 <div class="table-responsive">
   <table class="table table-sm table-hover table-striped table-bordered">
     <thead>
@@ -29,7 +29,7 @@
           <td><%= bod.comprobante_type %></td>
           <td><%= bod.n_comprobante %></td>
           <td><%= bod.description %></td>
-          <td><%= render 'layouts/modal', :@bod => bod, :@btn_name => 'Editar', :@id => "edit_bod_#{bod.id}" %></td>
+          <td><%= render 'layouts/modal', :@bod => bod, :btn_name => 'Editar', :namespace_id => "edit_bod_#{bod.id}" %></td>
           <td><%= link_to '×', bod, method: :delete, data: { confirm: '¿Está seguro?' }, class: "close equis" %></td>
         </tr>
       <% end %>

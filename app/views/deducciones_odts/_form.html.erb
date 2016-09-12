@@ -1,4 +1,4 @@
-<%= form_for(@deducciones_odt) do |f| %>
+<%= form_for(@deducciones_odt, namespace: namespace_id) do |f| %>
   <% if @deducciones_odt.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@deducciones_odt.errors.count, "error") %> prohibited this deducciones_odt from being saved:</h2>

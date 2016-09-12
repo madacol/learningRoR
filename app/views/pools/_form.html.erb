@@ -1,6 +1,6 @@
-<%= form_for(@pool) do |f| %>
+<%= form_for(@pool, namespace: namespace_id, :html=> {:id => namespace_id}) do |f| %>
   <% if @pool.errors.any? %>
-    <div id="error_explanation_<%=@id%>">
+    <div id="error_explanation_<%=namespace_id%>">
       <h2><%= pluralize(@pool.errors.count, "error") %> prohibited this pool from being saved:</h2>
       <ul>
       <% @pool.errors.full_messages.each do |message| %>
@@ -11,7 +11,7 @@
   <% end %>
   <div class="form-group row">
     <div class="col-sm-2">
-      <%= f.label :date_of, class: "control-label" %><br>
+      <%= f.label :date_of, "Fecha", class: "control-label" %><br>
     </div>
     <div class="col-sm-4">
       <%= f.date_field :date_of, class: "form-control" %>
@@ -19,25 +19,25 @@
   </div>
   <div class="form-group row">
     <div class="col-sm-2">
-      <%= label_tag( "pool_category_type_#{@id}", 'Categoría' ) %><br>
+      <%= f.label :category_type, 'Categoría', class: "control-label" %><br>
     </div>
     <div class="col-sm-4"> 
-      <%= f.select(:category_type, options_for_select( categories.collect { |category| [eval(category).new.table_name_to_show, category] }, @pool.category_type ), { prompt: '--Seleccionar--'}, { class: "form-control c-select", id: "pool_category_type_#{@id}" } ) %>
+      <%= f.select(:category_type, options_for_select( categories.collect { |category| [eval(category).new.table_name_to_show, category] }, @pool.category_type ), { prompt: '--Seleccionar--'}, { class: "form-control c-select" } ) %>
     </div>
     <% categories.each do |category| %>
-      <div id= <%= category+@id %> class="<%= 'hidden' if @pool.category_type != category %>">
+      <div id= <%= category+namespace_id %> class="<%= 'hidden' if @pool.category_type != category %>">
         <div class="col-sm-4">
           <%= f.collection_select( :category_id, eval(category).all, :id, :record_name_to_show, { prompt: '-Seleccionar-'}, { class: "form-control c-select" }) %>
         </div>
         <div class="col-sm-2">
-            <button type="button" class="btn btn-primary">Añadir</button>
+          <%= render 'layouts/modal_button', :btn_name => 'Añadir', :namespace_id=> "new_"+category.downcase %>
         </div>
       </div>
     <% end %>
   </div>
   <div class="form-group row">
     <div class="col-sm-2">
-      <%= f.label( 'pool_razon_social_id_#{@id}', RazonSocial.new.table_name_to_show, class: "control-label") %>
+      <%= f.label( :razon_social_id, RazonSocial.new.table_name_to_show, class: "control-label") %>
     </div>
     <div class="col-sm-8">
       <%= f.collection_select( :razon_social_id, RazonSocial.all, :id, :record_name_to_show, { prompt: '-Seleccionar-'}, { class: "form-control c-select" }) %>
@@ -56,7 +56,7 @@
   </div>
   <div class="form-group row">
     <div class="col-sm-2">
-      <%= f.label :comprobante_type %><br>
+      <%= f.label :comprobante_type, "Tipo de comprobante", class: "control-label" %><br>
     </div>
     <div class="col-sm-10">
       <%= f.collection_radio_buttons(:comprobante_type, Pool.comprobante_types, :first, :first) do |b|
@@ -70,7 +70,7 @@
   </div>
   <div class="form-group row">
     <div class="col-sm-2">
-      <%= f.label :n_comprobante, class: "control-label" %><br>
+      <%= f.label :n_comprobante, "Nº de comprobante", class: "control-label" %><br>
     </div>
     <div class="col-sm-10">
       <%= f.text_field :n_comprobante, class: "form-control" %>
@@ -78,10 +78,16 @@
   </div>
   <div class="form-group row">
     <div class="col-sm-2">
-      <%= f.label :description, class: "control-label" %><br>
+      <%= f.label :description, "Descripción", class: "control-label" %><br>
     </div>
     <div class="col-sm-10">
       <%= f.text_area :description, class: "form-control" %>
     </div>
   </div>
 <% end %>
+
+<%= render 'layouts/modal', :form_to_render => 'odts/form', :@odt => Odt.new, :modal_title => 'Añadir', :namespace_id=> "new_odt" %>
+<%= render 'layouts/modal', :form_to_render => 'inversions/form', :@inversion => Inversion.new, :modal_title => 'Añadir', :namespace_id=> "new_inversion" %>
+<%= render 'layouts/modal', :form_to_render => 'ggs/form', :@gg => Gg.new, :modal_title => 'Añadir', :namespace_id=> "new_gg" %>
+<%= render 'layouts/modal', :form_to_render => 'retenciones/form', :@retencione => Retencione.new, :modal_title => 'Añadir', :namespace_id=> "new_retencione" %>
+<%= render 'layouts/modal', :form_to_render => 'employees/form', :@employee => Employee.new, :modal_title => 'Añadir', :namespace_id=> "new_employee" %>

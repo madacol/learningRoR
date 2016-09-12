@@ -1,6 +1,6 @@
-<%= form_for(@provincial) do |f| %>
+<%= form_for(@provincial, namespace: namespace_id) do |f| %>
   <% if @provincial.errors.any? %>
-    <div id="error_explanation_<%=@id%>">
+    <div id="error_explanation_<%=namespace_id%>">
       <h2><%= pluralize(@provincial.errors.count, "error") %> prohibited this provincial from being saved:</h2>
       <ul>
       <% @provincial.errors.full_messages.each do |message| %>
@@ -19,13 +19,13 @@
   </div>
   <div class="form-group row">
     <div class="col-sm-2">
-      <%= label_tag( "provincial_category_type_#{@id}", 'Categoría' ) %><br>
+      <%= label_tag( "provincial_category_type_#{namespace_id}", 'Categoría' ) %><br>
     </div>
     <div class="col-sm-4"> 
-      <%= f.select(:category_type, options_for_select( categories.collect { |category| [eval(category).new.table_name_to_show, category] }, @provincial.category_type ), { prompt: '--Seleccionar--'}, { class: "form-control c-select", id: "provincial_category_type_#{@id}" } ) %>
+      <%= f.select(:category_type, options_for_select( categories.collect { |category| [eval(category).new.table_name_to_show, category] }, @provincial.category_type ), { prompt: '--Seleccionar--'}, { class: "form-control c-select", id: "provincial_category_type_#{namespace_id}" } ) %>
     </div>
     <% categories.each do |category| %>
-      <div id= <%= category+@id %> class="<%= 'hidden' if @provincial.category_type != category %>">
+      <div id= <%= category+namespace_id %> class="<%= 'hidden' if @provincial.category_type != category %>">
         <div class="col-sm-4">
           <%= f.collection_select( :category_id, eval(category).all, :id, :record_name_to_show, { prompt: '-Seleccionar-'}, { class: "form-control c-select" }) %>       
         </div>
@@ -37,7 +37,7 @@
   </div>        
   <div class="form-group row">
     <div class="col-sm-2">
-      <%= f.label( 'provincial_razon_social_id_#{@id}', RazonSocial.new.table_name_to_show, class: "control-label") %>
+      <%= f.label( 'provincial_razon_social_id_#{namespace_id}', RazonSocial.new.table_name_to_show, class: "control-label") %>
     </div>
     <div class="col-sm-8">
       <%= f.collection_select( :razon_social_id, RazonSocial.all, :id, :record_name_to_show, { prompt: '-Seleccionar-'}, { class: "form-control c-select" }) %>

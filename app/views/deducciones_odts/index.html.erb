@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 <h1>Listing <%= DeduccionOdt.new.table_name_to_show %></h1>
-<p><%= render "layouts/modal", :@deducccion_odt => @new_deducccion_odt, :@btn_name => 'Añadir Deduccion', :@id => 'new_deduccion_odt' %> </p>
+<p><%= render "layouts/modal", :@deducccion_odt => @new_deducccion_odt, :btn_name => 'Añadir Deduccion', :namespace_id => 'new_deduccion_odt' %> </p>
 <div class="table-responsive">
   <table class="table table-sm table-hover table-striped table-bordered">
     <thead>
@@ -17,7 +17,7 @@
           <td><%= link_to deducciones_odt.odt.record_name_to_show, deducciones_odt.odt %></td>
           <td><%= deducciones_odt.name %></td>
           <td><%= deducciones_odt.p_gasto %></td>
-          <td><%= render "layouts/modal", :@deduccion_odt => deduccion_odt, :@btn_name => 'Editar', :@id => "edit_deduccion_odt_#{deduccion_odt.id}" %></td>
+          <td><%= render "layouts/modal", :@deduccion_odt => deduccion_odt, :btn_name => 'Editar', :namespace_id => "edit_deduccion_odt_#{deduccion_odt.id}" %></td>
           <td><%= link_to '×', deduccion_odt, method: :delete, data: { confirm: '¿Está seguro?' }, class: "close equis" %></td>' } %></td>
         </tr>
       <% end %>

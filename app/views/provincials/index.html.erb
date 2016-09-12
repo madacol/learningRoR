@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 <h1><%= Provincial.new.table_name_to_show %></h1>
-<p><%= render 'layouts/modal', :@provincial => @new_provincial, :@btn_name => 'Nuevo Registro', :@id => 'new_provincial' %></p>
+<p><%= render 'layouts/modal', :@provincial => @new_provincial, :btn_name => 'Nuevo Registro', :namespace_id => 'new_provincial' %></p>
 <div class="table-responsive">
   <table class="table table-sm table-hover table-striped table-bordered">
     <thead>
@@ -29,7 +29,7 @@
           <td><%= provincial.comprobante_type %></td>
           <td><%= provincial.n_comprobante %></td>
           <td><%= provincial.description %></td>
-          <td><%= render 'layouts/modal', :@provincial => provincial, :@btn_name => 'Editar', :@id => "edit_provincial_#{provincial.id}" %></td>
+          <td><%= render 'layouts/modal', :@provincial => provincial, :btn_name => 'Editar', :namespace_id => "edit_provincial_#{provincial.id}" %></td>
           <td><%= link_to '×', provincial, method: :delete, data: { confirm: '¿Está seguro?' }, class: "close equis" %></td>
         </tr>
       <% end %>

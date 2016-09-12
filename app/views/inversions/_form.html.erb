@@ -1,4 +1,4 @@
-<%= form_for(@inversion) do |f| %>
+<%= form_for(@inversion, namespace: namespace_id) do |f| %>
   <% if @inversion.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@inversion.errors.count, "error") %> prohibited this inversion from being saved:</h2>

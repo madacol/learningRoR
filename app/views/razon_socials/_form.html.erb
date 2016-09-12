@@ -1,4 +1,4 @@
-<%= form_for(@razon_social) do |f| %>
+<%= form_for(@razon_social, namespace: namespace_id, :html=> {:id =>  namespace_id}) do |f| %>
   <% if @razon_social.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@razon_social.errors.count, "error") %> prohibited this razon_social from being saved:</h2>

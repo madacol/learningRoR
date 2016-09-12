@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 <h1><%= Mercantil.new.table_name_to_show %></h1>
-<p><%= render 'layouts/modal', :@mercantil => @new_mercantil, :@btn_name => 'Nuevo Registro', :@id => 'new_mercantil' %></p>
+<p><%= render 'layouts/modal', :@mercantil => @new_mercantil, :btn_name => 'Nuevo Registro', :namespace_id => 'new_mercantil' %></p>
 <div class="table-responsive">
   <table class="table table-sm table-hover table-striped table-bordered">
     <thead>
@@ -29,7 +29,7 @@
           <td><%= mercantil.comprobante_type %></td>
           <td><%= mercantil.n_comprobante %></td>
           <td><%= mercantil.description %></td>
-          <td><%= render 'layouts/modal', :@mercantil => mercantil, :@btn_name => 'Editar', :@id => "edit_mercantil_#{mercantil.id}" %></td>
+          <td><%= render 'layouts/modal', :@mercantil => mercantil, :btn_name => 'Editar', :namespace_id => "edit_mercantil_#{mercantil.id}" %></td>
           <td><%= link_to '×', mercantil, method: :delete, data: { confirm: '¿Está seguro?' }, class: "close equis" %></td>
         </tr>
       <% end %>

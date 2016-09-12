@@ -9,7 +9,7 @@ $(document).on "turbolinks:load", ->
     $(this).find('select').removeAttr 'name'
     return
     
-  $('select[id^=\'banesco_category_type\']').each ->
+  $("select[id$='banesco_category_type']").each ->
     select = $(this)
     select.data 'previous', select.val()
     select.change ->

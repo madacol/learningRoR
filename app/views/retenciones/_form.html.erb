@@ -1,4 +1,4 @@
-<%= form_for(@retencione) do |f| %>
+<%= form_for(@retencione, namespace: namespace_id) do |f| %>
   <% if @retencione.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@retencione.errors.count, "error") %> prohibited this @retencione from being saved:</h2>
