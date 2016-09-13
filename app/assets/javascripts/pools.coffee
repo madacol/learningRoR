@@ -7,7 +7,6 @@ $(document).on "turbolinks:load", ->
   $('div.hidden').each ->
     $(this).hide()
     $(this).find('select').removeAttr 'name'
-    return
     
   $("select[id$='pool_category_type']").each ->
     select = $(this)
@@ -23,6 +22,9 @@ $(document).on "turbolinks:load", ->
       new_select_category_id.show()
       new_select_category_id.find('select').prop 'name', 'pool[category_id]'
       $(this).data 'previous', $(this).val()
-      return
-    return
-  return
+
+  # enable chosen js
+  $('.chosen-select').chosen
+    allow_single_deselect: true
+    no_results_text: 'No results matched'
+    width: '200px'
