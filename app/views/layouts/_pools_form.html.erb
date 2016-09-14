@@ -22,12 +22,12 @@
       <%= f.label :category_type, 'Categoría', class: "control-label" %><br>
     </div>
     <div class="col-sm-4"> 
-      <%= f.select(:category_type, options_for_select( categories.collect { |category| [eval(category).new.table_name_to_show, category] }, @pool.category_type ), { prompt: '--Seleccionar--'}, { class: "form-control c-select" } ) %>
+      <%= f.select(:category_type, options_for_select( categories.collect { |category| [eval(category).new.table_name_to_show, category] }, @pool.category_type ), { prompt: '--Seleccionar--'}, { class: "form-control c-select chosen-select chosen-select" } ) %>
     </div>
     <% categories.each do |category| %>
       <div id= <%= category+namespace_id %> class="<%= 'hidden' if @pool.category_type != category %>">
         <div class="col-sm-4">
-          <%= f.collection_select( :category_id, eval(category).all, :id, :record_name_to_show, { prompt: '-Seleccionar-'}, { class: "form-control c-select" }) %>
+          <%= f.collection_select( :category_id, eval(category).all, :id, :record_name_to_show, { prompt: '-Seleccionar-'}, { class: "form-control c-select chosen-select chosen-select" }) %>
         </div>
         <div class="col-sm-2">
           <%= render 'layouts/modal_button', :btn_name => 'Añadir', :namespace_id=> "new_"+category.downcase %>
@@ -40,7 +40,7 @@
       <%= f.label( :razon_social_id, RazonSocial.new.table_name_to_show, class: "control-label") %>
     </div>
     <div class="col-sm-8">
-      <%= f.collection_select( :razon_social_id, RazonSocial.all, :id, :record_name_to_show, { prompt: '-Seleccionar-'}, { class: "form-control c-select" }) %>
+      <%= f.collection_select( :razon_social_id, RazonSocial.all, :id, :record_name_to_show, { prompt: '-Seleccionar-'}, { class: "form-control c-select chosen-select chosen-select" }) %>
     </div>
     <div class="col-sm-2">
         <button type="button" class="btn btn-primary">Añadir</button>

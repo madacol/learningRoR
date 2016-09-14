@@ -2,7 +2,7 @@
 <h1><%= Pool.new.table_name_to_show %></h1>
 <p>
   <%= render 'layouts/modal_button', :btn_name => 'Nuevo Registro', :namespace_id => 'new_pool' %>
-  <%= render 'layouts/modal', :@pool => @new_pool, :modal_title => 'Nuevo Registro', :namespace_id => 'new_pool' %>
+  <%= render 'layouts/modal', :form_to_render => "layouts/pools_form", :@pool => @new_pool, :modal_title => 'Nuevo Registro', :namespace_id => 'new_pool' %>
 </p>
 <div class="table-responsive">
   <table class="table table-sm table-hover table-striped table-bordered">
@@ -34,7 +34,7 @@
           <td><%= pool.description %></td>
           <td>
             <%= render 'layouts/modal_button', :btn_name => 'Editar', :namespace_id => "edit_pool_#{pool.id}" %>
-            <%= render 'layouts/modal', :@pool => pool, :modal_title => 'Editar', :namespace_id => "edit_pool_#{pool.id}" %>
+            <%= render 'layouts/modal', :form_to_render => "layouts/pools_form", :@pool => pool, :modal_title => 'Editar', :namespace_id => "edit_pool_#{pool.id}" %>
           </td>
           <td><%= link_to '×', pool, :method => :delete, :data => { :confirm => '¿Está seguro?' },:remote => true, :class => "delete_row close equis" %></td>
         </tr>

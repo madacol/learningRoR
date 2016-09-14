@@ -66,10 +66,12 @@ $(document).on "turbolinks:load", ->
 						id: id
 						name: name
 			$(new_nested_model).insertBefore form_group_button
-	$('form').each ->
-		$(this).on("ajax:success", (e, data, status, xhr) ->
-			alert(e)
-			alert(data)
-			alert(status)
-			alert(xhr)
-		)
+
+	# testing ajax		
+	# $('form').each ->
+	# 	$(this).on("ajax:success", (e, data, status, xhr) ->
+	# 		alert(e)
+	# 		alert(data)
+	# 		alert(status)
+	# 		alert(xhr)
+	# 	)

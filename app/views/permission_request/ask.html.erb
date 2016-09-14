@@ -14,7 +14,7 @@
 		<%= f.hidden_field(:id, value: @permission_request.id.to_s) %>
 		<div class="form-group row">
 			<div class="col-sm-9">
-				<%= f.collection_select(:user_id, @authorized_users, :id, :record_name_to_show, { prompt: '-Seleccionar-'}, { class: "form-control c-select" }) %>
+				<%= f.collection_select(:user_id, @authorized_users, :id, :record_name_to_show, { prompt: '-Seleccionar-'}, { class: "form-control c-select chosen-select" }) %>
 			</div>
 			<div class="col-sm-3">
 				<%= submit_tag 'Enviar Peticion', class: "btn btn-primary"%>    	

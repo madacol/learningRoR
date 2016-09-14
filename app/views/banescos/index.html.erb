@@ -2,7 +2,7 @@
 <h1><%= Banesco.new.table_name_to_show %></h1>
 <p>
   <%= render 'layouts/modal_button', :btn_name => 'Nuevo Registro', :namespace_id => 'new_banesco' %>
-  <%= render 'layouts/modal', :form_to_render => "pools/form", :@pool => @new_banesco, :modal_title => 'Nuevo Registro', :namespace_id => 'new_banesco' %>
+  <%= render 'layouts/modal', :form_to_render => "layouts/pools_form", :@pool => @new_banesco, :modal_title => 'Nuevo Registro', :namespace_id => 'new_banesco' %>
 </p>
 <div class="table-responsive">
   <table class="table table-sm table-hover table-striped table-bordered">
@@ -34,7 +34,7 @@
           <td><%= banesco.description %></td>
           <td>
             <%= render 'layouts/modal_button', :btn_name => 'Editar', :namespace_id => "edit_banesco_#{banesco.id}" %>
-            <%= render 'layouts/modal', :form_to_render => "pools/form", :@pool => banesco, :modal_title => 'Editar', :namespace_id => "edit_banesco_#{banesco.id}" %>
+            <%= render 'layouts/modal', :form_to_render => "layouts/pools_form", :@pool => banesco, :modal_title => 'Editar', :namespace_id => "edit_banesco_#{banesco.id}" %>
           </td>
           <td><%= link_to '×', banesco, method: :delete, data: { confirm: '¿Está seguro?' }, class: "close equis" %></td>
         </tr>
