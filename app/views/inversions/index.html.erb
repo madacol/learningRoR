@@ -1,29 +1,34 @@
 <p id="notice"><%= notice %></p>
 
 <h1><%= Inversion.new.table_name_to_show %></h1>
-
-<p><%= render 'layouts/modal', :@inversion => @new_inversion, :btn_name => 'Nuevo Registro', :namespace_id => 'new_inversions' %> </p>
+<p>
+  <%= render 'layouts/modal_button', :btn_name => 'Nuevo Registro', :namespace_id => 'new_inversion' %>
+  <%= render 'layouts/modal', :@inversion => @new_inversion, :modal_title => 'Nuevo Registro', :namespace_id => 'new_inversion' %>
+</p>
 
 <div class="table-responsive">
-<table class="table table-sm table-hover table-striped table-bordered">
-  <thead>
-    <tr>
-      <th>Code</th>
-      <th>Alias</th>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @inversions.reverse.each do |inversion| %>
+  <table class="table table-sm table-hover table-striped table-bordered">
+    <thead>
       <tr>
-        <td><%= inversion.code %></td>
-        <td><%= inversion.alias %></td>
-        <td><%= inversion.description %></td>
-        <td><%= render 'layouts/modal', :@inversion => inversion, :btn_name => 'Editar', :namespace_id => "edit_inversion_#{inversion.id}" %></td>
-        <td><%= link_to '×', inversion, method: :delete, data: { confirm: '¿Está seguro?' }, class: "close equis" %></td></td>
+        <th>Code</th>
+        <th>Alias</th>
+        <th>Description</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @inversions.reverse.each do |inversion| %>
+        <tr>
+          <td><%= inversion.code %></td>
+          <td><%= inversion.alias %></td>
+          <td><%= inversion.description %></td>
+          <td>
+            <%= render 'layouts/modal_button', :btn_name => 'Editar', :namespace_id => "edit_inversion_#{inversion.id}" %>
+            <%= render 'layouts/modal', :@inversion => inversion, :modal_title => 'Editar', :namespace_id => "edit_inversion_#{inversion.id}" %>
+          </td>
+          <td><%= link_to '×', inversion, method: :delete, data: { confirm: '¿Está seguro?' }, class: "close equis" %></td></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

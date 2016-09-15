@@ -1,4 +1,4 @@
-<%= form_for(@auth_group, namespace: namespace_id) do |f| %>
+<%= form_for(@auth_group, namespace: namespace_id, :html=> {:id => namespace_id}) do |f| %>
   <% if @auth_group.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@auth_group.errors.count, "error") %> prohibited this auth_group from being saved:</h2>
