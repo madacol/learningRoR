@@ -61,6 +61,7 @@ class BdvsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to bdvs_url, notice: @bdv.table_name_to_show.concat(' fue eliminado satisfactoriamente.') }
       format.json { head :no_content }
+      format.js   { render :layout => false }
     end
   end
 

@@ -62,6 +62,7 @@ class GgsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to ggs_url, notice: 'Gg fue eliminado satisfactoriamente.' }
       format.json { head :no_content }
+      format.js   { render :layout => false }
     end
   end
 

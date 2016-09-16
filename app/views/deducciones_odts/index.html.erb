@@ -18,7 +18,7 @@
           <td><%= deducciones_odt.name %></td>
           <td><%= deducciones_odt.p_gasto %></td>
           <td><%= render "layouts/modal", :@deduccion_odt => deduccion_odt, :btn_name => 'Editar', :namespace_id => "edit_deduccion_odt_#{deduccion_odt.id}" %></td>
-          <td><%= link_to '×', deduccion_odt, method: :delete, data: { confirm: '¿Está seguro?' }, class: "close equis" %></td>' } %></td>
+          <td><%= link_to '×', deduccion_odt, method: :delete, data: { confirm: '¿Está seguro?' }, :remote => true, class: "close equis delete_row" %></td>' } %></td>
         </tr>
       <% end %>
     </tbody>

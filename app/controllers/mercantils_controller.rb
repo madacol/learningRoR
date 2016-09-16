@@ -62,6 +62,7 @@ class MercantilsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to mercantils_url, notice: @mercantil.table_name_to_show.concat(' fue eliminado satisfactoriamente.') }
       format.json { head :no_content }
+      format.js   { render :layout => false }
     end
   end
 

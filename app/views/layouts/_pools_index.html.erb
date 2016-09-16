@@ -36,7 +36,7 @@
             <%= render 'layouts/modal_button', :btn_name => 'Editar', :namespace_id => "edit_#{@new_pool.model_name.singular}_#{pool.id}" %>
             <%= render 'layouts/modal', :form_to_render => "layouts/pools_form", :@pool => pool, :modal_title => 'Editar', :namespace_id => "edit_#{@new_pool.model_name.singular}_#{pool.id}" %>
           </td>
-          <td><%= link_to '×', pool, :method => :delete, :data => { :confirm => '¿Está seguro?' },:remote => true, :class => "delete_row close equis" %></td>
+          <td><%= link_to '×', pool, :method => :delete, :data => { :confirm => '¿Está seguro?' }, :remote => true, :class => "delete_row close equis" %></td>
         </tr>
       <% end %>
     </tbody>

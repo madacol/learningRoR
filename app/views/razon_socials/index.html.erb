@@ -37,7 +37,7 @@
           <td>
             <%= render 'layouts/modal_button', :btn_name => 'Editar', :namespace_id => "edit_razon_social_#{razon_social.id}" %>
             <%= render 'layouts/modal', :@razon_social => razon_social, :modal_title => 'Editar', :namespace_id => "edit_razon_social_#{razon_social.id}" %></td>
-          <td><%= link_to '×', razon_social, method: :delete, data: { confirm: '¿Está seguro?' }, class: "close equis" %></td>
+          <td><%= link_to '×', razon_social, method: :delete, data: { confirm: '¿Está seguro?' }, :remote => true, class: "close equis delete_row" %></td>
         </tr>
       <% end %>
     </tbody>

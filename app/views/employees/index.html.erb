@@ -31,7 +31,7 @@
           <td><%= employee.loan_balance %></td>
           <td><%= employee.note %></td>
           <td><%= render 'layouts/modal', :@employee => employee, :btn_name => 'Editar', :namespace_id => "edit_employee_#{employee.id}" %></td>
-          <td><%= link_to '×', employee, method: :delete, data: { confirm: '¿Está seguro?' }, class: "close equis" %></td>
+          <td><%= link_to '×', employee, method: :delete, data: { confirm: '¿Está seguro?' }, :remote => true, class: "close equis delete_row" %></td>
         </tr>
       <% end %>
     </tbody>  

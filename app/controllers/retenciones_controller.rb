@@ -64,6 +64,7 @@ class RetencionesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to retenciones_url, notice: 'Retencione fue eliminado satisfactoriamente.' }
       format.json { head :no_content }
+      format.js   { render :layout => false }
     end
   end
 

@@ -26,7 +26,7 @@
             <%= render 'layouts/modal_button', :btn_name => 'Editar', :namespace_id => "edit_inversion_#{inversion.id}" %>
             <%= render 'layouts/modal', :@inversion => inversion, :modal_title => 'Editar', :namespace_id => "edit_inversion_#{inversion.id}" %>
           </td>
-          <td><%= link_to '×', inversion, method: :delete, data: { confirm: '¿Está seguro?' }, class: "close equis" %></td></td>
+          <td><%= link_to '×', inversion, method: :delete, data: { confirm: '¿Está seguro?' }, :remote => true, class: "close equis delete_row" %></td></td>
         </tr>
       <% end %>
     </tbody>

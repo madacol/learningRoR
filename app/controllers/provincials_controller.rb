@@ -61,6 +61,7 @@ class ProvincialsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to provincials_url, notice: @provincial.table_name_to_show.concat(' fue eliminado satisfactoriamente.') }
       format.json { head :no_content }
+      format.js   { render :layout => false }
     end
   end
 

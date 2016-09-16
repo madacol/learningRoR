@@ -54,7 +54,7 @@
             <%= render "layouts/modal_button", :btn_name => 'Editar', :namespace_id => "edit_odt_#{odt.id}" %>
             <%= render "layouts/modal", :@odt => odt, :modal_title => 'Editar', :namespace_id => "edit_odt_#{odt.id}" %>
           </td>
-          <td><%= link_to '×', odt, method: :delete, data: { confirm: '¿Está seguro?' }, class: "close equis" %></td>
+          <td><%= link_to '×', odt, method: :delete, data: { confirm: '¿Está seguro?' }, :remote => true, class: "close equis delete_row" %></td>
         </tr>
       <% end %>
     </tbody>

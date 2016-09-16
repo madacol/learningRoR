@@ -61,6 +61,7 @@ class BodsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to bods_url, notice: @bod.table_name_to_show.concat(' fue eliminado satisfactoriamente.') }
       format.json { head :no_content }
+      format.js   { render :layout => false }
     end
   end
 
