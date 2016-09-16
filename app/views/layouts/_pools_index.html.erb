@@ -42,8 +42,12 @@
     </tbody>
   </table>
 </div>
-
-<%= render 'layouts/modal', :form_to_render => 'odts/form', :@odt => Odt.new, :modal_title => 'Añadir ODT', :namespace_id => "new_odt" %>
+<%
+  new_odt = Odt.new
+  new_odt.comision_odts.build
+  new_odt.deducciones_odts.build
+%>
+<%= render 'layouts/modal', :form_to_render => 'odts/form', :@odt => new_odt, :modal_title => 'Añadir ODT', :namespace_id => "new_odt" %>
 <%= render 'layouts/modal', :form_to_render => 'inversions/form', :@inversion => Inversion.new, :modal_title => 'Añadir Inversion', :namespace_id => "new_inversion" %>
 <%= render 'layouts/modal', :form_to_render => 'ggs/form', :@gg => Gg.new, :modal_title => 'Añadir Gastos Generales', :namespace_id => "new_gg" %>
 <%= render 'layouts/modal', :form_to_render => 'retenciones/form', :@retencione => Retencione.new, :modal_title => 'Añadir Retención', :namespace_id => "new_retencione" %>
