@@ -5,8 +5,9 @@ class BodsController < ApplicationController
   # GET /bods
   # GET /bods.json
   def index
-    @bods = Bod.all
-    @new_bod = Bod.new
+    @pools = Bod.all
+    @new_pool = Bod.new
+    render 'layouts/_pools_index'
   end
 
   # GET /bods/1

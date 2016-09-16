@@ -8,6 +8,7 @@ class PoolsController < ApplicationController
     permission_denied and return if current_user.cannot 'read_pool'
     @pools = Pool.all #where("created_at >= ?", Time.zone.now.beginning_of_day)
     @new_pool = Pool.new
+    render 'layouts/_pools_index'
   end
 
   # GET /pools/1

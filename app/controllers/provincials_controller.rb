@@ -5,8 +5,9 @@ class ProvincialsController < ApplicationController
   # GET /provincials
   # GET /provincials.json
   def index
-    @provincials = Provincial.all
-    @new_provincial = Provincial.new
+    @pools = Provincial.all
+    @new_pool = Provincial.new
+    render 'layouts/_pools_index'
   end
 
   # GET /provincials/1

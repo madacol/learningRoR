@@ -5,8 +5,9 @@ class BdvsController < ApplicationController
   # GET /bdvs
   # GET /bdvs.json
   def index
-    @bdvs = Bdv.all
-    @new_bdv = Bdv.new
+    @pools = Bdv.all
+    @new_pool = Bdv.new
+    render 'layouts/_pools_index'
   end
 
   # GET /bdvs/1

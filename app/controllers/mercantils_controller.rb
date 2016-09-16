@@ -6,8 +6,9 @@ class MercantilsController < ApplicationController
   # GET /mercantils
   # GET /mercantils.json
   def index
-    @mercantils = Mercantil.all
-    @new_mercantil = Mercantil.new
+    @pools = Mercantil.all
+    @new_pool = Mercantil.new
+    render 'layouts/_pools_index'
   end
 
   # GET /mercantils/1

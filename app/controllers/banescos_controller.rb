@@ -5,8 +5,9 @@ class BanescosController < ApplicationController
   # GET /banescos
   # GET /banescos.json
   def index
-    @banescos = Banesco.all
-    @new_banesco = Banesco.new
+    @pools = Banesco.all
+    @new_pool = Banesco.new
+    render 'layouts/_pools_index'
   end
 
   # GET /banescos/1
