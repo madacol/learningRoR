@@ -1,11 +1,11 @@
 source 'https://rubygems.org'
 
 gem 'activerecord-session_store'
+gem 'tzinfo-data'
 gem 'bootstrap', '~> 4.0.0.alpha3'
 gem 'rails-assets-tether'
 gem 'chosen-rails'
 
-gem 'tzinfo-data'
 # Authetication
 gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

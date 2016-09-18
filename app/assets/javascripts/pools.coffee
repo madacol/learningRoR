@@ -22,7 +22,7 @@ $(document).on "turbolinks:load", ->
       new_select_category_id.show()
       new_select_category_id.find('select').prop 'name', 'pool[category_id]'
       $(this).data 'previous', $(this).val()
-
+      
   # enable chosen js
   $('.chosen-select').chosen
     allow_single_deselect: true

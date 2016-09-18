@@ -7,7 +7,6 @@ $(document).on "turbolinks:load", ->
   $('div.hidden').each ->
     $(this).hide()
     $(this).find('select').removeAttr 'name'
-    return
     
   $("select[id$='provincial_category_type']").each ->
     select = $(this)
@@ -23,7 +22,3 @@ $(document).on "turbolinks:load", ->
       new_select_category_id.show()
       new_select_category_id.find('select').prop 'name', 'provincial[category_id]'
       $(this).data 'previous', $(this).val()
-      return
-    return
-  return
-
