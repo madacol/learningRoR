@@ -22,7 +22,7 @@
       <%= f.label :category_type, 'Categoría', class: "control-label" %><br>
     </div>
     <div class="col-sm-4"> 
-      <%= f.select(:category_type, options_for_select( categories.collect { |category| [eval(category).new.table_name_to_show, category] }, @pool.category_type ), { prompt: '--Seleccionar--'}, { class: "form-control c-select chosen-select chosen-select" } ) %>
+      <%= f.select(:category_type, options_for_select( categories.collect { |category| [eval(category).new.category_name_to_show, category] }, @pool.category_type ), { prompt: '--Seleccionar--'}, { class: "form-control c-select chosen-select chosen-select" } ) %>
     </div>
     <% categories.each do |category| %>
       <div id= <%= category+namespace_id %> class="<%= 'hidden' if @pool.category_type != category %>">

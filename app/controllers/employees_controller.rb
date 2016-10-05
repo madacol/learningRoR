@@ -32,7 +32,7 @@ class EmployeesController < ApplicationController
 
     respond_to do |format|
       if @employee.save
-        format.html { redirect_to employees_url, notice: @employee.table_name_to_show.concat(' fue creada satisfactoriamente.') }
+        format.html { redirect_to employees_url, notice: @employee.table_name_to_show.concat(' fue creado satisfactoriamente.') }
         format.json { render :show, status: :created, location: @employee }
       else
         format.html { render :new }
@@ -62,7 +62,7 @@ class EmployeesController < ApplicationController
     permission_denied and return  if current_user.cannot 'destroy_employee'
     @employee.destroy
     respond_to do |format|
-      format.html { redirect_to employees_url, notice: 'Employee fue eliminado satisfactoriamente.' }
+      format.html { redirect_to employees_url, notice: @employee.table_name_to_show.concat(' fue eliminado satisfactoriamente.') }
       format.json { head :no_content }
       format.js   { render :layout => false }
     end

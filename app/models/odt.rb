@@ -13,6 +13,9 @@ class Odt < ActiveRecord::Base
 	accepts_nested_attributes_for :deducciones_odts, :allow_destroy => true
 
 
+	def category_name_to_show
+		return self.table_name_to_show
+	end
 	def table_name_to_show
 		'Odt'
 	end
