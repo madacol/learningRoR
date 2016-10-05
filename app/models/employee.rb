@@ -28,12 +28,13 @@ class Employee < ActiveRecord::Base
 			end
 		end
 	end
-	
-    def table_name_to_show
-    	'Empleado'
-    end
+	def category_name_to_show
+	'Préstamo'
+	end
+	def table_name_to_show
+		'Empleado'
+	end
 	def record_name_to_show
 		return self.name+' '+self.last_name
 	end	
-
 end
