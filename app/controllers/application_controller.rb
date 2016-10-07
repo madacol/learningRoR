@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   end
 
   def permission_denied
-    redirect_to root_url, :status => :unauthorized
+    redirect_to root_url, :notice => "No está autorizado"
   end
 
   protected
