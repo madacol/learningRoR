@@ -77,6 +77,6 @@ class RazonSocialsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def razon_social_params
-      params.require(:razon_social).permit(:rif_ci, :name, :description, :phone, :email, :address, :contact_name, :contact_phone, :contact_email)
+      params.require(:razon_social).permit(:rif_ci, :name, :description, :phone, :email, :address, :contact_name, :contact_phone, :contact_email, :percent_retencione_iva)
     end
 end
