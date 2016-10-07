@@ -58,7 +58,7 @@ class PaymentCardsController < ApplicationController
   # DELETE /payment_cards/1
   # DELETE /payment_cards/1.json
   def destroy
-    if @payment_card.transactions.empty? and @payment_card.last?
+    if @payment_card.transactions.empty? and @payment_card.is_banks_last_card?
       @payment_card.destroy
       respond_to do |format|
         format.html { redirect_to payment_cards_url, notice: 'Payment card was successfully destroyed.' }

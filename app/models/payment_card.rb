@@ -21,7 +21,7 @@ class PaymentCard < ActiveRecord::Base
 		end
 		eval(self.bank).where(forma_de_pago: forma_de_pago_enum_id)
 	end
-	def is_last_from_bank?
+	def is_banks_last_card?
 		self == PaymentCard.where(bank: self.bank).last
 	end
 end
