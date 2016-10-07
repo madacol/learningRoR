@@ -73,6 +73,6 @@ class BanescosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def banesco_params
-      params.require(:banesco).permit(:category_id, :category_type, :monto, :balance, :cuenta, :comprobante_type, :n_comprobante, :description, :razon_social_id, :date_of)
+      params.require(:banesco).permit(:category_id, :category_type, :monto, :balance, :cuenta, :comprobante_type, :n_comprobante, :description, :razon_social_id, :date_of, :forma_de_pago, :forma_de_pago_nro)
     end
 end

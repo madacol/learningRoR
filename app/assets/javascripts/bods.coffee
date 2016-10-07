@@ -27,3 +27,4 @@ $(document).on "turbolinks:load", ->
     return
   return
 
+  $('[data-toggle="tooltip"]').tooltip()

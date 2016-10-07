@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160819182238) do
+ActiveRecord::Schema.define(version: 20161005042933) do
 
   create_table "actions", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -41,48 +41,54 @@ ActiveRecord::Schema.define(version: 20160819182238) do
   add_index "auth_groups_users", ["user_id"], name: "index_auth_groups_users_on_user_id", using: :btree
 
   create_table "banescos", force: :cascade do |t|
-    t.integer  "comprobante_type", limit: 4
-    t.string   "n_comprobante",    limit: 255
-    t.decimal  "monto",                          precision: 15, scale: 2
-    t.decimal  "balance",                        precision: 15, scale: 2
-    t.text     "description",      limit: 65535
-    t.datetime "created_at",                                              null: false
-    t.datetime "updated_at",                                              null: false
-    t.integer  "razon_social_id",  limit: 4
-    t.integer  "category_id",      limit: 4
-    t.string   "category_type",    limit: 255
+    t.integer  "comprobante_type",  limit: 4
+    t.string   "n_comprobante",     limit: 255
+    t.decimal  "monto",                           precision: 15, scale: 2
+    t.decimal  "balance",                         precision: 15, scale: 2
+    t.text     "description",       limit: 65535
+    t.datetime "created_at",                                               null: false
+    t.datetime "updated_at",                                               null: false
+    t.integer  "razon_social_id",   limit: 4
+    t.integer  "category_id",       limit: 4
+    t.string   "category_type",     limit: 255
     t.date     "date_of"
+    t.integer  "forma_de_pago",     limit: 4
+    t.string   "forma_de_pago_nro", limit: 255
   end
 
   add_index "banescos", ["category_type", "category_id"], name: "index_banescos_on_category_type_and_category_id", using: :btree
   add_index "banescos", ["razon_social_id"], name: "index_banescos_on_razon_social_id", using: :btree
 
   create_table "bdvs", force: :cascade do |t|
-    t.integer  "comprobante_type", limit: 4
-    t.string   "n_comprobante",    limit: 255
-    t.decimal  "monto",                          precision: 15, scale: 2
-    t.decimal  "balance",                        precision: 15, scale: 2
-    t.text     "description",      limit: 65535
-    t.datetime "created_at",                                              null: false
-    t.datetime "updated_at",                                              null: false
-    t.integer  "razon_social_id",  limit: 4
-    t.integer  "category_id",      limit: 4
-    t.string   "category_type",    limit: 255
+    t.integer  "comprobante_type",  limit: 4
+    t.string   "n_comprobante",     limit: 255
+    t.decimal  "monto",                           precision: 15, scale: 2
+    t.decimal  "balance",                         precision: 15, scale: 2
+    t.text     "description",       limit: 65535
+    t.datetime "created_at",                                               null: false
+    t.datetime "updated_at",                                               null: false
+    t.integer  "razon_social_id",   limit: 4
+    t.integer  "category_id",       limit: 4
+    t.string   "category_type",     limit: 255
     t.date     "date_of"
+    t.integer  "forma_de_pago",     limit: 4
+    t.string   "forma_de_pago_nro", limit: 255
   end
 
   create_table "bods", force: :cascade do |t|
-    t.integer  "comprobante_type", limit: 4
-    t.string   "n_comprobante",    limit: 255
-    t.decimal  "monto",                          precision: 15, scale: 2
-    t.decimal  "balance",                        precision: 15, scale: 2
-    t.text     "description",      limit: 65535
-    t.datetime "created_at",                                              null: false
-    t.datetime "updated_at",                                              null: false
-    t.integer  "razon_social_id",  limit: 4
-    t.integer  "category_id",      limit: 4
-    t.string   "category_type",    limit: 255
+    t.integer  "comprobante_type",  limit: 4
+    t.string   "n_comprobante",     limit: 255
+    t.decimal  "monto",                           precision: 15, scale: 2
+    t.decimal  "balance",                         precision: 15, scale: 2
+    t.text     "description",       limit: 65535
+    t.datetime "created_at",                                               null: false
+    t.datetime "updated_at",                                               null: false
+    t.integer  "razon_social_id",   limit: 4
+    t.integer  "category_id",       limit: 4
+    t.string   "category_type",     limit: 255
     t.date     "date_of"
+    t.integer  "forma_de_pago",     limit: 4
+    t.string   "forma_de_pago_nro", limit: 255
   end
 
   add_index "bods", ["category_type", "category_id"], name: "index_bods_on_category_type_and_category_id", using: :btree
@@ -158,17 +164,19 @@ ActiveRecord::Schema.define(version: 20160819182238) do
   add_index "is_allowed_tos", ["auth_group_id"], name: "index_is_allowed_tos_on_auth_group_id", using: :btree
 
   create_table "mercantils", force: :cascade do |t|
-    t.integer  "comprobante_type", limit: 4
-    t.string   "n_comprobante",    limit: 255
-    t.decimal  "monto",                          precision: 15, scale: 2
-    t.decimal  "balance",                        precision: 15, scale: 2
-    t.text     "description",      limit: 65535
-    t.datetime "created_at",                                              null: false
-    t.datetime "updated_at",                                              null: false
-    t.integer  "razon_social_id",  limit: 4
-    t.integer  "category_id",      limit: 4
-    t.string   "category_type",    limit: 255
+    t.integer  "comprobante_type",  limit: 4
+    t.string   "n_comprobante",     limit: 255
+    t.decimal  "monto",                           precision: 15, scale: 2
+    t.decimal  "balance",                         precision: 15, scale: 2
+    t.text     "description",       limit: 65535
+    t.datetime "created_at",                                               null: false
+    t.datetime "updated_at",                                               null: false
+    t.integer  "razon_social_id",   limit: 4
+    t.integer  "category_id",       limit: 4
+    t.string   "category_type",     limit: 255
     t.date     "date_of"
+    t.integer  "forma_de_pago",     limit: 4
+    t.string   "forma_de_pago_nro", limit: 255
   end
 
   add_index "mercantils", ["category_type", "category_id"], name: "index_mercantils_on_category_type_and_category_id", using: :btree
@@ -187,6 +195,15 @@ ActiveRecord::Schema.define(version: 20160819182238) do
   add_index "odts", ["code"], name: "index_odts_on_code", unique: true, using: :btree
   add_index "odts", ["razon_social_id"], name: "index_odts_on_razon_social_id", using: :btree
 
+  create_table "payment_cards", force: :cascade do |t|
+    t.integer  "bank",        limit: 4
+    t.integer  "card_type",   limit: 4
+    t.integer  "last_digits", limit: 4
+    t.integer  "status",      limit: 4
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
   create_table "permission_requests", force: :cascade do |t|
     t.integer  "auth_record_id",     limit: 4
     t.string   "auth_record_type",   limit: 255
@@ -202,51 +219,56 @@ ActiveRecord::Schema.define(version: 20160819182238) do
   add_index "permission_requests", ["auth_record_type", "auth_record_id"], name: "index_permission_requests_on_auth_record_type_and_auth_record_id", using: :btree
 
   create_table "pools", force: :cascade do |t|
-    t.integer  "comprobante_type", limit: 4
-    t.string   "n_comprobante",    limit: 255
-    t.decimal  "monto",                          precision: 15, scale: 2
-    t.decimal  "balance",                        precision: 15, scale: 2
-    t.text     "description",      limit: 65535
-    t.datetime "created_at",                                              null: false
-    t.datetime "updated_at",                                              null: false
-    t.integer  "razon_social_id",  limit: 4
-    t.integer  "category_id",      limit: 4
-    t.string   "category_type",    limit: 255
+    t.integer  "comprobante_type",  limit: 4
+    t.string   "n_comprobante",     limit: 255
+    t.decimal  "monto",                           precision: 15, scale: 2
+    t.decimal  "balance",                         precision: 15, scale: 2
+    t.text     "description",       limit: 65535
+    t.datetime "created_at",                                               null: false
+    t.datetime "updated_at",                                               null: false
+    t.integer  "razon_social_id",   limit: 4
+    t.integer  "category_id",       limit: 4
+    t.string   "category_type",     limit: 255
     t.date     "date_of"
+    t.integer  "forma_de_pago",     limit: 4
+    t.string   "forma_de_pago_nro", limit: 255
   end
 
   add_index "pools", ["category_type", "category_id"], name: "index_pools_on_category_type_and_category_id", using: :btree
   add_index "pools", ["razon_social_id"], name: "index_pools_on_razon_social_id", using: :btree
 
   create_table "provincials", force: :cascade do |t|
-    t.integer  "comprobante_type", limit: 4
-    t.string   "n_comprobante",    limit: 255
-    t.decimal  "monto",                          precision: 15, scale: 2
-    t.decimal  "balance",                        precision: 15, scale: 2
-    t.text     "description",      limit: 65535
-    t.datetime "created_at",                                              null: false
-    t.datetime "updated_at",                                              null: false
-    t.integer  "razon_social_id",  limit: 4
-    t.integer  "category_id",      limit: 4
-    t.string   "category_type",    limit: 255
+    t.integer  "comprobante_type",  limit: 4
+    t.string   "n_comprobante",     limit: 255
+    t.decimal  "monto",                           precision: 15, scale: 2
+    t.decimal  "balance",                         precision: 15, scale: 2
+    t.text     "description",       limit: 65535
+    t.datetime "created_at",                                               null: false
+    t.datetime "updated_at",                                               null: false
+    t.integer  "razon_social_id",   limit: 4
+    t.integer  "category_id",       limit: 4
+    t.string   "category_type",     limit: 255
     t.date     "date_of"
+    t.integer  "forma_de_pago",     limit: 4
+    t.string   "forma_de_pago_nro", limit: 255
   end
 
   add_index "provincials", ["category_type", "category_id"], name: "index_provincials_on_category_type_and_category_id", using: :btree
   add_index "provincials", ["razon_social_id"], name: "index_provincials_on_razon_social_id", using: :btree
 
   create_table "razon_socials", force: :cascade do |t|
-    t.string   "rif_ci",        limit: 255,   null: false
-    t.string   "name",          limit: 255,   null: false
-    t.text     "description",   limit: 65535
-    t.string   "phone",         limit: 255
-    t.string   "email",         limit: 255
-    t.text     "address",       limit: 65535
-    t.string   "contact_name",  limit: 255
-    t.string   "contact_phone", limit: 255
-    t.string   "contact_email", limit: 255
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.string   "rif_ci",                 limit: 255,                           null: false
+    t.string   "name",                   limit: 255,                           null: false
+    t.text     "description",            limit: 65535
+    t.string   "phone",                  limit: 255
+    t.string   "email",                  limit: 255
+    t.text     "address",                limit: 65535
+    t.string   "contact_name",           limit: 255
+    t.string   "contact_phone",          limit: 255
+    t.string   "contact_email",          limit: 255
+    t.datetime "created_at",                                                   null: false
+    t.datetime "updated_at",                                                   null: false
+    t.decimal  "percent_retencione_iva",               precision: 6, scale: 6, null: false
   end
 
   add_index "razon_socials", ["email"], name: "index_razon_socials_on_email", unique: true, using: :btree

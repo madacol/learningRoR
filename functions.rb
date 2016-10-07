@@ -1,3 +1,19 @@
+Hash do
+  self.forma_de_pagos.collect do |k,v|
+    if k.is_integer?
+      [PaymentCard.find(k).card_name_to_show, v]
+    else
+      [k,v]
+    end
+  end
+end
+
+class String
+  def is_integer?
+    self.to_i.to_s == self
+  end
+end
+
 def has_auth (action)
   AuthGroup.all.each do |ag|
     case ag[action]

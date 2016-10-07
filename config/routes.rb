@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :payment_cards
   resources :provincials
   resources :banescos
   resources :mercantils

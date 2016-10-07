@@ -28,3 +28,5 @@ $(document).on "turbolinks:load", ->
     allow_single_deselect: true
     no_results_text: 'No existe'
     width: '100%'
+
+  $('[data-toggle="tooltip"]').tooltip()

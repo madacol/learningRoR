@@ -59,13 +59,13 @@ class PoolsController < ApplicationController
   # DELETE /pools/1
   # DELETE /pools/1.json
   def destroy
-   ask_for_permission(@pool, 'destroy_pool') and return if current_user.cannot 'destroy_pool'
-   @pool.destroy   
-   respond_to do |format|
+    ask_for_permission(@pool, 'destroy_pool') and return if current_user.cannot 'destroy_pool'
+    @pool.destroy
+    respond_to do |format|
       format.html { redirect_to pools_url, notice: @pool.table_name_to_show.concat(' fue eliminado satisfactoriamente.')}
       format.json { head :no_content }
       format.js   { render :layout => false }
-   end
+    end
   end
 
   private
@@ -76,6 +76,6 @@ class PoolsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pool_params
-      params.require(:pool).permit(:category_id, :category_type, :monto, :balance, :cuenta, :comprobante_type, :n_comprobante, :description, :razon_social_id, :date_of)
+      params.require(:pool).permit(:category_id, :category_type, :monto, :balance, :cuenta, :comprobante_type, :n_comprobante, :description, :razon_social_id, :date_of, :forma_de_pago, :forma_de_pago_nro)
     end
 end
