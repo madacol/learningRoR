@@ -15,6 +15,15 @@ class ApplicationController < ActionController::Base
     redirect_to root_url, :notice => "No está autorizado"
   end
 
+  def update_balances(pool)
+    last_balance = eval(pool.model_name.name).where("id < #{pool.id}").last.balance
+    return eval(pool.model_name.name).where("id >= #{pool.id}").collect do |g|
+      g.balance = g.monto + last_balance
+      last_balance = g.balance
+      g.save
+    end
+  end
+
   protected
 
   def configure_devise_permitted_parameters

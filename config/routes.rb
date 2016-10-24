@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :cierres
   resources :payment_cards
   resources :provincials
   resources :banescos

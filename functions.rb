@@ -1,3 +1,46 @@
+require 'csv'    
+CSV.foreach('F:/Yulieth Docs/Desktop/caja_chica.csv', { headers: true, col_sep: ";", encoding:'iso-8859-1:utf-8'} ) do |row|
+p row.to_hash
+gets
+end
+
+CSV.foreach('F:/Yulieth Docs/Desktop/caja_chica_p.csv', { headers: true, col_sep: ";", encoding:'iso-8859-1:utf-8'} ) do |row|
+ph = row.to_hash
+ph['p'] = "" if ph['p'].nil?
+rs = RazonSocial.find_by(name: ph['p'])
+rs = RazonSocial.create rif_ci: ph['p'], name: ph['p'], percent_retencione_iva: 0, email: ph['p'] if rs.nil?
+if ph['fa'].nil?
+ft = ph['r']
+fn = 'Recibo'
+else
+ft = ph['fa']
+fn = 'Factura'
+end
+Pool.create date_of: ph["f"], monto:ph["m"].to_f, description:ph["d"], receiver:ph["re"], comprobante_type: fn, n_comprobante: ft, balance: ph['b'], razon_social_id: rs.id, receiver: ph['re']
+gets
+end
+
+
+YULIEthh
+require 'csv' 
+CSV.foreach('F:/Yulieth Docs/Desktop/caja_chica.csv', { headers: true, col_sep: ";", encoding:'iso-8859-1:utf-8'} ) do |row|
+pool_hash = row.to_hash
+pool = Pool.create date_of: pool_hash["f"], monto:pool_hash["m"].to_f, description:pool_hash["d"], receiver:pool_hash["re"]
+gets
+end
+
+Pool.each do |x|
+  x.balance = x.balance += x.monto
+end
+________________________________________________________
+
+
+
+
+
+
+
+
 Hash do
   self.forma_de_pagos.collect do |k,v|
     if k.is_integer?

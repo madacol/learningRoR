@@ -1,0 +1,25 @@
+<%= form_for(@cierre) do |f| %>
+  <% if @cierre.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@cierre.errors.count, "error") %> prohibited this cierre from being saved:</h2>
+
+      <ul>
+      <% @cierre.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :account %><br>
+    <%= f.number_field :account %>
+  </div>
+  <div class="field">
+    <%= f.label :total %><br>
+    <%= f.text_field :total %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

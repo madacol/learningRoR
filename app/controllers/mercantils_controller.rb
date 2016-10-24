@@ -8,6 +8,8 @@ class MercantilsController < ApplicationController
   def index
     @pools = Mercantil.all
     @new_pool = Mercantil.new
+    @cierre = Cierre.new
+    @cierre.account = "Mercantil"
     render 'layouts/_pools_index'
   end
 
@@ -74,6 +76,6 @@ class MercantilsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def mercantil_params
-      params.require(:mercantil).permit(:category_id, :category_type, :monto, :balance, :cuenta, :comprobante_type, :n_comprobante, :description, :razon_social_id, :date_of, :forma_de_pago, :forma_de_pago_nro)
+      params.require(:mercantil).permit(:category_id, :category_type, :monto, :balance, :cuenta, :comprobante_type, :n_comprobante, :description, :razon_social_id, :date_of, :forma_de_pago, :forma_de_pago_nro, :receiver)
     end
 end

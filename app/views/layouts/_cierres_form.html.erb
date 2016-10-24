@@ -1,0 +1,24 @@
+<%= form_for(@cierre) do |f| %>
+  <% if @cierre.errors.any? %>
+    <div id="error_explanation_<%=namespace_id%>">
+      <h2><%= pluralize(@cierre.errors.count, "error") %> prohibited this cierre from being saved:</h2>
+      <ul>
+      <% @cierre.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+	<%= f.hidden_field :account, value: cuenta %>
+  <div class="form-group row">
+    <div class="col-sm-4">
+      <%= f.label :total, "Dinero actual en Caja:", class: "control-label pull-sm-right" %><br>
+    </div>
+    <div class="col-sm-4">
+      <%= f.text_field :total, class: "form-control", :required => true %>
+    </div>
+    <div class="col-sm-4">
+			<%= f.submit 'Hacer cierre', class: "btn btn-primary" %>    	
+    </div>
+  </div>
+<% end %>

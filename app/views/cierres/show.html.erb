@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Accounts:</strong>
+  <%= @cierre.account %>
+</p>
+
+<p>
+  <strong>Total:</strong>
+  <%= @cierre.total %>
+</p>
+
+<%= link_to 'Edit', edit_cierre_path(@cierre) %> |
+<%= link_to 'Back', cierres_path %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161005042933) do
+ActiveRecord::Schema.define(version: 20161021041502) do
 
   create_table "actions", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -44,7 +44,6 @@ ActiveRecord::Schema.define(version: 20161005042933) do
     t.integer  "comprobante_type",  limit: 4
     t.string   "n_comprobante",     limit: 255
     t.decimal  "monto",                           precision: 15, scale: 2
-    t.decimal  "balance",                         precision: 15, scale: 2
     t.text     "description",       limit: 65535
     t.datetime "created_at",                                               null: false
     t.datetime "updated_at",                                               null: false
@@ -54,6 +53,8 @@ ActiveRecord::Schema.define(version: 20161005042933) do
     t.date     "date_of"
     t.integer  "forma_de_pago",     limit: 4
     t.string   "forma_de_pago_nro", limit: 255
+    t.string   "receiver",          limit: 255
+    t.decimal  "balance",                         precision: 15, scale: 2
   end
 
   add_index "banescos", ["category_type", "category_id"], name: "index_banescos_on_category_type_and_category_id", using: :btree
@@ -63,7 +64,6 @@ ActiveRecord::Schema.define(version: 20161005042933) do
     t.integer  "comprobante_type",  limit: 4
     t.string   "n_comprobante",     limit: 255
     t.decimal  "monto",                           precision: 15, scale: 2
-    t.decimal  "balance",                         precision: 15, scale: 2
     t.text     "description",       limit: 65535
     t.datetime "created_at",                                               null: false
     t.datetime "updated_at",                                               null: false
@@ -73,13 +73,14 @@ ActiveRecord::Schema.define(version: 20161005042933) do
     t.date     "date_of"
     t.integer  "forma_de_pago",     limit: 4
     t.string   "forma_de_pago_nro", limit: 255
+    t.string   "receiver",          limit: 255
+    t.decimal  "balance",                         precision: 15, scale: 2
   end
 
   create_table "bods", force: :cascade do |t|
     t.integer  "comprobante_type",  limit: 4
     t.string   "n_comprobante",     limit: 255
     t.decimal  "monto",                           precision: 15, scale: 2
-    t.decimal  "balance",                         precision: 15, scale: 2
     t.text     "description",       limit: 65535
     t.datetime "created_at",                                               null: false
     t.datetime "updated_at",                                               null: false
@@ -89,10 +90,19 @@ ActiveRecord::Schema.define(version: 20161005042933) do
     t.date     "date_of"
     t.integer  "forma_de_pago",     limit: 4
     t.string   "forma_de_pago_nro", limit: 255
+    t.string   "receiver",          limit: 255
+    t.decimal  "balance",                         precision: 15, scale: 2
   end
 
   add_index "bods", ["category_type", "category_id"], name: "index_bods_on_category_type_and_category_id", using: :btree
   add_index "bods", ["razon_social_id"], name: "index_bods_on_razon_social_id", using: :btree
+
+  create_table "cierres", force: :cascade do |t|
+    t.integer  "account",    limit: 4
+    t.decimal  "total",                precision: 15, scale: 2
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
+  end
 
   create_table "comision_odts", force: :cascade do |t|
     t.integer  "odt_id",      limit: 4,                         null: false
@@ -167,7 +177,6 @@ ActiveRecord::Schema.define(version: 20161005042933) do
     t.integer  "comprobante_type",  limit: 4
     t.string   "n_comprobante",     limit: 255
     t.decimal  "monto",                           precision: 15, scale: 2
-    t.decimal  "balance",                         precision: 15, scale: 2
     t.text     "description",       limit: 65535
     t.datetime "created_at",                                               null: false
     t.datetime "updated_at",                                               null: false
@@ -177,6 +186,8 @@ ActiveRecord::Schema.define(version: 20161005042933) do
     t.date     "date_of"
     t.integer  "forma_de_pago",     limit: 4
     t.string   "forma_de_pago_nro", limit: 255
+    t.string   "receiver",          limit: 255
+    t.decimal  "balance",                         precision: 15, scale: 2
   end
 
   add_index "mercantils", ["category_type", "category_id"], name: "index_mercantils_on_category_type_and_category_id", using: :btree
@@ -222,7 +233,6 @@ ActiveRecord::Schema.define(version: 20161005042933) do
     t.integer  "comprobante_type",  limit: 4
     t.string   "n_comprobante",     limit: 255
     t.decimal  "monto",                           precision: 15, scale: 2
-    t.decimal  "balance",                         precision: 15, scale: 2
     t.text     "description",       limit: 65535
     t.datetime "created_at",                                               null: false
     t.datetime "updated_at",                                               null: false
@@ -232,6 +242,8 @@ ActiveRecord::Schema.define(version: 20161005042933) do
     t.date     "date_of"
     t.integer  "forma_de_pago",     limit: 4
     t.string   "forma_de_pago_nro", limit: 255
+    t.string   "receiver",          limit: 255
+    t.decimal  "balance",                         precision: 15, scale: 2
   end
 
   add_index "pools", ["category_type", "category_id"], name: "index_pools_on_category_type_and_category_id", using: :btree
@@ -241,7 +253,6 @@ ActiveRecord::Schema.define(version: 20161005042933) do
     t.integer  "comprobante_type",  limit: 4
     t.string   "n_comprobante",     limit: 255
     t.decimal  "monto",                           precision: 15, scale: 2
-    t.decimal  "balance",                         precision: 15, scale: 2
     t.text     "description",       limit: 65535
     t.datetime "created_at",                                               null: false
     t.datetime "updated_at",                                               null: false
@@ -251,6 +262,8 @@ ActiveRecord::Schema.define(version: 20161005042933) do
     t.date     "date_of"
     t.integer  "forma_de_pago",     limit: 4
     t.string   "forma_de_pago_nro", limit: 255
+    t.string   "receiver",          limit: 255
+    t.decimal  "balance",                         precision: 15, scale: 2
   end
 
   add_index "provincials", ["category_type", "category_id"], name: "index_provincials_on_category_type_and_category_id", using: :btree

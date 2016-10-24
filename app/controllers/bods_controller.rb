@@ -7,6 +7,8 @@ class BodsController < ApplicationController
   def index
     @pools = Bod.all
     @new_pool = Bod.new
+    @cierre = Cierre.new
+    @cierre.account = "Bod"
     render 'layouts/_pools_index'
   end
 
@@ -73,6 +75,6 @@ class BodsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bod_params
-      params.require(:bod).permit(:category_id, :category_type, :monto, :balance, :cuenta, :comprobante_type, :n_comprobante, :description, :razon_social_id, :date_of, :forma_de_pago, :forma_de_pago_nro)
+      params.require(:bod).permit(:category_id, :category_type, :monto, :balance, :cuenta, :comprobante_type, :n_comprobante, :description, :razon_social_id, :date_of, :forma_de_pago, :forma_de_pago_nro, :receiver)
     end
 end

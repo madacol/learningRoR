@@ -8,6 +8,8 @@ class PoolsController < ApplicationController
     permission_denied and return if current_user.cannot 'read_pool'
     @pools = Pool.all #where("created_at >= ?", Time.zone.now.beginning_of_day)
     @new_pool = Pool.new
+    @cierre = Cierre.new
+    @cierre.account = "Pool"
     render 'layouts/_pools_index'
   end
 
@@ -30,6 +32,8 @@ class PoolsController < ApplicationController
   def create
     @pool = Pool.new(pool_params)
     ask_for_permission(@pool, 'create_pool') and return if current_user.cannot 'create_pool'
+    last_balance = Pool.last.balance
+    @pool.balance = last_balance + @pool.monto
     respond_to do |format|
       if @pool.save
         format.html { redirect_to pools_url, notice: @pool.table_name_to_show.concat(' fue creada satisfactoriamente.') }
@@ -46,8 +50,14 @@ class PoolsController < ApplicationController
   def update
     @pool.assign_attributes(pool_params)
     ask_for_permission(@pool, 'update_pool') and return if current_user.cannot 'update_pool'
+    are_saved = update_balances(@pool)
+    if @pool.save
+      are_saved = update_balances(@pool)
+    else
+      are_saved = [false]
+    end
     respond_to do |format|
-      if @pool.save
+      if are_saved.all?
         format.html { redirect_to pools_url, notice: @pool.table_name_to_show.concat(' fue actualizado satisfactoriamente.') }
       else
         format.html { render :edit }
@@ -61,10 +71,16 @@ class PoolsController < ApplicationController
   def destroy
     ask_for_permission(@pool, 'destroy_pool') and return if current_user.cannot 'destroy_pool'
     @pool.destroy
+    are_saved = update_balances(@pool)
     respond_to do |format|
-      format.html { redirect_to pools_url, notice: @pool.table_name_to_show.concat(' fue eliminado satisfactoriamente.')}
-      format.json { head :no_content }
-      format.js   { render :layout => false }
+      if are_saved.all?
+        format.html { redirect_to pools_url, notice: @pool.table_name_to_show.concat(' fue eliminado satisfactoriamente.')}
+        format.json { head :no_content }
+        format.js   { render :layout => false }
+      else
+        format.html { render :edit }
+        format.json { render json: @pool.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -76,6 +92,6 @@ class PoolsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pool_params
-      params.require(:pool).permit(:category_id, :category_type, :monto, :balance, :cuenta, :comprobante_type, :n_comprobante, :description, :razon_social_id, :date_of, :forma_de_pago, :forma_de_pago_nro)
+      params.require(:pool).permit(:category_id, :category_type, :monto, :cuenta, :comprobante_type, :n_comprobante, :description, :razon_social_id, :date_of, :forma_de_pago, :forma_de_pago_nro, :receiver)
     end
 end
