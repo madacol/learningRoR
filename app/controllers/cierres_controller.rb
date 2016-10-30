@@ -26,18 +26,20 @@ class CierresController < ApplicationController
   def create
     @cierre = Cierre.new(cierre_params)
     pool = eval(@cierre.account).new
-    last_balance = eval(@cierre.account).last.balance
-    pool.monto = @cierre.total - last_balance
-    pool.balance = pool.monto + last_balance
-    pool.category_type = 
-    pool.category_id = 
-    pool.date_of = 
-
-    if 
-    pool.save
+    category_record = Gg.find_by(code: 'D-Cuentas')
+    category_record ||= Gg.create code: "D-Cuentas", alias: "Diferencia en las cuentas", description: "Lleva el registro de las diferencias presentadas en cualquiera de las cuentas: \"Caja Chica\",\"Banesco\", \"Bdv\", \"Bod\", \"Mercantil\", \"Provincial\"."
+    (eval(@cierre.account).last.nil? or eval(@cierre.account).last.balance.nil?) ?
+      last_balance = 0 : last_balance = eval(@cierre.account).last.balance
+    diferencia_cierre = @cierre.total - last_balance
+    if diferencia_cierre != 0
+      pool.monto = diferencia_cierre
+      pool.balance = pool.monto + last_balance
+      pool.category = category_record
+      pool.save
+    end
     respond_to do |format|
       if @cierre.save
-        format.html { redirect_to pools_url, notice: 'Cierre was successfully created.' }
+        format.html { redirect_to eval("#{pool.model_name.plural}_url"), notice: 'Cierre was successfully created.' }
         format.json { render :show, status: :created, location: @cierre }
       else
         format.html { render :new }
