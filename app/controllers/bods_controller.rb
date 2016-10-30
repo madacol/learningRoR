@@ -30,7 +30,10 @@ class BodsController < ApplicationController
   # POST /bods.json
   def create
     @bod = Bod.new(bod_params)
-
+    # ask_for_permission(@bod, 'create_bod') and return if current_user.cannot 'create_bod'
+    last_bod = Bod.last
+    (last_bod.nil? or last_bod.balance.nil?) ?
+      @bod.balance = @bod.monto : @bod.balance = last_bod.balance + @bod.monto
     respond_to do |format|
       if @bod.save
         format.html { redirect_to bods_url, notice: @bod.table_name_to_show.concat(' fue creada satisfactoriamente.') }
@@ -45,10 +48,13 @@ class BodsController < ApplicationController
   # PATCH/PUT /bods/1
   # PATCH/PUT /bods/1.json
   def update
+    @bod.assign_attributes(bod_params)
+    # ask_for_permission(@bod, 'update_bod') and return if current_user.cannot 'update_bod'
+    @bod.save ?
+      are_saved = update_balances(@bod) : are_saved = [false]
     respond_to do |format|
-      if @bod.update(bod_params)
+      if are_saved.all?
         format.html { redirect_to bods_url, notice: @bod.table_name_to_show.concat(' fue actualizado satisfactoriamente.') }
-        format.json { render :show, status: :ok, location: @bod }
       else
         format.html { render :edit }
         format.json { render json: @bod.errors, status: :unprocessable_entity }
@@ -59,11 +65,18 @@ class BodsController < ApplicationController
   # DELETE /bods/1
   # DELETE /bods/1.json
   def destroy
+    # ask_for_permission(@bod, 'destroy_bod') and return if current_user.cannot 'destroy_bod'
     @bod.destroy
+    are_saved = update_balances(@bod)
     respond_to do |format|
-      format.html { redirect_to bods_url, notice: @bod.table_name_to_show.concat(' fue eliminado satisfactoriamente.') }
-      format.json { head :no_content }
-      format.js   { render :layout => false }
+      if are_saved.all?
+        format.html { redirect_to bods_url, notice: @bod.table_name_to_show.concat(' fue eliminado satisfactoriamente.')}
+        format.json { head :no_content }
+        format.js   { render :layout => false }
+      else
+        format.html { render :edit }
+        format.json { render json: @bod.errors, status: :unprocessable_entity }
+      end
     end
   end
 

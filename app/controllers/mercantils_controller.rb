@@ -2,7 +2,6 @@ class MercantilsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_mercantil, only: [:show, :edit, :update, :destroy]
 
-
   # GET /mercantils
   # GET /mercantils.json
   def index
@@ -31,7 +30,10 @@ class MercantilsController < ApplicationController
   # POST /mercantils.json
   def create
     @mercantil = Mercantil.new(mercantil_params)
-
+    # ask_for_permission(@mercantil, 'create_mercantil') and return if current_user.cannot 'create_mercantil'
+    last_mercantil = Mercantil.last
+    (last_mercantil.nil? or last_mercantil.balance.nil?) ?
+      @mercantil.balance = @mercantil.monto : @mercantil.balance = last_mercantil.balance + @mercantil.monto
     respond_to do |format|
       if @mercantil.save
         format.html { redirect_to mercantils_url, notice: @mercantil.table_name_to_show.concat(' fue creada satisfactoriamente.') }
@@ -46,10 +48,13 @@ class MercantilsController < ApplicationController
   # PATCH/PUT /mercantils/1
   # PATCH/PUT /mercantils/1.json
   def update
+    @mercantil.assign_attributes(mercantil_params)
+    # ask_for_permission(@mercantil, 'update_mercantil') and return if current_user.cannot 'update_mercantil'
+    @mercantil.save ?
+      are_saved = update_balances(@mercantil) : are_saved = [false]
     respond_to do |format|
-      if @mercantil.update(mercantil_params)
+      if are_saved.all?
         format.html { redirect_to mercantils_url, notice: @mercantil.table_name_to_show.concat(' fue actualizado satisfactoriamente.') }
-        format.json { render :show, status: :ok, location: @mercantil }
       else
         format.html { render :edit }
         format.json { render json: @mercantil.errors, status: :unprocessable_entity }
@@ -60,11 +65,18 @@ class MercantilsController < ApplicationController
   # DELETE /mercantils/1
   # DELETE /mercantils/1.json
   def destroy
+    # ask_for_permission(@mercantil, 'destroy_mercantil') and return if current_user.cannot 'destroy_mercantil'
     @mercantil.destroy
+    are_saved = update_balances(@mercantil)
     respond_to do |format|
-      format.html { redirect_to mercantils_url, notice: @mercantil.table_name_to_show.concat(' fue eliminado satisfactoriamente.') }
-      format.json { head :no_content }
-      format.js   { render :layout => false }
+      if are_saved.all?
+        format.html { redirect_to mercantils_url, notice: @mercantil.table_name_to_show.concat(' fue eliminado satisfactoriamente.')}
+        format.json { head :no_content }
+        format.js   { render :layout => false }
+      else
+        format.html { render :edit }
+        format.json { render json: @mercantil.errors, status: :unprocessable_entity }
+      end
     end
   end
 

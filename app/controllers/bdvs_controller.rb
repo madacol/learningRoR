@@ -30,7 +30,10 @@ class BdvsController < ApplicationController
   # POST /bdvs.json
   def create
     @bdv = Bdv.new(bdv_params)
-
+    # ask_for_permission(@bdv, 'create_bdv') and return if current_user.cannot 'create_bdv'
+    last_bdv = Bdv.last
+    (last_bdv.nil? or last_bdv.balance.nil?) ?
+      @bdv.balance = @bdv.monto : @bdv.balance = last_bdv.balance + @bdv.monto
     respond_to do |format|
       if @bdv.save
         format.html { redirect_to bdvs_url, notice: @bdv.table_name_to_show.concat(' fue creada satisfactoriamente.') }
@@ -45,10 +48,13 @@ class BdvsController < ApplicationController
   # PATCH/PUT /bdvs/1
   # PATCH/PUT /bdvs/1.json
   def update
+    @bdv.assign_attributes(bdv_params)
+    # ask_for_permission(@bdv, 'update_bdv') and return if current_user.cannot 'update_bdv'
+    @bdv.save ?
+      are_saved = update_balances(@bdv) : are_saved = [false]
     respond_to do |format|
-      if @bdv.update(bdv_params)
+      if are_saved.all?
         format.html { redirect_to bdvs_url, notice: @bdv.table_name_to_show.concat(' fue actualizado satisfactoriamente.') }
-        format.json { render :show, status: :ok, location: @bdv }
       else
         format.html { render :edit }
         format.json { render json: @bdv.errors, status: :unprocessable_entity }
@@ -59,11 +65,18 @@ class BdvsController < ApplicationController
   # DELETE /bdvs/1
   # DELETE /bdvs/1.json
   def destroy
+    # ask_for_permission(@bdv, 'destroy_bdv') and return if current_user.cannot 'destroy_bdv'
     @bdv.destroy
+    are_saved = update_balances(@bdv)
     respond_to do |format|
-      format.html { redirect_to bdvs_url, notice: @bdv.table_name_to_show.concat(' fue eliminado satisfactoriamente.') }
-      format.json { head :no_content }
-      format.js   { render :layout => false }
+      if are_saved.all?
+        format.html { redirect_to bdvs_url, notice: @bdv.table_name_to_show.concat(' fue eliminado satisfactoriamente.')}
+        format.json { head :no_content }
+        format.js   { render :layout => false }
+      else
+        format.html { render :edit }
+        format.json { render json: @bdv.errors, status: :unprocessable_entity }
+      end
     end
   end
 

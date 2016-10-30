@@ -30,7 +30,10 @@ class ProvincialsController < ApplicationController
   # POST /provincials.json
   def create
     @provincial = Provincial.new(provincial_params)
-
+    # ask_for_permission(@provincial, 'create_provincial') and return if current_user.cannot 'create_provincial'
+    last_provincial = Provincial.last
+    (last_provincial.nil? or last_provincial.balance.nil?) ?
+      @provincial.balance = @provincial.monto : @provincial.balance = last_provincial.balance + @provincial.monto
     respond_to do |format|
       if @provincial.save
         format.html { redirect_to provincials_url, notice: @provincial.table_name_to_show.concat(' fue creada satisfactoriamente.') }
@@ -45,10 +48,13 @@ class ProvincialsController < ApplicationController
   # PATCH/PUT /provincials/1
   # PATCH/PUT /provincials/1.json
   def update
+    @provincial.assign_attributes(provincial_params)
+    # ask_for_permission(@provincial, 'update_provincial') and return if current_user.cannot 'update_provincial'
+    @provincial.save ?
+      are_saved = update_balances(@provincial) : are_saved = [false]
     respond_to do |format|
-      if @provincial.update(provincial_params)
+      if are_saved.all?
         format.html { redirect_to provincials_url, notice: @provincial.table_name_to_show.concat(' fue actualizado satisfactoriamente.') }
-        format.json { render :show, status: :ok, location: @provincial }
       else
         format.html { render :edit }
         format.json { render json: @provincial.errors, status: :unprocessable_entity }
@@ -59,11 +65,18 @@ class ProvincialsController < ApplicationController
   # DELETE /provincials/1
   # DELETE /provincials/1.json
   def destroy
+    # ask_for_permission(@provincial, 'destroy_provincial') and return if current_user.cannot 'destroy_provincial'
     @provincial.destroy
+    are_saved = update_balances(@provincial)
     respond_to do |format|
-      format.html { redirect_to provincials_url, notice: @provincial.table_name_to_show.concat(' fue eliminado satisfactoriamente.') }
-      format.json { head :no_content }
-      format.js   { render :layout => false }
+      if are_saved.all?
+        format.html { redirect_to provincials_url, notice: @provincial.table_name_to_show.concat(' fue eliminado satisfactoriamente.')}
+        format.json { head :no_content }
+        format.js   { render :layout => false }
+      else
+        format.html { render :edit }
+        format.json { render json: @provincial.errors, status: :unprocessable_entity }
+      end
     end
   end
 

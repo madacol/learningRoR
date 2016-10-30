@@ -29,14 +29,14 @@ pool = Pool.create date_of: pool_hash["f"], monto:pool_hash["m"].to_f, descripti
 gets
 end
 
+    @pools.balance = Pool.last.balance + Pool.monto
+ Pool.balance = Pool.last.balance + Pool.monto
+
 Pool.each do |x|
-  x.balance = x.balance += x.monto
+  x. balance = x.balance += x.monto
 end
-________________________________________________________
 
-
-
-
+Pool.where("id < ?", id).first
 
 
 

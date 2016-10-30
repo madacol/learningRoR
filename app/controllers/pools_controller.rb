@@ -32,8 +32,9 @@ class PoolsController < ApplicationController
   def create
     @pool = Pool.new(pool_params)
     ask_for_permission(@pool, 'create_pool') and return if current_user.cannot 'create_pool'
-    last_balance = Pool.last.balance
-    @pool.balance = last_balance + @pool.monto
+    last_pool = Pool.last
+    (last_pool.nil? or last_pool.balance.nil?) ?
+      @pool.balance = @pool.monto : @pool.balance = last_pool.balance + @pool.monto
     respond_to do |format|
       if @pool.save
         format.html { redirect_to pools_url, notice: @pool.table_name_to_show.concat(' fue creada satisfactoriamente.') }
@@ -50,12 +51,8 @@ class PoolsController < ApplicationController
   def update
     @pool.assign_attributes(pool_params)
     ask_for_permission(@pool, 'update_pool') and return if current_user.cannot 'update_pool'
-    are_saved = update_balances(@pool)
-    if @pool.save
-      are_saved = update_balances(@pool)
-    else
-      are_saved = [false]
-    end
+    @pool.save ?
+      are_saved = update_balances(@pool) : are_saved = [false]
     respond_to do |format|
       if are_saved.all?
         format.html { redirect_to pools_url, notice: @pool.table_name_to_show.concat(' fue actualizado satisfactoriamente.') }

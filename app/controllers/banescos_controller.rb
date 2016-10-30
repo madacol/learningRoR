@@ -30,7 +30,10 @@ class BanescosController < ApplicationController
   # POST /banescos.json
   def create
     @banesco = Banesco.new(banesco_params)
-
+    # ask_for_permission(@banesco, 'create_banesco') and return if current_user.cannot 'create_banesco'
+    last_banesco = Banesco.last
+    (last_banesco.nil? or last_banesco.balance.nil?) ?
+      @banesco.balance = @banesco.monto : @banesco.balance = last_banesco.balance + @banesco.monto
     respond_to do |format|
       if @banesco.save
         format.html { redirect_to banescos_url, notice: @banesco.table_name_to_show.concat(' fue creada satisfactoriamente.') }
@@ -45,10 +48,13 @@ class BanescosController < ApplicationController
   # PATCH/PUT /banescos/1
   # PATCH/PUT /banescos/1.json
   def update
+    @banesco.assign_attributes(banesco_params)
+    # ask_for_permission(@banesco, 'update_banesco') and return if current_user.cannot 'update_banesco'
+    @banesco.save ?
+      are_saved = update_balances(@banesco) : are_saved = [false]
     respond_to do |format|
-      if @banesco.update(banesco_params)
-        format.html { redirect_to banescos_url, notice: @banesco.table_name_to_show.concat(' fue creada satisfactoriamente.') }
-        format.json { render :show, status: :ok, location: @banesco }
+      if are_saved.all?
+        format.html { redirect_to banescos_url, notice: @banesco.table_name_to_show.concat(' fue actualizado satisfactoriamente.') }
       else
         format.html { render :edit }
         format.json { render json: @banesco.errors, status: :unprocessable_entity }
@@ -59,11 +65,18 @@ class BanescosController < ApplicationController
   # DELETE /banescos/1
   # DELETE /banescos/1.json
   def destroy
+    # ask_for_permission(@banesco, 'destroy_banesco') and return if current_user.cannot 'destroy_banesco'
     @banesco.destroy
+    are_saved = update_balances(@banesco)
     respond_to do |format|
-      format.html { redirect_to banescos_url, notice: @banesco.table_name_to_show.concat(' fue eliminado satisfactoriamente.')}
-      format.json { head :no_content }
-      format.js   { render :layout => false }
+      if are_saved.all?
+        format.html { redirect_to banescos_url, notice: @banesco.table_name_to_show.concat(' fue eliminado satisfactoriamente.')}
+        format.json { head :no_content }
+        format.js   { render :layout => false }
+      else
+        format.html { render :edit }
+        format.json { render json: @banesco.errors, status: :unprocessable_entity }
+      end
     end
   end
 
