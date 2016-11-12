@@ -41,12 +41,12 @@
           </td>  
           <td>
             <% odt.deducciones_odts.each do |d| %>
-              <%= d.name %>
+              <%= d.name %><br>
             <% end %>
           </td>  
           <td>
             <% odt.deducciones_odts.each do |d| %>
-              <%= d.p_gasto %>
+              <%= d.p_gasto %><br>
             <% end %>
           </td>
 
@@ -60,3 +60,4 @@
     </tbody>
   </table>
 </div>
+<%= render 'layouts/modal', :form_to_render => 'razon_socials/form', :@razon_social => RazonSocial.new, :modal_title => 'Añadir Razón social', :namespace_id => 'new_razon_social' %>

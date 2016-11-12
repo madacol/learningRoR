@@ -2,6 +2,12 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
+enableChosen = (select) ->
+  $(select).chosen
+    allow_single_deselect: true
+    no_results_text: 'No existe'
+    width: '100%'
+
 addRemoveOnClickEvent = (boton) ->
 	$(boton).click (e) ->
 		e.preventDefault()		
@@ -36,18 +42,25 @@ $(document).on "turbolinks:load", ->
 	$('.adder').each ->
 		$(this).click (e) ->
 			e.preventDefault()
-			form_group_button = $(this).parents('div.form-group')
-			previous_form_group = form_group_button.prevAll('.form-group').first()
-			previous_input = form_group_button.prevAll('input').first()
+			#// Find and clone nested_attributes's new_model
 			new_model_id = $(this).parents('div.nested_attributes').data('nestedModel')
-			new_nested_model = $('#' + new_model_id).clone(true, true)
-			$(new_nested_model).attr id: ''
+			new_model = $('#' + new_model_id)
+			$(new_model).find('.chosen-select').chosen('destroy')
+			new_nested_model = $(new_model).clone(true, true)
+			#// 
+			#// Enable new_model
+			$(new_nested_model).removeAttr 'id'
 			$(new_nested_model).show()
 			$(new_nested_model).find('.form-control').each ->
 				$(this).prop('disabled', false)
 			closeButton = $('<button>×</button>').attr({type: 'button', class: 'close equis remover'})
 			addRemoveOnClickEvent(closeButton)
-			$(new_nested_model).find('div.col-sm-2').html(closeButton)
+			$(new_nested_model).find('div').first().html(closeButton)
+			#//
+			#// Update number in id and name attributes
+			form_group_button = $(this).parents('div.form-group').first()
+			previous_form_group = form_group_button.prevAll('.form-group').first()
+			previous_input = form_group_button.prevAll('input').first()
 			id_input = -1
 			id_previous_form_group = -1
 			if previous_form_group.length
@@ -65,6 +78,8 @@ $(document).on "turbolinks:load", ->
 					$(input).attr
 						id: id
 						name: name
+			#//
+			enableChosen $(new_nested_model).find '.chosen-select'
 			$(new_nested_model).insertBefore form_group_button
 
 	# testing ajax		
