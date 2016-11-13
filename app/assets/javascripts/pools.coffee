@@ -24,9 +24,11 @@ $(document).on "turbolinks:load", ->
       $(this).data 'previous', $(this).val()
 
   # enable chosen js
-  $('.chosen-select').chosen
-    allow_single_deselect: true
-    no_results_text: 'No existe'
-    width: '100%'
+  $('.chosen-select').each ->
+    $(this).chosen
+      allow_single_deselect: true
+      no_results_text: 'No existe'
+      width: '100%'
+    $(this).attr('style','display:block; position:absolute; clip:rect(0,0,0,0)')
 
   $('[data-toggle="tooltip"]').tooltip()

@@ -3,10 +3,11 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 enableChosen = (select) ->
-  $(select).chosen
-    allow_single_deselect: true
-    no_results_text: 'No existe'
-    width: '100%'
+	$(select).chosen
+		allow_single_deselect: true
+		no_results_text: 'No existe'
+		width: '100%'
+	select.attr('style','display:block; position:absolute; clip:rect(0,0,0,0)')
 
 addRemoveOnClickEvent = (boton) ->
 	$(boton).click (e) ->
