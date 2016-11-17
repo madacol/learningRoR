@@ -12,6 +12,15 @@ class MercantilsController < ApplicationController
     render 'layouts/_pools_index'
   end
 
+  # GET /mercantils/days/:days
+  def days_index
+    @pools = Mercantil.where('created_at >= ?', params[:days].to_i.days.ago.beginning_of_day)
+    @new_pool = Mercantil.new
+    @cierre = Cierre.new
+    @cierre.account = "Mercantil"
+    render 'layouts/_pools_index'
+  end
+
   # GET /mercantils/1
   # GET /mercantils/1.json
   def show

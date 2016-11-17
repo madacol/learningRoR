@@ -12,6 +12,15 @@ class BodsController < ApplicationController
     render 'layouts/_pools_index'
   end
 
+  # GET /bods/days/:days
+  def days_index
+    @pools = Bod.where('created_at >= ?', params[:days].to_i.days.ago.beginning_of_day)
+    @new_pool = Bod.new
+    @cierre = Cierre.new
+    @cierre.account = "Bod"
+    render 'layouts/_pools_index'
+  end
+
   # GET /bods/1
   # GET /bods/1.json
   def show

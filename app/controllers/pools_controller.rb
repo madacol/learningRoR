@@ -5,8 +5,16 @@ class PoolsController < ApplicationController
   # GET /pools
   # GET /pools.json
   def index
-    permission_denied and return if current_user.cannot 'read_pool'
-    @pools = Pool.all #where("created_at >= ?", Time.zone.now.beginning_of_day)
+    @pools = Pool.all
+    @new_pool = Pool.new
+    @cierre = Cierre.new
+    @cierre.account = "Pool"
+    render 'layouts/_pools_index'
+  end
+
+  # GET /pools/days/:days
+  def days_index
+    @pools = Pool.where('created_at >= ?', params[:days].to_i.days.ago.beginning_of_day)
     @new_pool = Pool.new
     @cierre = Cierre.new
     @cierre.account = "Pool"

@@ -1,14 +1,17 @@
 Rails.application.routes.draw do
+  concern :days_ago_index do
+    get 'days/:days', action: 'days_index', on: :collection
+  end
+
+  root "pools#index"
   resources :cierres
   resources :payment_cards
-  resources :provincials
-  resources :banescos
-  resources :mercantils
-  resources :bods
-  resources :bdvs
-  root "pools#index"
-
-  resources :pools
+  resources :provincials, concerns: :days_ago_index
+  resources :banescos, concerns: :days_ago_index
+  resources :mercantils, concerns: :days_ago_index
+  resources :bods, concerns: :days_ago_index
+  resources :bdvs, concerns: :days_ago_index
+  resources :pools, concerns: :days_ago_index
   resources :auth_groups
   resources :employee_groups
   resources :employees

@@ -12,6 +12,15 @@ class BanescosController < ApplicationController
     render 'layouts/_pools_index'
   end
 
+  # GET /banescos/days/:days
+  def days_index
+    @pools = Banesco.where('created_at >= ?', params[:days].to_i.days.ago.beginning_of_day)
+    @new_pool = Banesco.new
+    @cierre = Cierre.new
+    @cierre.account = "Banesco"
+    render 'layouts/_pools_index'
+  end
+
   # GET /banescos/1
   # GET /banescos/1.json
   def show

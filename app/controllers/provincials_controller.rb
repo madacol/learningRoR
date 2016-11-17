@@ -12,6 +12,15 @@ class ProvincialsController < ApplicationController
     render 'layouts/_pools_index'
   end
 
+  # GET /provincials/days/:days
+  def days_index
+    @pools = Provincial.where('created_at >= ?', params[:days].to_i.days.ago.beginning_of_day)
+    @new_pool = Provincial.new
+    @cierre = Cierre.new
+    @cierre.account = "Provincial"
+    render 'layouts/_pools_index'
+  end
+
   # GET /provincials/1
   # GET /provincials/1.json
   def show

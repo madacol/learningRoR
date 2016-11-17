@@ -12,6 +12,15 @@ class BdvsController < ApplicationController
     render 'layouts/_pools_index'
   end
 
+  # GET /bdvs/days/:days
+  def days_index
+    @pools = Bdv.where('created_at >= ?', params[:days].to_i.days.ago.beginning_of_day)
+    @new_pool = Bdv.new
+    @cierre = Cierre.new
+    @cierre.account = "Bdv"
+    render 'layouts/_pools_index'
+  end
+
   # GET /bdvs/1
   # GET /bdvs/1.json
   def show
