@@ -7,6 +7,7 @@ class BdvsController < ApplicationController
   def index
     @pools = Bdv.all
     @new_pool = Bdv.new
+    @new_pool.date_of = Date.today
     @cierre = Cierre.new
     @cierre.account = "Bdv"
     render 'layouts/_pools_index'
@@ -16,6 +17,7 @@ class BdvsController < ApplicationController
   def days_index
     @pools = Bdv.where('created_at >= ?', params[:days].to_i.days.ago.beginning_of_day)
     @new_pool = Bdv.new
+    @new_pool.date_of = Date.today
     @cierre = Cierre.new
     @cierre.account = "Bdv"
     render 'layouts/_pools_index'

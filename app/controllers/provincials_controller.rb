@@ -7,6 +7,7 @@ class ProvincialsController < ApplicationController
   def index
     @pools = Provincial.all
     @new_pool = Provincial.new
+    @new_pool.date_of = Date.today
     @cierre = Cierre.new
     @cierre.account = "Provincial"
     render 'layouts/_pools_index'
@@ -16,6 +17,7 @@ class ProvincialsController < ApplicationController
   def days_index
     @pools = Provincial.where('created_at >= ?', params[:days].to_i.days.ago.beginning_of_day)
     @new_pool = Provincial.new
+    @new_pool.date_of = Date.today
     @cierre = Cierre.new
     @cierre.account = "Provincial"
     render 'layouts/_pools_index'

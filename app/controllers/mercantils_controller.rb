@@ -7,6 +7,7 @@ class MercantilsController < ApplicationController
   def index
     @pools = Mercantil.all
     @new_pool = Mercantil.new
+    @new_pool.date_of = Date.today
     @cierre = Cierre.new
     @cierre.account = "Mercantil"
     render 'layouts/_pools_index'
@@ -16,6 +17,7 @@ class MercantilsController < ApplicationController
   def days_index
     @pools = Mercantil.where('created_at >= ?', params[:days].to_i.days.ago.beginning_of_day)
     @new_pool = Mercantil.new
+    @new_pool.date_of = Date.today
     @cierre = Cierre.new
     @cierre.account = "Mercantil"
     render 'layouts/_pools_index'

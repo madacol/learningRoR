@@ -7,6 +7,7 @@ class PoolsController < ApplicationController
   def index
     @pools = Pool.all
     @new_pool = Pool.new
+    @new_pool.date_of = Date.today
     @cierre = Cierre.new
     @cierre.account = "Pool"
     render 'layouts/_pools_index'
@@ -16,6 +17,7 @@ class PoolsController < ApplicationController
   def days_index
     @pools = Pool.where('created_at >= ?', params[:days].to_i.days.ago.beginning_of_day)
     @new_pool = Pool.new
+    @new_pool.date_of = Date.today
     @cierre = Cierre.new
     @cierre.account = "Pool"
     render 'layouts/_pools_index'

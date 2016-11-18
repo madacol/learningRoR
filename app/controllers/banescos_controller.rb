@@ -7,6 +7,7 @@ class BanescosController < ApplicationController
   def index
     @pools = Banesco.all
     @new_pool = Banesco.new
+    @new_pool.date_of = Date.today
     @cierre = Cierre.new
     @cierre.account = "Banesco"
     render 'layouts/_pools_index'
@@ -16,6 +17,7 @@ class BanescosController < ApplicationController
   def days_index
     @pools = Banesco.where('created_at >= ?', params[:days].to_i.days.ago.beginning_of_day)
     @new_pool = Banesco.new
+    @new_pool.date_of = Date.today
     @cierre = Cierre.new
     @cierre.account = "Banesco"
     render 'layouts/_pools_index'
