@@ -11,7 +11,7 @@
   <% end %>
   <div class="form-group row">
     <div class="col-sm-2">
-      <%= f.label :cedula, class: "control-label" %><br>
+      <%= f.label :cedula, "Nº de Cédula", class: "control-label" %><br>
     </div>
     <div class="col-sm-10">
       <%= f.text_field :cedula, class: "form-control", :required => true %>
@@ -19,7 +19,7 @@
   </div>
   <div class="form-group row">
     <div class="col-sm-2">
-      <%= f.label :name, class: "control-label" %><br>
+      <%= f.label :name, "Nombre", class: "control-label" %><br>
     </div>
     <div class="col-sm-10">
       <%= f.text_field :name, class: "form-control", :required => true %>
@@ -27,7 +27,7 @@
   </div>
   <div class="form-group row">
     <div class="col-sm-2">
-      <%= f.label :last_name, class: "control-label" %><br>
+      <%= f.label :last_name, "Apellido", class: "control-label" %><br>
     </div>
     <div class="col-sm-10">
       <%= f.text_field :last_name, class: "form-control", :required => true %>
@@ -35,7 +35,7 @@
   </div>
   <div class="form-group row">
     <div class="col-sm-2">
-      <%= f.label :phone_number, class: "control-label" %><br>
+      <%= f.label :phone_number, "Nº de teléfono", class: "control-label" %><br>
     </div>
     <div class="col-sm-10">
       <%= f.text_field :phone_number, class: "form-control" %>
@@ -43,7 +43,7 @@
   </div>
   <div class="form-group row">
     <div class="col-sm-2">
-      <%= f.label :email, class: "control-label" %><br>
+      <%= f.label :email, "E-mail", class: "control-label" %><br>
     </div>
     <div class="col-sm-10">
       <%= f.text_field :email, class: "form-control", :required => true %>
@@ -51,7 +51,7 @@
   </div>
   <div class="form-group row">
     <div class="col-sm-2">
-      <%= f.label :address, class: "control-label" %><br>
+      <%= f.label :address, "Dirección", class: "control-label" %><br>
     </div>
     <div class="col-sm-10">
       <%= f.text_area :address, class: "form-control" %>
@@ -59,7 +59,7 @@
   </div>
   <div class="form-group row">
     <div class="col-sm-2">
-      <%= f.label :startdate, class: "control-label" %><br>
+      <%= f.label :startdate, "Fecha de ingreso", class: "control-label" %><br>
     </div>
     <div class="col-sm-10">
       <%= f.date_field :startdate, :value => Date.today, class: "form-control" %>
@@ -67,7 +67,7 @@
   </div>
   <div class="form-group row">
     <div class="col-sm-2">
-      <%= f.label :note, class: "control-label" %><br>
+      <%= f.label :note, "Observaciones", class: "control-label" %><br>
     </div>
     <div class="col-sm-10">
       <%= f.text_area :note, class: "form-control" %>
