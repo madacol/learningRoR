@@ -9,6 +9,14 @@
     <div class="col-sm-6 pull-sm-right">
       <%= render 'layouts/cierres_form', :cuenta =>  @new_pool.model_name.name %>
     </div>
+
+    <div  class="col-sm-3">
+      <div class="btn-group" role="group">
+        <button type="button" class="btn btn-secondary"><%= link_to "Hoy", "/pools/days/0" %></button>
+        <button type="button" class="btn btn-secondary"><%= link_to "7 días", "/pools/days/7" %></button>
+        <button type="button" class="btn btn-secondary"><%= link_to "30 días", "/pools/days/30" %></button>
+      </div>
+    </div>
   </div>
 </p>
 <div class="table-responsive">
