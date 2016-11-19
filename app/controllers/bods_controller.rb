@@ -42,9 +42,17 @@ class BodsController < ApplicationController
   def create
     @bod = Bod.new(bod_params)
     # ask_for_permission(@bod, 'create_bod') and return if current_user.cannot 'create_bod'
+    # Calculate balance and save
     last_bod = Bod.last
     (last_bod.nil? or last_bod.balance.nil?) ?
       @bod.balance = @bod.monto : @bod.balance = last_bod.balance + @bod.monto
+    #
+    # Extract category, if given
+    category = params[:bod][:category]
+    unless category.nil?
+      @bod.category_type, @bod.category_id = category.split(':')
+    end
+    #
     respond_to do |format|
       if @bod.save
         format.html { redirect_to bods_url, notice: @bod.table_name_to_show.concat(' fue creada satisfactoriamente.') }
@@ -61,6 +69,12 @@ class BodsController < ApplicationController
   def update
     @bod.assign_attributes(bod_params)
     # ask_for_permission(@bod, 'update_bod') and return if current_user.cannot 'update_bod'
+    # Extract category, if given
+    category = params[:bod][:category]
+    unless category.nil?
+      @bod.category_type, @bod.category_id = category.split(':')
+    end
+    #
     @bod.save ?
       are_saved = update_balances(@bod) : are_saved = [false]
     respond_to do |format|

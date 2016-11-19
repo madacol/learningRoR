@@ -42,9 +42,17 @@ class MercantilsController < ApplicationController
   def create
     @mercantil = Mercantil.new(mercantil_params)
     # ask_for_permission(@mercantil, 'create_mercantil') and return if current_user.cannot 'create_mercantil'
+    # Calculate balance and save
     last_mercantil = Mercantil.last
     (last_mercantil.nil? or last_mercantil.balance.nil?) ?
       @mercantil.balance = @mercantil.monto : @mercantil.balance = last_mercantil.balance + @mercantil.monto
+    #
+    # Extract category, if given
+    category = params[:mercantil][:category]
+    unless category.nil?
+      @mercantil.category_type, @mercantil.category_id = category.split(':')
+    end
+    #
     respond_to do |format|
       if @mercantil.save
         format.html { redirect_to mercantils_url, notice: @mercantil.table_name_to_show.concat(' fue creada satisfactoriamente.') }
@@ -61,6 +69,12 @@ class MercantilsController < ApplicationController
   def update
     @mercantil.assign_attributes(mercantil_params)
     # ask_for_permission(@mercantil, 'update_mercantil') and return if current_user.cannot 'update_mercantil'
+    # Extract category, if given
+    category = params[:mercantil][:category]
+    unless category.nil?
+      @mercantil.category_type, @mercantil.category_id = category.split(':')
+    end
+    #
     @mercantil.save ?
       are_saved = update_balances(@mercantil) : are_saved = [false]
     respond_to do |format|

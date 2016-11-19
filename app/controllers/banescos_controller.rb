@@ -42,9 +42,17 @@ class BanescosController < ApplicationController
   def create
     @banesco = Banesco.new(banesco_params)
     # ask_for_permission(@banesco, 'create_banesco') and return if current_user.cannot 'create_banesco'
+    # Calculate balance and save
     last_banesco = Banesco.last
     (last_banesco.nil? or last_banesco.balance.nil?) ?
       @banesco.balance = @banesco.monto : @banesco.balance = last_banesco.balance + @banesco.monto
+    #
+    # Calculate balance and save# Extract category, if given
+    category = params[:banesco][:category]
+    unless category.nil?
+      @banesco.category_type, @banesco.category_id = category.split(':')
+    end
+    #
     respond_to do |format|
       if @banesco.save
         format.html { redirect_to banescos_url, notice: @banesco.table_name_to_show.concat(' fue creada satisfactoriamente.') }
@@ -61,6 +69,12 @@ class BanescosController < ApplicationController
   def update
     @banesco.assign_attributes(banesco_params)
     # ask_for_permission(@banesco, 'update_banesco') and return if current_user.cannot 'update_banesco'
+    # Extract category, if given
+    category = params[:banesco][:category]
+    unless category.nil?
+      @banesco.category_type, @banesco.category_id = category.split(':')
+    end
+    #
     @banesco.save ?
       are_saved = update_balances(@banesco) : are_saved = [false]
     respond_to do |format|

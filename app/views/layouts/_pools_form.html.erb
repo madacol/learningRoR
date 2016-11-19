@@ -17,23 +17,14 @@
       <%= f.date_field :date_of, class: "form-control" %>
     </div>  
   </div>
+
   <div class="form-group row">
     <div class="col-sm-2">
-      <%= f.label :category_type, 'Categoría', class: "control-label" %><br>
+      <%= f.label :category, "Categoría", class: "control-label" %><br>
     </div>
-    <div class="col-sm-4"> 
-      <%= f.select(:category_type, options_for_select( categories.collect { |category| [eval(category).new.category_name_to_show, category] }, @pool.category_type ), { prompt: '--Seleccionar--'}, { class: "form-control c-select chosen-select chosen-select" } ) %>
+    <div class="col-sm-4">
+      <%= f.select :category, grouped_options_for_select(categories_grouped_options),{},{ :class=>"form-control c-select chosen-select" }%>
     </div>
-    <% categories.each do |category| %>
-      <div id= <%= category+namespace_id %> class="<%= 'hidden' if @pool.category_type != category %>">
-        <div class="col-sm-4">
-          <%= f.collection_select( :category_id, eval(category).all, :id, :record_name_to_show, { prompt: '-Seleccionar-'}, { class: "form-control c-select chosen-select chosen-select" }) %>
-        </div>
-        <div class="col-sm-2">
-          <%= render 'layouts/modal_button', :btn_name => 'Añadir', :namespace_id=> "new_"+category.downcase %>
-        </div>
-      </div>
-    <% end %>
   </div>
   <div class="form-group row">
     <div class="col-sm-2">

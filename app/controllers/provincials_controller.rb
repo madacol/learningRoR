@@ -42,9 +42,17 @@ class ProvincialsController < ApplicationController
   def create
     @provincial = Provincial.new(provincial_params)
     # ask_for_permission(@provincial, 'create_provincial') and return if current_user.cannot 'create_provincial'
+    # Calculate balance and save
     last_provincial = Provincial.last
     (last_provincial.nil? or last_provincial.balance.nil?) ?
       @provincial.balance = @provincial.monto : @provincial.balance = last_provincial.balance + @provincial.monto
+    #
+    # Extract category, if given
+    category = params[:provincial][:category]
+    unless category.nil?
+      @provincial.category_type, @provincial.category_id = category.split(':')
+    end
+    #
     respond_to do |format|
       if @provincial.save
         format.html { redirect_to provincials_url, notice: @provincial.table_name_to_show.concat(' fue creada satisfactoriamente.') }
@@ -61,6 +69,12 @@ class ProvincialsController < ApplicationController
   def update
     @provincial.assign_attributes(provincial_params)
     # ask_for_permission(@provincial, 'update_provincial') and return if current_user.cannot 'update_provincial'
+    # Extract category, if given
+    category = params[:provincial][:category]
+    unless category.nil?
+      @provincial.category_type, @provincial.category_id = category.split(':')
+    end
+    #
     @provincial.save ?
       are_saved = update_balances(@provincial) : are_saved = [false]
     respond_to do |format|

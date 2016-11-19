@@ -42,9 +42,17 @@ class BdvsController < ApplicationController
   def create
     @bdv = Bdv.new(bdv_params)
     # ask_for_permission(@bdv, 'create_bdv') and return if current_user.cannot 'create_bdv'
+    # Calculate balance and save
     last_bdv = Bdv.last
     (last_bdv.nil? or last_bdv.balance.nil?) ?
       @bdv.balance = @bdv.monto : @bdv.balance = last_bdv.balance + @bdv.monto
+    #
+    # Extract category, if given
+    category = params[:bdv][:category]
+    unless category.nil?
+      @bdv.category_type, @bdv.category_id = category.split(':')
+    end
+    #
     respond_to do |format|
       if @bdv.save
         format.html { redirect_to bdvs_url, notice: @bdv.table_name_to_show.concat(' fue creada satisfactoriamente.') }
@@ -61,6 +69,12 @@ class BdvsController < ApplicationController
   def update
     @bdv.assign_attributes(bdv_params)
     # ask_for_permission(@bdv, 'update_bdv') and return if current_user.cannot 'update_bdv'
+    # Extract category, if given
+    category = params[:bdv][:category]
+    unless category.nil?
+      @bdv.category_type, @bdv.category_id = category.split(':')
+    end
+    #
     @bdv.save ?
       are_saved = update_balances(@bdv) : are_saved = [false]
     respond_to do |format|
