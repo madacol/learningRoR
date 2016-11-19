@@ -27,8 +27,10 @@ $(document).on "turbolinks:load", ->
   $('.chosen-select').each ->
     $(this).chosen
       allow_single_deselect: true
+      include_group_label_in_selected: true
       no_results_text: 'No existe'
       width: '100%'
     $(this).attr('style','display:block; position:absolute; clip:rect(0,0,0,0)')
+    $(this).attr('tabindex','-1')
 
   $('[data-toggle="tooltip"]').tooltip()
