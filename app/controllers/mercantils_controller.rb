@@ -113,6 +113,6 @@ class MercantilsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def mercantil_params
-      params.require(:mercantil).permit(:category_id, :category_type, :monto, :balance, :cuenta, :comprobante_type, :n_comprobante, :description, :razon_social_id, :date_of, :forma_de_pago, :forma_de_pago_nro, :receiver)
+      params.require(:mercantil).permit(:category_id, :category_type, :monto, :balance, :cuenta, :comprobante_type, :n_factura, :description, :razon_social_id, :date_of, :forma_de_pago, :forma_de_pago_nro, :receiver)
     end
 end

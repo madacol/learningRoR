@@ -63,24 +63,10 @@
   </div>
   <div class="form-group row">
     <div class="col-sm-2">
-      <%= f.label :comprobante_type, "Tipo de comprobante", class: "control-label" %><br>
+      <%= f.label :n_factura, "Factura", class: "control-label" %><br>
     </div>
     <div class="col-sm-10">
-      <%= f.collection_radio_buttons(:comprobante_type, Pool.comprobante_types, :first, :first) do |b|
-        content_tag(:div, class: "form-check") do
-          b.label(class: "form-check-label") {
-            b.radio_button(class: "form-check-input") + b.text
-          }
-        end
-      end %>
-    </div>
-  </div>
-  <div class="form-group row">
-    <div class="col-sm-2">
-      <%= f.label :n_comprobante, "Factura", class: "control-label" %><br>
-    </div>
-    <div class="col-sm-10">
-      <%= f.text_field :n_comprobante, class: "form-control" %>
+      <%= f.text_field :n_factura, class: "form-control" %>
     </div>
   </div>
   <div class="form-group row">

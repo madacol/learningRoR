@@ -2,7 +2,6 @@ class Mercantil < ActiveRecord::Base
 	belongs_to :category, polymorphic: true
 	has_one :permission_request, as: :auth_record, :dependent => :destroy
 	belongs_to :razon_social
-	enum comprobante_type: [ "Recibo", "Factura", "Ninguno" ]
 	bank_name = 'Mercantil'
 	cards = PaymentCard.where(bank: PaymentCard.banks[bank_name]).collect {|card| "#{card.id}"}
 	enum forma_de_pago: [ "Efectivo", "Cheque", "Transferencia" ] + cards

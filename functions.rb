@@ -16,7 +16,7 @@ else
 ft = ph['fa']
 fn = 'Factura'
 end
-Pool.create date_of: ph["f"], monto:ph["m"].to_f, description:ph["d"], receiver:ph["re"], comprobante_type: fn, n_comprobante: ft, balance: ph['b'], razon_social_id: rs.id, receiver: ph['re']
+Pool.create date_of: ph["f"], monto:ph["m"].to_f, description:ph["d"], receiver:ph["re"], comprobante_type: fn, n_factura: ft, balance: ph['b'], razon_social_id: rs.id, receiver: ph['re']
 gets
 end
 

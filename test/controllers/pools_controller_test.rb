@@ -18,7 +18,7 @@ class PoolsControllerTest < ActionController::TestCase
 
   test "should create pool" do
     assert_difference('Pool.count') do
-      post :create, pool: { balance: @pool.balance, description: @pool.description, gg_id: @pool.gg_id, inversion_id: @pool.inversion_id, loan_id: @pool.loan_id, monto: @pool.monto, n_comprobante: @pool.n_comprobante, odt_id: @pool.odt_id, retencione_id: @pool.retencione_id }
+      post :create, pool: { balance: @pool.balance, description: @pool.description, gg_id: @pool.gg_id, inversion_id: @pool.inversion_id, loan_id: @pool.loan_id, monto: @pool.monto, n_factura: @pool.n_factura, odt_id: @pool.odt_id, retencione_id: @pool.retencione_id }
     end
 
     assert_redirected_to pool_path(assigns(:pool))
@@ -35,7 +35,7 @@ class PoolsControllerTest < ActionController::TestCase
   end
 
   test "should update pool" do
-    patch :update, id: @pool, pool: { balance: @pool.balance, description: @pool.description, gg_id: @pool.gg_id, inversion_id: @pool.inversion_id, loan_id: @pool.loan_id, monto: @pool.monto, n_comprobante: @pool.n_comprobante, odt_id: @pool.odt_id, retencione_id: @pool.retencione_id }
+    patch :update, id: @pool, pool: { balance: @pool.balance, description: @pool.description, gg_id: @pool.gg_id, inversion_id: @pool.inversion_id, loan_id: @pool.loan_id, monto: @pool.monto, n_factura: @pool.n_factura, odt_id: @pool.odt_id, retencione_id: @pool.retencione_id }
     assert_redirected_to pool_path(assigns(:pool))
   end
 

@@ -8,7 +8,7 @@ one:
   retencione_id: 
   monto: 9.99
   balance: 9.99
-  n_comprobante: MyString
+  n_factura: MyString
   description: MyText
 
 two:
@@ -19,5 +19,5 @@ two:
   retencione_id: 
   monto: 9.99
   balance: 9.99
-  n_comprobante: MyString
+  n_factura: MyString
   description: MyText

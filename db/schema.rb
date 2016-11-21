@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161021041502) do
+ActiveRecord::Schema.define(version: 20161120165009) do
 
   create_table "actions", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -41,8 +41,7 @@ ActiveRecord::Schema.define(version: 20161021041502) do
   add_index "auth_groups_users", ["user_id"], name: "index_auth_groups_users_on_user_id", using: :btree
 
   create_table "banescos", force: :cascade do |t|
-    t.integer  "comprobante_type",  limit: 4
-    t.string   "n_comprobante",     limit: 255
+    t.string   "n_factura",         limit: 255
     t.decimal  "monto",                           precision: 15, scale: 2
     t.text     "description",       limit: 65535
     t.datetime "created_at",                                               null: false
@@ -61,8 +60,7 @@ ActiveRecord::Schema.define(version: 20161021041502) do
   add_index "banescos", ["razon_social_id"], name: "index_banescos_on_razon_social_id", using: :btree
 
   create_table "bdvs", force: :cascade do |t|
-    t.integer  "comprobante_type",  limit: 4
-    t.string   "n_comprobante",     limit: 255
+    t.string   "n_factura",         limit: 255
     t.decimal  "monto",                           precision: 15, scale: 2
     t.text     "description",       limit: 65535
     t.datetime "created_at",                                               null: false
@@ -78,8 +76,7 @@ ActiveRecord::Schema.define(version: 20161021041502) do
   end
 
   create_table "bods", force: :cascade do |t|
-    t.integer  "comprobante_type",  limit: 4
-    t.string   "n_comprobante",     limit: 255
+    t.string   "n_factura",         limit: 255
     t.decimal  "monto",                           precision: 15, scale: 2
     t.text     "description",       limit: 65535
     t.datetime "created_at",                                               null: false
@@ -174,8 +171,7 @@ ActiveRecord::Schema.define(version: 20161021041502) do
   add_index "is_allowed_tos", ["auth_group_id"], name: "index_is_allowed_tos_on_auth_group_id", using: :btree
 
   create_table "mercantils", force: :cascade do |t|
-    t.integer  "comprobante_type",  limit: 4
-    t.string   "n_comprobante",     limit: 255
+    t.string   "n_factura",         limit: 255
     t.decimal  "monto",                           precision: 15, scale: 2
     t.text     "description",       limit: 65535
     t.datetime "created_at",                                               null: false
@@ -230,8 +226,7 @@ ActiveRecord::Schema.define(version: 20161021041502) do
   add_index "permission_requests", ["auth_record_type", "auth_record_id"], name: "index_permission_requests_on_auth_record_type_and_auth_record_id", using: :btree
 
   create_table "pools", force: :cascade do |t|
-    t.integer  "comprobante_type",  limit: 4
-    t.string   "n_comprobante",     limit: 255
+    t.string   "n_factura",         limit: 255
     t.decimal  "monto",                           precision: 15, scale: 2
     t.text     "description",       limit: 65535
     t.datetime "created_at",                                               null: false
@@ -250,8 +245,7 @@ ActiveRecord::Schema.define(version: 20161021041502) do
   add_index "pools", ["razon_social_id"], name: "index_pools_on_razon_social_id", using: :btree
 
   create_table "provincials", force: :cascade do |t|
-    t.integer  "comprobante_type",  limit: 4
-    t.string   "n_comprobante",     limit: 255
+    t.string   "n_factura",         limit: 255
     t.decimal  "monto",                           precision: 15, scale: 2
     t.text     "description",       limit: 65535
     t.datetime "created_at",                                               null: false
