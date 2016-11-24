@@ -13,6 +13,6 @@ class Gg < ActiveRecord::Base
 		'Gastos Generales'
 	end
 	def record_name_to_show
-		return "#{self.code}(#{self.alias})"
+		return "#{self.code} #{self.alias}"
 	end
 end
