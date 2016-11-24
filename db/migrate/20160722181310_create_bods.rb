@@ -1,5 +1,6 @@
 class CreateBods < ActiveRecord::Migration
-	create_table "bods", force: :cascade do |t|
+	def change
+		create_table "bods", force: :cascade do |t|
 	    t.integer  "comprobante_type", limit: 4
 	    t.string   "n_comprobante",    limit: 255
 	    t.decimal  "monto",                          precision: 15, scale: 2
@@ -14,4 +15,5 @@ class CreateBods < ActiveRecord::Migration
 
 	  add_index "bods", ["category_type", "category_id"], name: "index_bods_on_category_type_and_category_id", using: :btree
 	  add_index "bods", ["razon_social_id"], name: "index_bods_on_razon_social_id", using: :btree
+	 end
 end
