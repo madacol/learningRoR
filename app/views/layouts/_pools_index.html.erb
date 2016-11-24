@@ -10,11 +10,11 @@
       <%= render 'layouts/cierres_form', :cuenta =>  @new_pool.model_name.name %>
     </div>
     <div  class="col-sm-4">
-      <div class="btn-group" role="group">
-        <button type="button" class="btn btn-secondary"><%= link_to "Hoy", "/pools/days/0" %></button>
-        <button type="button" class="btn btn-secondary"><%= link_to "7 días", "/pools/days/7" %></button>
-        <button type="button" class="btn btn-secondary"><%= link_to "30 días", "/pools/days/30" %></button>
-        <button type="button" class="btn btn-secondary"><%= link_to "Todos", "/pools" %></button>
+      <div id="time_scope" class="btn-group" role="group">
+        <%= link_to "Hoy", "/pools/days/0", :class => "btn btn-secondary" %>
+        <%= link_to "7 días", "/pools/days/7", :class => "btn btn-secondary" %>
+        <%= link_to "30 días", "/pools/days/30", :class => "btn btn-secondary" %>
+        <%= link_to "Todos", "/pools", :class => "btn btn-secondary" %>
       </div>
     </div>
   </div>
