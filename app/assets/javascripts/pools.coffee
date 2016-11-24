@@ -4,10 +4,15 @@
 
 $(document).on "turbolinks:load", ->
 
+  $('.revertir').each ->
+    $(this).click () ->
+      tbody = $('#main_table tbody')
+      tbody.html $('tr', tbody).get().reverse()
+
   $('div.hidden').each ->
     $(this).hide()
     $(this).find('select').removeAttr 'name'
-    
+
   $("select[id$='pool_category_type']").each ->
     select = $(this)
     select.data 'previous', select.val()
