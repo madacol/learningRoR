@@ -18,7 +18,7 @@ class RetencionesControllerTest < ActionController::TestCase
 
   test "should create retencione" do
     assert_difference('Retencione.count') do
-      post :create, retencione: { code_factura: @retencione.code_factura, description: @retencione.description, monto: @retencione.monto, razon_social_id: @retencione.razon_social_id, status: @retencione.status, type: @retencione.tipo }
+      post :create, retencione: { name: @retencione.name, description: @retencione.description, monto: @retencione.monto, razon_social_id: @retencione.razon_social_id, status: @retencione.status, type: @retencione.tipo }
     end
 
     assert_redirected_to retencione_path(assigns(:retencione))
@@ -35,7 +35,7 @@ class RetencionesControllerTest < ActionController::TestCase
   end
 
   test "should update retencione" do
-    patch :update, id: @retencione, retencione: { code_factura: @retencione.code_factura, description: @retencione.description, monto: @retencione.monto, razon_social_id: @retencione.razon_social_id, status: @retencione.status, type: @retencione.tipo }
+    patch :update, id: @retencione, retencione: { name: @retencione.name, description: @retencione.description, monto: @retencione.monto, razon_social_id: @retencione.razon_social_id, status: @retencione.status, type: @retencione.tipo }
     assert_redirected_to retencione_path(assigns(:retencione))
   end
 

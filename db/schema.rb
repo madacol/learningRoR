@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161120165009) do
+ActiveRecord::Schema.define(version: 20161125154908) do
 
   create_table "actions", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20161120165009) do
   add_index "auth_groups_users", ["user_id"], name: "index_auth_groups_users_on_user_id", using: :btree
 
   create_table "banescos", force: :cascade do |t|
-    t.string   "n_factura",         limit: 255
+    t.string   "n_comprobante",     limit: 255
     t.decimal  "monto",                           precision: 15, scale: 2
     t.text     "description",       limit: 65535
     t.datetime "created_at",                                               null: false
@@ -74,6 +74,9 @@ ActiveRecord::Schema.define(version: 20161120165009) do
     t.string   "receiver",          limit: 255
     t.decimal  "balance",                         precision: 15, scale: 2
   end
+
+  add_index "bdvs", ["category_type", "category_id"], name: "index_bdvs_on_category_type_and_category_id", using: :btree
+  add_index "bdvs", ["razon_social_id"], name: "index_bdvs_on_razon_social_id", using: :btree
 
   create_table "bods", force: :cascade do |t|
     t.string   "n_factura",         limit: 255
@@ -282,18 +285,14 @@ ActiveRecord::Schema.define(version: 20161120165009) do
   add_index "razon_socials", ["rif_ci"], name: "index_razon_socials_on_rif_ci", unique: true, using: :btree
 
   create_table "retenciones", force: :cascade do |t|
-    t.string   "code_factura",    limit: 255,                            null: false
-    t.integer  "razon_social_id", limit: 4,                              null: false
-    t.integer  "tipo",            limit: 4,                              null: false
-    t.decimal  "monto",                         precision: 15, scale: 2, null: false
-    t.text     "description",     limit: 65535
-    t.integer  "status",          limit: 4
-    t.datetime "created_at",                                             null: false
-    t.datetime "updated_at",                                             null: false
+    t.string   "name",        limit: 255,                            null: false
+    t.decimal  "monto",                     precision: 15, scale: 2
+    t.text     "description", limit: 65535
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
   end
 
-  add_index "retenciones", ["code_factura"], name: "index_retenciones_on_code_factura", unique: true, using: :btree
-  add_index "retenciones", ["razon_social_id"], name: "index_retenciones_on_razon_social_id", using: :btree
+  add_index "retenciones", ["name"], name: "index_retenciones_on_name", unique: true, using: :btree
 
   create_table "sessions", force: :cascade do |t|
     t.string   "session_id", limit: 255,   null: false
@@ -334,6 +333,5 @@ ActiveRecord::Schema.define(version: 20161120165009) do
   add_foreign_key "is_allowed_tos", "auth_groups"
   add_foreign_key "odts", "razon_socials"
   add_foreign_key "pools", "razon_socials"
-  add_foreign_key "retenciones", "razon_socials"
   add_foreign_key "users", "employees"
 end

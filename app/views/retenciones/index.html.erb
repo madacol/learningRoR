@@ -8,24 +8,16 @@
   <table  class="table table-sm table-hover table-striped table-bordered">
     <thead>
       <tr>
-        <th>Código</th>
-        <th><%= RazonSocial.new.table_name_to_show %></th>
-        <th>Tipo</th>
-        <th>Monto</th>
+        <th>Nombre</th>
         <th>Description</th>
-        <th>Status</th>
         <th colspan="3"></th>
       </tr>
     </thead>
     <tbody>
       <% @retenciones.reverse.each do |retencione| %>
         <tr>
-          <td><%= retencione.code_factura %></td>
-          <td><%= link_to retencione.razon_social.record_name_to_show, retencione.razon_social %></td>
-          <td><%= retencione.tipo %></td>
-          <td><%= retencione.monto %></td>
+          <td><%= retencione.name %></td>
           <td><%= retencione.description %></td>
-          <td><%= retencione.status %></td>
           <td>
             <%= render 'layouts/modal_button', :btn_name => 'Editar', :namespace_id => "edit_retencione_#{retencione.id}" %>
             <%= render 'layouts/modal', :@retencione => retencione, :modal_title => 'Editar', :namespace_id => "edit_retencione_#{retencione.id}" %>
