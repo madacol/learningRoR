@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20161125154908) do
   add_index "auth_groups_users", ["user_id"], name: "index_auth_groups_users_on_user_id", using: :btree
 
   create_table "banescos", force: :cascade do |t|
-    t.string   "n_comprobante",     limit: 255
+    t.string   "n_factura",         limit: 255
     t.decimal  "monto",                           precision: 15, scale: 2
     t.text     "description",       limit: 65535
     t.datetime "created_at",                                               null: false
