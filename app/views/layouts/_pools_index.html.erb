@@ -48,8 +48,8 @@
           <td><%= pool.description %></td>
           <td><%= (link_to pool.category.table_name_to_show, pool.category.class) if pool.category %></td>
           <td><%= (link_to pool.category.record_name_to_show, pool.category) if pool.category %></td>
-          <td><%= pool.monto %></td>
-          <td><%= pool.balance %></td>
+          <td><%= number_with_delimiter pool.monto, :delimiter => ".", :separator => "," %></td>
+          <td><%= number_with_delimiter pool.balance, :delimiter => ".", :separator => "," %></td>
           <td><%= pool.receiver %></td>
           <td data-toggle="tooltip" data-placement="left" title="<%= pool.forma_de_pagos_for_collection[pool.forma_de_pago] %>"><%= pool.forma_de_pago_nro %></td>
           <td>
