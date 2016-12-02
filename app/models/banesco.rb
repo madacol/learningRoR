@@ -8,7 +8,7 @@ class Banesco < ActiveRecord::Base
 
 	#Substitute card's ids in forma_de_pago, with card_name_to_show
 	def forma_de_pagos_for_collection
-		array = eval(self.model_name.name).forma_de_pagos.collect do |k,v|
+		array = self.class.forma_de_pagos.collect do |k,v|
 			if is_integer?(k)
 				[k, PaymentCard.find(k).card_name_to_show]
 			else
@@ -25,6 +25,7 @@ class Banesco < ActiveRecord::Base
 	end
 
 	private
+
 	def is_integer?(string)
 		string.to_i.to_s == string
 	end

@@ -16,10 +16,10 @@ class ApplicationController < ActionController::Base
   end
 
   def update_balances(pool)
-    previous_record = eval(pool.model_name.name).where("id < #{pool.id}").last
+    previous_record = pool.class.where("id < #{pool.id}").last
     (previous_record.nil? or previous_record.balance.nil?) ?
       last_balance = 0 : last_balance = previous_record.balance
-    return eval(pool.model_name.name).where("id >= #{pool.id}").collect do |g|
+    return pool.class.where("id >= #{pool.id}").collect do |g|
       g.balance = g.monto + last_balance
       last_balance = g.balance
       g.save
