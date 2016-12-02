@@ -10,7 +10,7 @@ class BdvsController < ApplicationController
     @new_pool.date_of = Date.today
     @cierre = Cierre.new
     @cierre.account = "Bdv"
-    render 'layouts/_pools_index'
+    render 'layouts/_cuentas_index'
   end
 
   # GET /bdvs/days/:days
@@ -20,7 +20,7 @@ class BdvsController < ApplicationController
     @new_pool.date_of = Date.today
     @cierre = Cierre.new
     @cierre.account = "Bdv"
-    render 'layouts/_pools_index'
+    render 'layouts/_cuentas_index'
   end
 
   # GET /bdvs/1

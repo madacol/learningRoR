@@ -1,0 +1,73 @@
+<p id="notice"><%= notice %></p>
+<h1><%= @new_pool.table_name_to_show %></h1>
+<p>
+  <div class="row">
+    <div class="col-sm-2">
+      <%= render 'layouts/modal_button', :btn_name => 'Nuevo Registro', :namespace_id => "new_#{@new_pool.model_name.singular}" %>
+      <%= render 'layouts/modal', :form_to_render => "layouts/pools_form", :@pool => @new_pool, :modal_title => 'Nuevo Registro', :namespace_id => "new_#{@new_pool.model_name.singular}" %>
+    </div>
+    <div class="col-sm-6 pull-sm-right">
+      <%= render 'layouts/cierres_form', :cuenta =>  @new_pool.model_name.name %>
+    </div>
+    <div  class="col-sm-4">
+      <div id="time_scope" class="btn-group" role="group">
+        <%= link_to "Hoy", "/pools/days/0", :class => "btn btn-outline-primary #{'active' if current_page? "/pools/days/0" }" %>
+        <%= link_to "7 días", "/pools/days/7", :class => "btn btn-outline-primary #{'active' if current_page? "/pools/days/7" }" %>
+        <%= link_to "30 días", "/pools/days/30", :class => "btn btn-outline-primary #{'active' if current_page? "/pools/days/30" }" %>
+        <%= link_to "Todos", "/pools", :class => "btn btn-outline-primary #{'active' if current_page? "/pools" }" %>
+      </div>
+    </div>
+  </div>
+</p>
+<div class="table-responsive">
+  <table id="main_table" class="table table-sm table-hover table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>Fecha</th>
+        <th>Banco</th>
+        <th><%= RazonSocial.new.table_name_to_show %></th>
+        <th>Descripción</th>
+        <th>Categoría</th>
+        <th>Nombre o Alias</th>
+        <th>Monto</th>
+        <th>Recibido por</th>
+        <th>Recibo</th>
+        <th>
+          <button type="button" class="btn btn-success revertir">Invertir</button>
+        </th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @pools.reverse.each do |pool| %>
+        <tr>
+          <td><%= pool.date_of %></td>
+          <td><%= pool.table_name_to_show %></td>
+          <td><%= (link_to pool.razon_social.record_name_to_show, pool.razon_social) if pool.razon_social %></td>
+          <td><%= pool.description %></td>
+          <td><%= (link_to pool.category.table_name_to_show, pool.category.class) if pool.category %></td>
+          <td><%= (link_to pool.category.record_name_to_show, pool.category) if pool.category %></td>
+          <td><%= number_with_delimiter pool.monto, :delimiter => ".", :separator => "," %></td>
+          <td><%= pool.receiver %></td>
+          <td data-toggle="tooltip" data-placement="left" title="<%= pool.forma_de_pagos_for_collection[pool.forma_de_pago] %>"><%= pool.forma_de_pago_nro %></td>
+          <td>
+            <%= render 'layouts/modal_button', :btn_name => 'Editar', :namespace_id => "edit_#{@new_pool.model_name.singular}_#{pool.id}" %>
+            <%= render 'layouts/modal', :form_to_render => "layouts/pools_form", :@pool => pool, :modal_title => 'Editar', :namespace_id => "edit_#{@new_pool.model_name.singular}_#{pool.id}" %>
+          </td>
+          <td><%= link_to '×', pool, :method => :delete, :data => { :confirm => '¿Está seguro?' }, :remote => true, :class => "delete_row close equis" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<%
+  new_odt = Odt.new
+  new_odt.comision_odts.build
+  new_odt.deducciones_odts.build
+%>
+<%= render 'layouts/modal', :form_to_render => 'odts/form', :@odt => new_odt, :modal_title => 'Añadir ODT', :namespace_id => "new_odt" %>
+<%= render 'layouts/modal', :form_to_render => 'inversions/form', :@inversion => Inversion.new, :modal_title => 'Añadir Inversion', :namespace_id => "new_inversion" %>
+<%= render 'layouts/modal', :form_to_render => 'ggs/form', :@gg => Gg.new, :modal_title => 'Añadir Gastos Generales', :namespace_id => "new_gg" %>
+<%= render 'layouts/modal', :form_to_render => 'retenciones/form', :@retencione => Retencione.new, :modal_title => 'Añadir Retención', :namespace_id => "new_retencione" %>
+<%= render 'layouts/modal', :form_to_render => 'employees/form', :@employee => Employee.new, :modal_title => 'Añadir Empleado', :namespace_id => "new_employee" %>
+<%= render 'layouts/modal', :form_to_render => 'razon_socials/form', :@razon_social => RazonSocial.new, :modal_title => 'Añadir Razón social', :namespace_id => 'new_razon_social' %>

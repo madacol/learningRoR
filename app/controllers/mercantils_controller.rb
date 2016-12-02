@@ -10,7 +10,7 @@ class MercantilsController < ApplicationController
     @new_pool.date_of = Date.today
     @cierre = Cierre.new
     @cierre.account = "Mercantil"
-    render 'layouts/_pools_index'
+    render 'layouts/_cuentas_index'
   end
 
   # GET /mercantils/days/:days
@@ -20,7 +20,7 @@ class MercantilsController < ApplicationController
     @new_pool.date_of = Date.today
     @cierre = Cierre.new
     @cierre.account = "Mercantil"
-    render 'layouts/_pools_index'
+    render 'layouts/_cuentas_index'
   end
 
   # GET /mercantils/1

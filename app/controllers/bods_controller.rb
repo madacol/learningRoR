@@ -10,7 +10,7 @@ class BodsController < ApplicationController
     @new_pool.date_of = Date.today
     @cierre = Cierre.new
     @cierre.account = "Bod"
-    render 'layouts/_pools_index'
+    render 'layouts/_cuentas_index'
   end
 
   # GET /bods/days/:days
@@ -20,7 +20,7 @@ class BodsController < ApplicationController
     @new_pool.date_of = Date.today
     @cierre = Cierre.new
     @cierre.account = "Bod"
-    render 'layouts/_pools_index'
+    render 'layouts/_cuentas_index'
   end
 
   # GET /bods/1

@@ -10,7 +10,7 @@ class ProvincialsController < ApplicationController
     @new_pool.date_of = Date.today
     @cierre = Cierre.new
     @cierre.account = "Provincial"
-    render 'layouts/_pools_index'
+    render 'layouts/_cuentas_index'
   end
 
   # GET /provincials/days/:days
@@ -20,7 +20,7 @@ class ProvincialsController < ApplicationController
     @new_pool.date_of = Date.today
     @cierre = Cierre.new
     @cierre.account = "Provincial"
-    render 'layouts/_pools_index'
+    render 'layouts/_cuentas_index'
   end
 
   # GET /provincials/1

@@ -10,7 +10,7 @@ class BanescosController < ApplicationController
     @new_pool.date_of = Date.today
     @cierre = Cierre.new
     @cierre.account = "Banesco"
-    render 'layouts/_pools_index'
+    render 'layouts/_cuentas_index'
   end
 
   # GET /banescos/days/:days
@@ -20,7 +20,7 @@ class BanescosController < ApplicationController
     @new_pool.date_of = Date.today
     @cierre = Cierre.new
     @cierre.account = "Banesco"
-    render 'layouts/_pools_index'
+    render 'layouts/_cuentas_index'
   end
 
   # GET /banescos/1
