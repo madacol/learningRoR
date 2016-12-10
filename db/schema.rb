@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161125154908) do
+ActiveRecord::Schema.define(version: 20161210154007) do
 
   create_table "actions", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -280,9 +280,6 @@ ActiveRecord::Schema.define(version: 20161125154908) do
     t.datetime "updated_at",                                                   null: false
     t.decimal  "percent_retencione_iva",               precision: 6, scale: 6, null: false
   end
-
-  add_index "razon_socials", ["email"], name: "index_razon_socials_on_email", unique: true, using: :btree
-  add_index "razon_socials", ["rif_ci"], name: "index_razon_socials_on_rif_ci", unique: true, using: :btree
 
   create_table "retenciones", force: :cascade do |t|
     t.string   "name",        limit: 255,                            null: false
