@@ -9,6 +9,7 @@ class RazonSocialsController < ApplicationController
     permission_denied and return  if current_user.cannot 'read_razon_social'
     @razon_socials = RazonSocial.all
     @new_razon_social = RazonSocial.new
+    @new_razon_social.percent_retencione_iva = 0.0
   end
 
   # GET /razon_socials/1
