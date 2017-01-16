@@ -42,7 +42,7 @@
     <tbody>
       <% @pools.reverse.each do |pool| %>
         <tr>
-          <td><%= pool.date_of %></td>
+          <td><%= pool.date_of.strftime("%d/%m/%Y") if pool.date_of %></td>
           <td><%= (link_to pool.razon_social.record_name_to_show, pool.razon_social) if pool.razon_social %></td>
           <td><%= pool.n_factura %></td>
           <td><%= pool.description %></td>
