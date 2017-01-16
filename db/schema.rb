@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161125154908) do
+ActiveRecord::Schema.define(version: 20161211154618) do
 
   create_table "actions", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -267,7 +267,7 @@ ActiveRecord::Schema.define(version: 20161125154908) do
   add_index "provincials", ["razon_social_id"], name: "index_provincials_on_razon_social_id", using: :btree
 
   create_table "razon_socials", force: :cascade do |t|
-    t.string   "rif_ci",                 limit: 255,                           null: false
+    t.string   "rif_ci",                 limit: 255
     t.string   "name",                   limit: 255,                           null: false
     t.text     "description",            limit: 65535
     t.string   "phone",                  limit: 255
@@ -278,11 +278,8 @@ ActiveRecord::Schema.define(version: 20161125154908) do
     t.string   "contact_email",          limit: 255
     t.datetime "created_at",                                                   null: false
     t.datetime "updated_at",                                                   null: false
-    t.decimal  "percent_retencione_iva",               precision: 6, scale: 6, null: false
+    t.decimal  "percent_retencione_iva",               precision: 6, scale: 6
   end
-
-  add_index "razon_socials", ["email"], name: "index_razon_socials_on_email", unique: true, using: :btree
-  add_index "razon_socials", ["rif_ci"], name: "index_razon_socials_on_rif_ci", unique: true, using: :btree
 
   create_table "retenciones", force: :cascade do |t|
     t.string   "name",        limit: 255,                            null: false

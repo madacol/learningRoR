@@ -9,6 +9,7 @@ class RazonSocialsController < ApplicationController
     permission_denied and return  if current_user.cannot 'read_razon_social'
     @razon_socials = RazonSocial.all
     @new_razon_social = RazonSocial.new
+    @new_razon_social.percent_retencione_iva = 0.0
   end
 
   # GET /razon_socials/1
@@ -36,7 +37,7 @@ class RazonSocialsController < ApplicationController
         format.html { redirect_to razon_socials_url, notice: @razon_social.table_name_to_show.concat(' fue creada satisfactoriamente.') }
         format.json { render :show, status: :created, location: @razon_social }
       else
-        format.html { render :new }
+        format.html { redirect_to razon_socials_url, notice: 'Hubo un error' }
         format.json { render json: @razon_social.errors, status: :unprocessable_entity }
       end
     end
