@@ -28,7 +28,7 @@
         <th><%= RazonSocial.new.table_name_to_show %></th>
         <th>Descripción</th>
         <th>Categoría</th>
-        <th>Nombre o Alias</th>
+        <th>Descripción</th>
         <th>Monto</th>
         <th>Recibido por</th>
         <th>Recibo</th>
@@ -45,8 +45,8 @@
           <td><%= pool.table_name_to_show %></td>
           <td><%= (link_to pool.razon_social.record_name_to_show, pool.razon_social) if pool.razon_social %></td>
           <td><%= pool.description %></td>
-          <td><%= (link_to pool.category.table_name_to_show, pool.category.class) if pool.category %></td>
           <td><%= (link_to pool.category.record_name_to_show, pool.category) if pool.category %></td>
+          <td><%= pool.category.description if pool.category %></td>
           <td><%= number_with_delimiter pool.monto, :delimiter => ".", :separator => "," %></td>
           <td><%= pool.receiver %></td>
           <td data-toggle="tooltip" data-placement="left" title="<%= pool.forma_de_pagos_for_collection[pool.forma_de_pago] %>"><%= pool.forma_de_pago_nro %></td>

@@ -28,6 +28,9 @@ class Employee < ActiveRecord::Base
 			end
 		end
 	end
+	def description
+		return nil
+	end
 	def category_name_to_show
 	'Préstamo'
 	end
