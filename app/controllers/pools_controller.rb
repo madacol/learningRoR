@@ -18,6 +18,7 @@ class PoolsController < ApplicationController
     @pools = Pool.where('created_at >= ?', params[:days].to_i.days.ago.beginning_of_day)
     @new_pool = Pool.new
     @new_pool.date_of = Date.today
+    @new_pool.forma_de_pago = "Efectivo"
     @cierre = Cierre.new
     @cierre.account = "Pool"
     render 'layouts/_pools_index'
