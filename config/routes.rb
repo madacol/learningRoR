@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     get 'days/:days', action: 'days_index', on: :collection
   end
 
-  root "pools#index"
+  root "pools#days_index", :days => 0
   resources :cierres
   resources :payment_cards
   resources :provincials, concerns: :days_ago_index

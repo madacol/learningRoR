@@ -56,7 +56,7 @@ class PoolsController < ApplicationController
     #
     respond_to do |format|
       if @pool.save
-        format.html { redirect_to pools_url, notice: @pool.table_name_to_show.concat(' fue creada satisfactoriamente.') }
+        format.html { redirect_back pools_url, notice: @pool.table_name_to_show.concat(' fue creada satisfactoriamente.') }
         format.json { render :show, status: :created, location: @pool }
       else
         format.html { render :new }
@@ -80,7 +80,7 @@ class PoolsController < ApplicationController
       are_saved = update_balances(@pool) : are_saved = [false]
     respond_to do |format|
       if are_saved.all?
-        format.html { redirect_to pools_url, notice: @pool.table_name_to_show.concat(' fue actualizado satisfactoriamente.') }
+        format.html { redirect_back pools_url, notice: @pool.table_name_to_show.concat(' fue actualizado satisfactoriamente.') }
       else
         format.html { render :edit }
         format.json { render json: @pool.errors, status: :unprocessable_entity }
@@ -96,7 +96,7 @@ class PoolsController < ApplicationController
     are_saved = update_balances(@pool)
     respond_to do |format|
       if are_saved.all?
-        format.html { redirect_to pools_url, notice: @pool.table_name_to_show.concat(' fue eliminado satisfactoriamente.')}
+        format.html { redirect_back pools_url, notice: @pool.table_name_to_show.concat(' fue eliminado satisfactoriamente.')}
         format.json { head :no_content }
         format.js   { render :layout => false }
       else

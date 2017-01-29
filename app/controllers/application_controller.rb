@@ -26,6 +26,14 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def redirect_back(default = root_url, options = nil)
+    if request.env["HTTP_REFERER"].present? and request.env["HTTP_REFERER"] != request.env["REQUEST_URI"]
+      redirect_to :back, options
+    else
+      redirect_to default, options
+    end
+  end
+
   protected
 
   def configure_devise_permitted_parameters

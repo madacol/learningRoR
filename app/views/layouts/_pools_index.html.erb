@@ -11,7 +11,7 @@
     </div>
     <div  class="col-sm-4">
       <div id="time_scope" class="btn-group" role="group">
-        <%= link_to "Hoy", "/#{@new_pool.model_name.plural}/days/0", :class => "btn btn-outline-primary #{'active' if current_page? "/#{@new_pool.model_name.plural}/days/0" }" %>
+        <%= link_to "Hoy", "/#{@new_pool.model_name.plural}/days/0", :class => "btn btn-outline-primary #{'active' if current_page? "/#{@new_pool.model_name.plural}/days/0" or current_page? root_url }" %>
         <%= link_to "7 días", "/#{@new_pool.model_name.plural}/days/7", :class => "btn btn-outline-primary #{'active' if current_page? "/#{@new_pool.model_name.plural}/days/7" }" %>
         <%= link_to "30 días", "/#{@new_pool.model_name.plural}/days/30", :class => "btn btn-outline-primary #{'active' if current_page? "/#{@new_pool.model_name.plural}/days/30" }" %>
         <%= link_to "Todos", "/#{@new_pool.model_name.plural}", :class => "btn btn-outline-primary #{'active' if current_page? "/#{@new_pool.model_name.plural}" }" %>

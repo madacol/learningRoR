@@ -55,7 +55,7 @@ class BdvsController < ApplicationController
     #
     respond_to do |format|
       if @bdv.save
-        format.html { redirect_to bdvs_url, notice: @bdv.table_name_to_show.concat(' fue creada satisfactoriamente.') }
+        format.html { redirect_back bdvs_url, notice: @bdv.table_name_to_show.concat(' fue creada satisfactoriamente.') }
         format.json { render :show, status: :created, location: @bdv }
       else
         format.html { render :new }
@@ -79,7 +79,7 @@ class BdvsController < ApplicationController
       are_saved = update_balances(@bdv) : are_saved = [false]
     respond_to do |format|
       if are_saved.all?
-        format.html { redirect_to bdvs_url, notice: @bdv.table_name_to_show.concat(' fue actualizado satisfactoriamente.') }
+        format.html { redirect_back bdvs_url, notice: @bdv.table_name_to_show.concat(' fue actualizado satisfactoriamente.') }
       else
         format.html { render :edit }
         format.json { render json: @bdv.errors, status: :unprocessable_entity }
@@ -95,7 +95,7 @@ class BdvsController < ApplicationController
     are_saved = update_balances(@bdv)
     respond_to do |format|
       if are_saved.all?
-        format.html { redirect_to bdvs_url, notice: @bdv.table_name_to_show.concat(' fue eliminado satisfactoriamente.')}
+        format.html { redirect_back bdvs_url, notice: @bdv.table_name_to_show.concat(' fue eliminado satisfactoriamente.')}
         format.json { head :no_content }
         format.js   { render :layout => false }
       else
