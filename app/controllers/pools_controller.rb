@@ -75,12 +75,13 @@ class PoolsController < ApplicationController
     unless category.nil?
       @pool.category_type, @pool.category_id = category.split(':')
     end
-    #
     @pool.save ?
       are_saved = update_balances(@pool) : are_saved = [false]
     respond_to do |format|
       if are_saved.all?
         format.html { redirect_back pools_url, notice: @pool.table_name_to_show.concat(' fue actualizado satisfactoriamente.') }
+        format.json { render :show, status: :ok, location: @pool }
+        format.js {}
       else
         format.html { render :edit }
         format.json { render json: @pool.errors, status: :unprocessable_entity }

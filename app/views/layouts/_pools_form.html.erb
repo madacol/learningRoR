@@ -1,5 +1,4 @@
 <%= form_for(@pool, namespace: namespace_id, :html=> {:id => namespace_id}) do |f| %>
-<%= "#{@pool.model_name.name}:#{@pool.id}" %>
   <% if @pool.errors.any? %>
     <div id="error_explanation_<%=namespace_id%>">
       <h2><%= pluralize(@pool.errors.count, "error") %> prohibited this pool from being saved:</h2>
