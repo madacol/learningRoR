@@ -1,27 +1,30 @@
 Rails.application.routes.draw do
   concern :days_ago_index do
-    get 'days/:days', action: 'days_index', on: :collection
+    get 'days/:days', action: 'days_index', as: 'days', on: :collection
+  end
+  concern :get_modal do
+    get 'modal/:id/:button/:form', action: 'modal', as: 'modal', on: :collection
   end
 
   root "pools#days_index", :days => 0
   resources :cierres
   resources :payment_cards
-  resources :provincials, concerns: :days_ago_index
-  resources :banescos, concerns: :days_ago_index
-  resources :mercantils, concerns: :days_ago_index
-  resources :bods, concerns: :days_ago_index
-  resources :bdvs, concerns: :days_ago_index
-  resources :pools, concerns: :days_ago_index
+  resources :provincials, concerns: [:days_ago_index, :get_modal]
+  resources :banescos, concerns: [:days_ago_index, :get_modal]
+  resources :mercantils, concerns: [:days_ago_index, :get_modal]
+  resources :bods, concerns: [:days_ago_index, :get_modal]
+  resources :bdvs, concerns: [:days_ago_index, :get_modal]
+  resources :pools, concerns: [:days_ago_index, :get_modal]
   resources :auth_groups
   resources :employee_groups
-  resources :employees
+  resources :employees, concerns: :get_modal
   resources :retenciones
-  resources :inversions
-  resources :ggs
+  resources :inversions, concerns: :get_modal
+  resources :ggs, concerns: :get_modal
   resources :deducciones_odts
   resources :comision_odts
-  resources :odts
-  resources :razon_socials
+  resources :odts, concerns: :get_modal
+  resources :razon_socials, concerns: :get_modal
 
   devise_for :users, :controllers => { registrations: 'registrations' }
 
