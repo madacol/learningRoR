@@ -8,7 +8,11 @@
         <h4 class="modal-title" id="Modal_<%=namespace_id%>"><%=modal_title%></h4>
       </div>
         <div class="modal-body">
-          <%= (defined? form_to_render) ? (render form_to_render, :namespace_id => namespace_id) : (render partial: "form", :locals => {:namespace_id => namespace_id}) %>
+          <%= if defined?(form_to_render) then
+            render form_to_render, :namespace_id => namespace_id
+          else
+            render partial: "form", :locals => {:namespace_id => namespace_id}
+          end %>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
