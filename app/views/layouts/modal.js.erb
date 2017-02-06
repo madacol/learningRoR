@@ -1,4 +1,4 @@
-$('a[href*="<%=selector_href%>"]').bind('ajax:success', function() {
+$('a[href*="<%=selector_href%>"]').on('ajax:success', function() {
   modal_id = '<%= modal_id %>';
   <% if load_form %>
     if ($('#'+modal_id).length==0) {    // if modal doesn't exist, load it
@@ -9,7 +9,11 @@ $('a[href*="<%=selector_href%>"]').bind('ajax:success', function() {
   <% if load_button %>
     button = $(this).after( "<%= j render 'layouts/modal_button', :btn_name => 'Editar', :namespace_id => modal_id %>" ).next()
     button.text($(this).text());    // Leave button's text unchanged
-    if ($(this).not('.auto_load').length>0) $(button.data('target')).modal('show'); // only show modal when is not auto_load
+    button.data('ajax', $(this).attr('ajax'))
+    $(button).click( function() {
+      $($(this).data('target')).find('form').attr('data-remote', $(this).data('ajax'))
+    });
+    if ($(this).not('.auto_load').length>0) $(button).trigger('click')    // only show modal when is not auto_load
   <% end %>
   $(this).remove();
 });

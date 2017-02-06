@@ -58,6 +58,7 @@ class RazonSocialsController < ApplicationController
       if @razon_social.save
         format.html { redirect_to razon_socials_url, notice: @razon_social.table_name_to_show.concat(' fue creada satisfactoriamente.') }
         format.json { render :show, status: :created, location: @razon_social }
+        format.js   { render :layout => false }
       else
         format.html { redirect_to razon_socials_url, notice: 'Hubo un error' }
         format.json { render json: @razon_social.errors, status: :unprocessable_entity }
