@@ -22,6 +22,28 @@ class RazonSocialsController < ApplicationController
     @razon_social = RazonSocial.new
   end
 
+  # GET /razon_socials/modal/1/1/1
+  def modal
+    if params[:id] == '0' then
+      @razon_social = RazonSocial.new
+      @razon_social.percent_retencione_iva = 0.0
+      modal_id = "new_#{@razon_social.model_name.singular}"
+    else
+      @razon_social = RazonSocial.find(params[:id])
+      modal_id = "edit_#{@razon_social.model_name.singular}_#{@razon_social.id}"
+    end
+    locals = {
+      :load_button => params[:button] != '0',
+      :load_form => params[:form] != '0',
+      :modal_id => modal_id,
+      :selector_href => request.path,
+      :form_to_render => 'form'
+    }
+    respond_to do |format|
+      format.js { render 'layouts/modal', :locals => locals }
+    end
+  end
+
   # GET /razon_socials/1/edit
   def edit
   end

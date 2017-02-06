@@ -11,4 +11,7 @@ module PoolsHelper
       [eval(category).new.category_name_to_show, subcategories]
     end
   end
+  def selected_key(pool)
+    "#{pool.category.model_name.name}:#{pool.category.id}" if pool.category
+  end
 end

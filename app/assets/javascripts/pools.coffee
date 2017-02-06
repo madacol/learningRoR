@@ -4,6 +4,8 @@
 
 $(document).on "turbolinks:load", ->
 
+  $('.auto_load').trigger( "click" );
+
   $('.revertir').each ->
     $(this).click () ->
       tbody = $('#main_table tbody')

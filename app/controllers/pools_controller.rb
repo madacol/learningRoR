@@ -34,6 +34,29 @@ class PoolsController < ApplicationController
     @pool = Pool.new
   end
 
+  # GET /pools/modal/1/1/1
+  def modal
+    if params[:id] == '0' then
+      @pool = Pool.new
+      @pool.date_of = Date.today
+      @pool.forma_de_pago = "Efectivo"
+      modal_id = "new_#{@pool.model_name.singular}"
+    else
+      @pool = Pool.find(params[:id])
+      modal_id = "edit_#{@pool.model_name.singular}_#{@pool.id}"
+    end
+    locals = {
+      :load_button => params[:button] != '0',
+      :load_form => params[:form] != '0',
+      :modal_id => modal_id,
+      :selector_href => request.path,
+      :form_to_render => 'layouts/pools_form'
+    }
+    respond_to do |format|
+      format.js { render 'layouts/modal', :locals => locals }
+    end
+  end
+
   # GET /pools/1/edit
   def edit
   end
@@ -75,12 +98,13 @@ class PoolsController < ApplicationController
     unless category.nil?
       @pool.category_type, @pool.category_id = category.split(':')
     end
-    #
     @pool.save ?
       are_saved = update_balances(@pool) : are_saved = [false]
     respond_to do |format|
       if are_saved.all?
         format.html { redirect_back pools_url, notice: @pool.table_name_to_show.concat(' fue actualizado satisfactoriamente.') }
+        format.json { render :show, status: :ok, location: @pool }
+        format.js {}
       else
         format.html { render :edit }
         format.json { render json: @pool.errors, status: :unprocessable_entity }

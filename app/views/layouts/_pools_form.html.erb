@@ -23,7 +23,7 @@
       <%= f.label :category, "Categoría", class: "control-label" %><br>
     </div>
     <div class="col-sm-4">
-      <%= f.select :category, grouped_options_for_select(categories_grouped_options),{},{ :class=>"form-control c-select chosen-select" }%>
+      <%= f.select :category, grouped_options_for_select(categories_grouped_options, selected_key(@pool)), { prompt: '-Seleccionar-'}, { :class=> "form-control c-select chosen-select" }%>
     </div>
   </div>
   <div class="form-group row">
@@ -31,10 +31,10 @@
       <%= f.label( :razon_social_id, RazonSocial.new.table_name_to_show, class: "control-label") %>
     </div>
     <div class="col-sm-8">
-      <%= f.collection_select( :razon_social_id, RazonSocial.all, :id, :record_name_to_show, { prompt: '-Seleccionar-'}, { class: "form-control c-select chosen-select chosen-select" }) %>
+      <%= f.collection_select( :razon_social_id, RazonSocial.all, :id, :record_name_to_show, { prompt: '-Seleccionar-'}, { class: "form-control c-select chosen-select" }) %>
     </div>
     <div class="col-sm-2">
-      <%= render 'layouts/modal_button', :btn_name => 'Añadir', :namespace_id => 'new_razon_social' %>
+      <%= link_to 'Añadir', modal_razon_socials_url(0,1,0), :method => :get, :remote => true, :class => "btn btn-primary" %>
     </div>
   </div>
   <div class="form-group row">
@@ -50,7 +50,7 @@
       <%= f.label :forma_de_pago, "Forma de pago", class: "control-label" %><br>
     </div>
     <div class="col-sm-10">
-      <%= f.collection_select( :forma_de_pago, @pool.forma_de_pagos_for_collection, :first, :last, { prompt: '-Seleccionar-'}, { class: "form-control c-select chosen-select chosen-select" }) %>
+      <%= f.collection_select( :forma_de_pago, @pool.forma_de_pagos_for_collection, :first, :last, { prompt: '-Seleccionar-'}, { class: "form-control c-select chosen-select" }) %>
     </div>
   </div>
   <div class="form-group row">

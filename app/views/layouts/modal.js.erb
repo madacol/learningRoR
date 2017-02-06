@@ -1,0 +1,15 @@
+$('a[href*="<%=selector_href%>"]').bind('ajax:success', function() {
+  modal_id = '<%= modal_id %>';
+  <% if load_form %>
+    if ($('#'+modal_id).length==0) {    // if modal doesn't exist, load it
+      modal = $(this).after( "<%= j render 'layouts/modal', :form_to_render => form_to_render, :modal_title => 'Editar', :namespace_id => modal_id %>" ).next()
+      if ($(this).not('.auto_load').length>0) $(modal).modal('show'); // only show modal when is not auto_load
+    };
+  <% end %>
+  <% if load_button %>
+    button = $(this).after( "<%= j render 'layouts/modal_button', :btn_name => 'Editar', :namespace_id => modal_id %>" ).next()
+    button.text($(this).text());    // Leave button's text unchanged
+    if ($(this).not('.auto_load').length>0) $(button.data('target')).modal('show'); // only show modal when is not auto_load
+  <% end %>
+  $(this).remove();
+});
