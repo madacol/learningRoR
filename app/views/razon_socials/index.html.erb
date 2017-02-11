@@ -1,12 +1,9 @@
 <p id="notice"><%= notice %></p>
 <h1><%= RazonSocial.new.table_name_to_show %></h1>
-<p>
-  <%= render 'layouts/modal_button', :btn_name => 'Nuevo Registro', :namespace_id => 'new_razon_social' %>
-  <%= render 'layouts/modal', :@razon_social => @new_razon_social, :modal_title => 'Nuevo Registro', :namespace_id => 'new_razon_social' %>
-</p>
+<p><%= link_to 'Nuevo Registro', modal_razon_socials_url(0,1,1), :method => :get, :remote => true, :class => "btn btn-primary auto_load" %></p>
 
-<div class="table-responsive">
-  <table class="table table-sm table-hover table-striped table-bordered">
+<div class="table">
+  <table id="main_table" class="table table-sm table-hover table-striped table-bordered">
     <thead>
       <tr>
         <th>Rif o CI</th>
@@ -24,7 +21,7 @@
     </thead>
     <tbody>
       <% @razon_socials.reverse.each do |razon_social| %>
-        <tr>
+        <tr id="<%=razon_social.id%>">
           <td><%= razon_social.rif_ci %></td>
           <td><%= razon_social.name %></td>
           <td><%= razon_social.description %></td>
@@ -35,9 +32,7 @@
           <td><%= razon_social.contact_name %></td>
           <td><%= razon_social.contact_phone %></td>
           <td><%= razon_social.contact_email %></td>
-          <td>
-            <%= render 'layouts/modal_button', :btn_name => 'Editar', :namespace_id => "edit_razon_social_#{razon_social.id}" %>
-            <%= render 'layouts/modal', :@razon_social => razon_social, :modal_title => 'Editar', :namespace_id => "edit_razon_social_#{razon_social.id}" %></td>
+          <td><%= link_to 'Editar', modal_razon_socials_url(razon_social.id,1,1), :method => :get, :remote => true, :class => "btn btn-primary" %></td>
           <td><%= link_to '×', razon_social, method: :delete, data: { confirm: '¿Está seguro?' }, :remote => true, class: "close equis delete_row" %></td>
         </tr>
       <% end %>
