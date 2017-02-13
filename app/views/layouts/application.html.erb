@@ -15,34 +15,34 @@
     <div class="container-fluid">
       <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2">&#9776;</button>
       <div class="collapse navbar-toggleable-xs" id="exCollapsingNavbar2">
-        <div class="navbar-brand">Taionca</div>
         <ul class="nav navbar-nav">
+          <li class="nav-item">
+            <a href="/pools/days/0" class="nav-link"><%= Pool.new.table_name_to_show %></a>
+          </li>
+          <li class="nav-item">
+            <a href="/banescos/days/0" class="nav-link"><%= Banesco.new.table_name_to_show %></a>
+          </li>
+          <li class="nav-item">
+            <a href="/mercantils/days/0" class="nav-link"><%= Mercantil.new.table_name_to_show %></a>
+          </li>
+          <li class="nav-item">
+            <a href="/bods/days/0" class="nav-link"><%= Bod.new.table_name_to_show %></a>
+          </li>
+          <li class="nav-item">
+            <a href="/bdvs/days/0" class="nav-link"><%= Bdv.new.table_name_to_show %></a>
+          </li>
           <li class="nav-item">
             <a href="/odts" class="nav-link"><%= Odt.new.table_name_to_show %></a>
           </li>
           <li class="nav-item">
-            <a href="/pools/days/0" class="nav-link"><%= Pool.new.table_name_to_show %></a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" role="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Cuentas</a>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-              <a class="dropdown-item" href="/mercantils/days/0">Mercantil</a>
-              <a class="dropdown-item" href="/bdvs/days/0">BDV</a>
-              <a class="dropdown-item" href="/bods/days/0">BOD</a>
-              <a class="dropdown-item" href="/banescos/days/0">Banesco</a>
-              <a class="dropdown-item" href="/provincials/days/0">Provincial</a>
-              <a class="dropdown-item" href="/payment_cards">Tarjetas</a>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a href="/retenciones" class="nav-link"><%= Retencione.new.table_name_to_show %></a>
+            <a href="/razon_socials" class="nav-link"><%= RazonSocial.new.table_name_to_show %></a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" role="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">OTROS</a>
             <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+              <a class="dropdown-item" href="/payment_cards">Tarjetas</a>
               <a class="dropdown-item" href="/employees"><%= Employee.new.table_name_to_show %></a>
               <a class="dropdown-item" href="/inversions"><%= Inversion.new.table_name_to_show %></a>
-              <a class="dropdown-item" href="/razon_socials"><%= RazonSocial.new.table_name_to_show %></a>
               <a class="dropdown-item" href="/ggs"><%= Gg.new.table_name_to_show %></a>
             </div>
           </li>

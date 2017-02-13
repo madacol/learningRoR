@@ -1,0 +1,7 @@
+new_row = $("<%= j render 'layouts/row_cuentas' %>")
+new_row.hide()
+$('table tbody').prepend(new_row)
+modal = $('div.modal:visible')
+modal.modal('hide')
+modal.find('form').trigger("reset")
+new_row.fadeIn()

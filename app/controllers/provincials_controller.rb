@@ -79,6 +79,7 @@ class ProvincialsController < ApplicationController
       if @provincial.save
         format.html { redirect_back provincials_url, notice: @provincial.table_name_to_show.concat(' fue creada satisfactoriamente.') }
         format.json { render :show, status: :created, location: @provincial }
+        format.js { render 'layouts/create', :locals => {:@pool => @provincial} }
       else
         format.html { render :new }
         format.json { render json: @provincial.errors, status: :unprocessable_entity }
@@ -102,6 +103,8 @@ class ProvincialsController < ApplicationController
     respond_to do |format|
       if are_saved.all?
         format.html { redirect_back provincials_url, notice: @provincial.table_name_to_show.concat(' fue actualizado satisfactoriamente.') }
+        format.json { render :show, status: :ok, location: @provincial }
+        format.js { render 'layouts/update', :locals => {:@pool => @provincial} }
       else
         format.html { render :edit }
         format.json { render json: @provincial.errors, status: :unprocessable_entity }
@@ -119,7 +122,7 @@ class ProvincialsController < ApplicationController
       if are_saved.all?
         format.html { redirect_back provincials_url, notice: @provincial.table_name_to_show.concat(' fue eliminado satisfactoriamente.')}
         format.json { head :no_content }
-        format.js   { render :layout => false }
+        format.js   { render 'layouts/destroy' }
       else
         format.html { render :edit }
         format.json { render json: @provincial.errors, status: :unprocessable_entity }

@@ -1,0 +1,13 @@
+<tr id="<%=@pool.id%>">
+  <td><%= @pool.date_of.strftime("%d/%m/%Y") if @pool.date_of %></td>
+  <td><%= @pool.table_name_to_show %></td>
+  <td><%= (link_to @pool.razon_social.record_name_to_show, "#{razon_socials_url}##{@pool.razon_social.id}") if @pool.razon_social %></td>
+  <td><%= @pool.description %></td>
+  <td><%= (link_to @pool.category.record_name_to_show, "#{@pool.category.class.model_name.plural}##{@pool.category.id}") if @pool.category %></td>
+  <td><%= @pool.category.description if @pool.category %></td>
+  <td><%= number_with_delimiter @pool.monto, :delimiter => ".", :separator => "," %></td>
+  <td><%= @pool.receiver %></td>
+  <td data-toggle="tooltip" data-placement="left" title="<%= @pool.forma_de_pagos_for_collection[@pool.forma_de_pago] %>"><%= @pool.forma_de_pago_nro %></td>
+  <td><%= link_to 'Editar', "/#{@pool.model_name.plural}/modal/#{@pool.id}/1/1", :method => :get, :remote => true, :class => "btn btn-primary" %></td>
+  <td><%= link_to '×', @pool, :method => :delete, :data => { :confirm => '¿Está seguro?' }, :remote => true, :class => "delete_row close equis" %></td>
+</tr>

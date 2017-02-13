@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-<h1><%= @new_pool.table_name_to_show %></h1>
+<h1><%= @new_pool.table_name_to_show.titleize %></h1>
 <p>
   <div class="row">
     <div class="col-sm-2">
@@ -18,7 +18,7 @@
     </div>
   </div>
 </p>
-<div class="table-responsive">
+<div class="table">
   <table id="main_table" class="table table-sm table-hover table-striped table-bordered">
     <thead>
       <tr>
@@ -40,20 +40,7 @@
     </thead>
     <tbody>
       <% @pools.reverse.each do |pool| %>
-        <tr>
-          <td><%= pool.date_of.strftime("%d/%m/%Y") if pool.date_of %></td>
-          <td><%= (link_to pool.razon_social.record_name_to_show, pool.razon_social) if pool.razon_social %></td>
-          <td><%= pool.n_factura %></td>
-          <td><%= pool.description %></td>
-          <td><%= (link_to pool.category.record_name_to_show, pool.category) if pool.category %></td>
-          <td><%= pool.category.description if pool.category %></td>
-          <td><%= number_with_delimiter pool.monto, :delimiter => ".", :separator => "," %></td>
-          <td><%= number_with_delimiter pool.balance, :delimiter => ".", :separator => "," %></td>
-          <td><%= pool.receiver %></td>
-          <td data-toggle="tooltip" data-placement="left" title="<%= pool.forma_de_pagos_for_collection[pool.forma_de_pago] %>"><%= pool.forma_de_pago_nro %></td>
-          <td><%= link_to 'Editar', modal_pools_url(pool.id,1,1), :method => :get, :remote => true, :class => "btn btn-primary" %></td>
-          <td><%= link_to '×', pool, :method => :delete, :data => { :confirm => '¿Está seguro?' }, :remote => true, :class => "delete_row close equis" %></td>
-        </tr>
+        <%= render 'row', :@pool => pool %>
       <% end %>
     </tbody>
   </table>
@@ -70,4 +57,4 @@
   <%= render 'layouts/modal', :form_to_render => 'retenciones/form', :@retencione => Retencione.new, :modal_title => 'Añadir Retención', :namespace_id => "new_retencione" %>
   <%= render 'layouts/modal', :form_to_render => 'employees/form', :@employee => Employee.new, :modal_title => 'Añadir Empleado', :namespace_id => "new_employee" %>
 <% end %>
-<%= link_to 'Editar', modal_razon_socials_url(0,0,1), :method => :get, :remote => true, :class => "btn btn-primary auto_load" %>
+<%= link_to '', modal_razon_socials_url(0,0,1), :method => :get, :remote => true, :class => " auto_load" %>
