@@ -1,0 +1,14 @@
+<tr id="<%=@razon_social.id%>">
+  <td><%= @razon_social.rif_ci %></td>
+  <td><%= @razon_social.name %></td>
+  <td><%= @razon_social.description %></td>
+  <td><%= @razon_social.percent_retencione_iva %></td>
+  <td><%= @razon_social.phone %></td>
+  <td><%= @razon_social.email %></td>
+  <td><%= @razon_social.address %></td>
+  <td><%= @razon_social.contact_name %></td>
+  <td><%= @razon_social.contact_phone %></td>
+  <td><%= @razon_social.contact_email %></td>
+  <td><%= link_to 'Editar', modal_razon_socials_url(@razon_social.id,1,1), :method => :get, :remote => true, :class => "btn btn-primary" %></td>
+  <td><%= link_to '×', @razon_social, method: :delete, data: { confirm: '¿Está seguro?' }, :remote => true, class: "close equis delete_row" %></td>
+</tr>
