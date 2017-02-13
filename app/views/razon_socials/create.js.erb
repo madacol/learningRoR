@@ -3,5 +3,5 @@ $('select[id$="razon_social_id"]').each( function() {
   if ($(this).parents('.modal.in').length>0) $(this).val('<%=@razon_social.id%>'); // Select option if modal is opened
 });
 form = $('#new_razon_social');
-$(form)[0].reset();
+$(form).trigger("reset");
 $(form).parents('.modal').modal('hide');

@@ -1,0 +1,11 @@
+updated_row = $("<%= j render 'layouts/row_cuentas' %>")
+id = updated_row.attr('id')
+old_row = $('#'+id)
+modal = $(old_row).find('div.modal')
+modal.modal('hide')
+old_row.fadeOut()
+updated_row.hide()
+old_row.after(updated_row)
+old_row.remove()
+$('.modal-backdrop').remove();
+updated_row.fadeIn()

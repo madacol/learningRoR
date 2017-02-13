@@ -77,10 +77,12 @@ class PoolsController < ApplicationController
       @pool.category_type, @pool.category_id = category.split(':')
     end
     #
+
     respond_to do |format|
       if @pool.save
         format.html { redirect_back pools_url, notice: @pool.table_name_to_show.concat(' fue creada satisfactoriamente.') }
         format.json { render :show, status: :created, location: @pool }
+        format.js { render :layout => false }
       else
         format.html { render :new }
         format.json { render json: @pool.errors, status: :unprocessable_entity }
@@ -104,7 +106,7 @@ class PoolsController < ApplicationController
       if are_saved.all?
         format.html { redirect_back pools_url, notice: @pool.table_name_to_show.concat(' fue actualizado satisfactoriamente.') }
         format.json { render :show, status: :ok, location: @pool }
-        format.js {}
+        format.js { render :layout => false }
       else
         format.html { render :edit }
         format.json { render json: @pool.errors, status: :unprocessable_entity }
@@ -122,7 +124,7 @@ class PoolsController < ApplicationController
       if are_saved.all?
         format.html { redirect_back pools_url, notice: @pool.table_name_to_show.concat(' fue eliminado satisfactoriamente.')}
         format.json { head :no_content }
-        format.js   { render :layout => false }
+        format.js   { render 'layouts/destroy' }
       else
         format.html { render :edit }
         format.json { render json: @pool.errors, status: :unprocessable_entity }

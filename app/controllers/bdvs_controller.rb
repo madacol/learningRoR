@@ -79,6 +79,7 @@ class BdvsController < ApplicationController
       if @bdv.save
         format.html { redirect_back bdvs_url, notice: @bdv.table_name_to_show.concat(' fue creada satisfactoriamente.') }
         format.json { render :show, status: :created, location: @bdv }
+        format.js { render 'layouts/create', :locals => {:@pool => @bdv} }
       else
         format.html { render :new }
         format.json { render json: @bdv.errors, status: :unprocessable_entity }
@@ -102,6 +103,8 @@ class BdvsController < ApplicationController
     respond_to do |format|
       if are_saved.all?
         format.html { redirect_back bdvs_url, notice: @bdv.table_name_to_show.concat(' fue actualizado satisfactoriamente.') }
+        format.json { render :show, status: :ok, location: @bdv }
+        format.js { render 'layouts/update', :locals => {:@pool => @bdv} }
       else
         format.html { render :edit }
         format.json { render json: @bdv.errors, status: :unprocessable_entity }
@@ -119,7 +122,7 @@ class BdvsController < ApplicationController
       if are_saved.all?
         format.html { redirect_back bdvs_url, notice: @bdv.table_name_to_show.concat(' fue eliminado satisfactoriamente.')}
         format.json { head :no_content }
-        format.js   { render :layout => false }
+        format.js   { render 'layouts/destroy' }
       else
         format.html { render :edit }
         format.json { render json: @bdv.errors, status: :unprocessable_entity }
