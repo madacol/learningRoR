@@ -1,7 +1,7 @@
 module PoolsHelper
 
   def categories
-    return [ 'Odt', 'Inversion', 'Gg', 'Retencione', 'Employee' ]
+    return [ 'Odt', 'Inversion', 'Gg', 'Employee' ]
   end
   def categories_grouped_options
     categories.collect do |category|
