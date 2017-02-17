@@ -6,6 +6,7 @@ modal.modal('hide')
 old_row.fadeOut()
 updated_row.hide()
 old_row.after(updated_row)
-old_row.remove()
-$('.modal-backdrop').remove();
+modal.on('hidden.bs.modal', function() {
+	old_row.remove() 
+})
 updated_row.fadeIn()
