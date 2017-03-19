@@ -1,22 +1,17 @@
 Rails.application.routes.draw do
-  concern :days_ago_index do
-    get 'days/:days', action: 'days_index', as: 'days', on: :collection
-  end
+  resources :accounts
   concern :get_modal do
     get 'modal/:id/:button/:form', action: 'modal', as: 'modal', on: :collection
   end
 
-  root "pools#days_index", :days => 0
+  root "pools#days_index", :id => Account.first.id, :days => 0
   resources :cierres
   resources :payment_cards
-  resources :provincials, concerns: [:days_ago_index, :get_modal]
-  resources :banescos, concerns: [:days_ago_index, :get_modal]
-  resources :mercantils, concerns: [:days_ago_index, :get_modal]
-  resources :bods, concerns: [:days_ago_index, :get_modal]
-  resources :bdvs, concerns: [:days_ago_index, :get_modal]
-  resources :pools, concerns: [:days_ago_index, :get_modal]
+  resources :pools, concerns: :get_modal do
+    get 'account/:id', action: 'account_index', as: 'account', on: :collection
+    get 'account/:id/days/:days', action: 'days_index', as: 'days_account', on: :collection
+  end
   resources :auth_groups
-  resources :employee_groups
   resources :employees, concerns: :get_modal
   resources :retenciones
   resources :inversions, concerns: :get_modal
@@ -27,7 +22,6 @@ Rails.application.routes.draw do
   resources :razon_socials, concerns: :get_modal
 
   devise_for :users, :controllers => { registrations: 'registrations' }
-
   get '/approve/:token', to: 'permission_request#approve'
   get '/deny/:token', to: 'permission_request#deny'
   get '/ask', to: 'permission_request#ask', as: :ask_permission

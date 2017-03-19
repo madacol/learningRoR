@@ -9,18 +9,33 @@ class PoolsController < ApplicationController
     @new_pool = Pool.new
     @new_pool.date_of = Date.today
     @cierre = Cierre.new
-    @cierre.account = "Pool"
     render 'layouts/_pools_index'
   end
 
-  # GET /pools/days/:days
-  def days_index
-    @pools = Pool.where('created_at >= ?', params[:days].to_i.days.ago.beginning_of_day)
+  # GET /pools/account/:id
+  def account_index
+    account_id = params[:id]
+    account = Account.find(account_id)
+    @pools = Pool.where(account_id: account)
     @new_pool = Pool.new
+    @new_pool.account = account
+    @new_pool.date_of = Date.today
+    @cierre = Cierre.new
+    @cierre.account = account
+    render 'layouts/_pools_index'
+  end
+
+  # GET /pools/account/:id/days/:days
+  def days_index
+    account_id = params[:id]
+    account = Account.find(account_id)
+    @pools = Pool.where("created_at >= ? AND account_id = ?", params[:days].to_i.days.ago.beginning_of_day, account_id)
+    @new_pool = Pool.new
+    @new_pool.account = account
     @new_pool.date_of = Date.today
     @new_pool.forma_de_pago = "Efectivo"
     @cierre = Cierre.new
-    @cierre.account = "Pool"
+    @cierre.account = account
     render 'layouts/_pools_index'
   end
 
@@ -38,6 +53,7 @@ class PoolsController < ApplicationController
   def modal
     if params[:id] == '0' then
       @pool = Pool.new
+      @pool.account_id = params[:account_id]
       @pool.date_of = Date.today
       @pool.forma_de_pago = "Efectivo"
       modal_id = "new_#{@pool.model_name.singular}"
@@ -67,9 +83,13 @@ class PoolsController < ApplicationController
     @pool = Pool.new(pool_params)
     ask_for_permission(@pool, 'create_pool') and return if current_user.cannot 'create_pool'
     # Calculate balance and save
-    last_pool = Pool.last
-    (last_pool.nil? or last_pool.balance.nil?) ?
-      @pool.balance = @pool.monto : @pool.balance = last_pool.balance + @pool.monto
+    last_pool = Pool.where(account_id: @pool.account_id).last
+
+    if (last_pool.nil? or last_pool.balance.nil?)
+      @pool.balance = @pool.monto
+    else
+      @pool.balance = last_pool.balance + @pool.monto
+    end
     #
     # Extract category, if given
     category = params[:pool][:category]
@@ -100,8 +120,11 @@ class PoolsController < ApplicationController
     unless category.nil?
       @pool.category_type, @pool.category_id = category.split(':')
     end
-    @pool.save ?
-      are_saved = update_balances(@pool) : are_saved = [false]
+    if @pool.save
+      are_saved = update_balances(@pool)
+    else
+      are_saved = [false]
+    end
     respond_to do |format|
       if are_saved.all?
         format.html { redirect_back pools_url, notice: @pool.table_name_to_show.concat(' fue actualizado satisfactoriamente.') }
@@ -140,6 +163,6 @@ class PoolsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pool_params
-      params.require(:pool).permit(:category_id, :category_type, :monto, :cuenta, :comprobante_type, :n_factura, :description, :razon_social_id, :date_of, :forma_de_pago, :forma_de_pago_nro, :receiver)
+      params.require(:pool).permit(:category_id, :category_type, :monto, :monto_factura, :comprobante_type, :n_factura, :description, :razon_social_id, :date_of, :forma_de_pago, :forma_de_pago_nro, :receiver, :account_id)
     end
 end

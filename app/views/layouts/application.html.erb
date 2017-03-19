@@ -16,30 +16,18 @@
       <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2">&#9776;</button>
       <div class="collapse navbar-toggleable-xs" id="exCollapsingNavbar2">
         <ul class="nav navbar-nav">
-          <li class="nav-item">
-            <a href="/pools/days/0" class="nav-link"><%= Pool.new.table_name_to_show %></a>
-          </li>
-          <li class="nav-item">
-            <a href="/banescos/days/0" class="nav-link"><%= Banesco.new.table_name_to_show %></a>
-          </li>
-          <li class="nav-item">
-            <a href="/mercantils/days/0" class="nav-link"><%= Mercantil.new.table_name_to_show %></a>
-          </li>
-          <li class="nav-item">
-            <a href="/bods/days/0" class="nav-link"><%= Bod.new.table_name_to_show %></a>
-          </li>
-          <li class="nav-item">
-            <a href="/bdvs/days/0" class="nav-link"><%= Bdv.new.table_name_to_show %></a>
-          </li>
+          <% Account.all.each do |account| %>
+            <li class="nav-item">
+              <a href= "<%= days_account_pools_url(account.id, 0)%>" class="nav-link"><%= account.name %></a>
+            </li>
+          <% end %>
           <li class="nav-item">
             <a href="/odts" class="nav-link"><%= Odt.new.table_name_to_show %></a>
-          </li>
-          <li class="nav-item">
-            <a href="/razon_socials" class="nav-link"><%= RazonSocial.new.table_name_to_show %></a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" role="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">OTROS</a>
             <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+              <a class="dropdown-item" href="/razon_socials"><%= RazonSocial.new.table_name_to_show %></a>
               <a class="dropdown-item" href="/payment_cards">Tarjetas</a>
               <a class="dropdown-item" href="/employees"><%= Employee.new.table_name_to_show %></a>
               <a class="dropdown-item" href="/inversions"><%= Inversion.new.table_name_to_show %></a>

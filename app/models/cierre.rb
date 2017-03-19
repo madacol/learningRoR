@@ -1,3 +1,3 @@
-class Cierre < ActiveRecord::Base	
-	enum account: [ "Pool","Banesco", "Bdv", "Bod", "Mercantil", "Provincial" ]
+class Cierre < ActiveRecord::Base
+	belongs_to :account
 end

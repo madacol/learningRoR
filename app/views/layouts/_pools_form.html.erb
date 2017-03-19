@@ -9,15 +9,15 @@
       </ul>
     </div>
   <% end %>
+  <%= f.hidden_field :account_id, :value => @pool.account_id.to_i %>
   <div class="form-group row">
     <div class="col-sm-2">
       <%= f.label :date_of, "Fecha", class: "control-label" %><br>
     </div>
     <div class="col-sm-4">
       <%= f.date_field :date_of, class: "form-control" %>
-    </div>  
+    </div>
   </div>
-
   <div class="form-group row">
     <div class="col-sm-2">
       <%= f.label :category, "Categoría", class: "control-label" %><br>
@@ -43,7 +43,7 @@
     </div>
     <div class="col-sm-10">
       <%= f.text_field :monto, class: "form-control", :required => true %>
-    </div>  
+    </div>
   </div>
   <div class="form-group row">
     <div class="col-sm-2">
@@ -65,8 +65,14 @@
     <div class="col-sm-2">
       <%= f.label :n_factura, "Factura", class: "control-label" %><br>
     </div>
-    <div class="col-sm-10">
+    <div class="col-sm-4">
       <%= f.text_field :n_factura, class: "form-control" %>
+    </div>
+    <div class="col-sm-2">
+      <%= f.label :monto_factura, "Monto", class: "control-label" %><br>
+    </div>
+    <div class="col-sm-4">
+      <%= f.text_field :monto_factura, class: "form-control" %>
     </div>
   </div>
   <div class="form-group row">

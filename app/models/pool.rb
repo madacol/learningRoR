@@ -2,9 +2,8 @@ class Pool < ActiveRecord::Base
 	belongs_to :category, polymorphic: true
 	has_one :permission_request, as: :auth_record, :dependent => :destroy
 	belongs_to :razon_social
-	bank_name = 'Pool'
-	cards = PaymentCard.where(bank: PaymentCard.banks[bank_name]).collect {|card| "#{card.id}"}
-	enum forma_de_pago: [ "Efectivo", "Cheque", "Transferencia" ] + cards
+	belongs_to :account
+	enum forma_de_pago: [ "Efectivo", "Cheque", "Transferencia" ]
 
 	#Substitute card's ids in forma_de_pago, with card_name_to_show
 	def forma_de_pagos_for_collection
@@ -18,7 +17,7 @@ class Pool < ActiveRecord::Base
 		Hash[array]
 	end
 	def table_name_to_show
-		'Caja chica'
+		return self.account.name
 	end
 	def record_name_to_show
 		return self.description

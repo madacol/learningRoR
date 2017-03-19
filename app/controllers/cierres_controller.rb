@@ -25,11 +25,16 @@ class CierresController < ApplicationController
   # POST /cierres.json
   def create
     @cierre = Cierre.new(cierre_params)
-    pool = eval(@cierre.account).new
+    last_pool = @cierre.account.pools.last
+    pool = @cierre.account.pools.new
+    p last_pool
     category_record = Gg.find_by(code: 'D-Cuentas')
-    category_record ||= Gg.create code: "D-Cuentas", alias: "Diferencia en las cuentas", description: "Lleva el registro de las diferencias presentadas en cualquiera de las cuentas: \"Caja Chica\",\"Banesco\", \"Bdv\", \"Bod\", \"Mercantil\", \"Provincial\"."
-    (eval(@cierre.account).last.nil? or eval(@cierre.account).last.balance.nil?) ?
-      last_balance = 0 : last_balance = eval(@cierre.account).last.balance
+    category_record ||= Gg.create code: "D-Cuentas", description: "Lleva el registro de las diferencias presentadas en cualquiera de las cuentas: \"Caja Chica\",\"Banesco\", \"Bdv\", \"Bod\", \"Mercantil\", \"Provincial\"."
+    if (last_pool.nil? or last_pool.balance.nil?)
+      last_balance = 0
+    else
+      last_balance = last_pool.balance
+    end
     diferencia_cierre = @cierre.total - last_balance
     if diferencia_cierre != 0
       pool.monto = diferencia_cierre
@@ -39,7 +44,7 @@ class CierresController < ApplicationController
     end
     respond_to do |format|
       if @cierre.save
-        format.html { redirect_to eval("#{pool.model_name.plural}_url"), notice: 'Cierre was successfully created.' }
+        format.html { redirect_back days_account_pools_url(@cierre.account_id, 0), notice: 'Cierre was successfully created.' }
         format.json { render :show, status: :created, location: @cierre }
       else
         format.html { render :new }
@@ -80,6 +85,6 @@ class CierresController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def cierre_params
-      params.require(:cierre).permit(:account, :total)
+      params.require(:cierre).permit(:account_id, :total)
     end
 end

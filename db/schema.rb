@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161211154618) do
+ActiveRecord::Schema.define(version: 20170308000330) do
+
+  create_table "accounts", force: :cascade do |t|
+    t.string   "name",        limit: 255
+    t.string   "n_cuenta",    limit: 255
+    t.text     "description", limit: 65535
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
 
   create_table "actions", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -98,11 +106,13 @@ ActiveRecord::Schema.define(version: 20161211154618) do
   add_index "bods", ["razon_social_id"], name: "index_bods_on_razon_social_id", using: :btree
 
   create_table "cierres", force: :cascade do |t|
-    t.integer  "account",    limit: 4
     t.decimal  "total",                precision: 15, scale: 2
     t.datetime "created_at",                                    null: false
     t.datetime "updated_at",                                    null: false
+    t.integer  "account_id", limit: 4
   end
+
+  add_index "cierres", ["account_id"], name: "index_cierres_on_account_id", using: :btree
 
   create_table "comision_odts", force: :cascade do |t|
     t.integer  "odt_id",      limit: 4,                         null: false
@@ -242,8 +252,11 @@ ActiveRecord::Schema.define(version: 20161211154618) do
     t.string   "forma_de_pago_nro", limit: 255
     t.string   "receiver",          limit: 255
     t.decimal  "balance",                         precision: 15, scale: 2
+    t.decimal  "monto_factura",                   precision: 15, scale: 2
+    t.integer  "account_id",        limit: 4
   end
 
+  add_index "pools", ["account_id"], name: "index_pools_on_account_id", using: :btree
   add_index "pools", ["category_type", "category_id"], name: "index_pools_on_category_type_and_category_id", using: :btree
   add_index "pools", ["razon_social_id"], name: "index_pools_on_razon_social_id", using: :btree
 
@@ -323,12 +336,14 @@ ActiveRecord::Schema.define(version: 20161211154618) do
 
   add_foreign_key "auth_groups_users", "auth_groups"
   add_foreign_key "auth_groups_users", "users"
+  add_foreign_key "cierres", "accounts"
   add_foreign_key "comision_odts", "employees"
   add_foreign_key "comision_odts", "odts"
   add_foreign_key "deducciones_odts", "odts"
   add_foreign_key "is_allowed_tos", "actions"
   add_foreign_key "is_allowed_tos", "auth_groups"
   add_foreign_key "odts", "razon_socials"
+  add_foreign_key "pools", "accounts"
   add_foreign_key "pools", "razon_socials"
   add_foreign_key "users", "employees"
 end
