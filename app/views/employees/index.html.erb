@@ -30,7 +30,7 @@
           <td><%= employee.email %></td>
           <td><%= employee.address %></td>
           <td><%= employee.startdate %></td>
-          <td><%= employee.loan_balance %></td>
+          <td><%= employee.get_loan_balance %></td>
           <td><%= employee.note %></td>
           <td>
             <%= render 'layouts/modal_button', :btn_name => 'Editar', :namespace_id => "edit_employee_#{employee.id}" %>

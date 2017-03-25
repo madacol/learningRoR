@@ -23,6 +23,15 @@ class Employee < ActiveRecord::Base
 			end
 		end
 	end
+
+  def get_loan_balance
+    montos = self.pools.collect do |x|
+      p x.monto
+    end
+    balance = montos.sum
+    self.loan_balance = balance
+  end
+
 	def description
 		return nil
 	end
