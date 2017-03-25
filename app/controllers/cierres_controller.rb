@@ -74,6 +74,7 @@ class CierresController < ApplicationController
     respond_to do |format|
       format.html { redirect_to cierres_url, notice: 'Cierre was successfully destroyed.' }
       format.json { head :no_content }
+      format.js   { render 'layouts/destroy' }
     end
   end
 

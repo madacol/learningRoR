@@ -89,7 +89,7 @@ class RazonSocialsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to razon_socials_url, notice: @razon_social.table_name_to_show+' fue eliminado satisfactoriamente.' }
       format.json { head :no_content }
-      format.js   { render :layout => false }
+      format.js   { render 'layouts/destroy' }
     end
   end
 

@@ -63,7 +63,7 @@ class ComisionOdtsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to comision_odts_url, notice: 'Comision odt fue eliminado satisfactoriamente.' }
       format.json { head :no_content }
-      format.js   { render :layout => false }
+      format.js   { render 'layouts/destroy' }
     end
   end
 

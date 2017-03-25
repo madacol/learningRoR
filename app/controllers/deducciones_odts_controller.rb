@@ -62,7 +62,7 @@ class DeduccionesOdtsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to deducciones_odts_url, notice: 'Deducciones odt fue eliminado satisfactoriamente.' }
       format.json { head :no_content }
-      format.js   { render :layout => false }
+      format.js   { render 'layouts/destroy' }
     end
   end
 

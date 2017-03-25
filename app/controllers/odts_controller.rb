@@ -66,7 +66,7 @@ class OdtsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to odts_url, notice: 'Odt fue eliminado satisfactoriamente.' }
       format.json { head :no_content }
-      format.js   { render :layout => false }
+      format.js   { render 'layouts/destroy' }
     end
   end
 
