@@ -100,7 +100,7 @@ class PoolsController < ApplicationController
 
     respond_to do |format|
       if @pool.save
-        format.html { redirect_back pools_url, notice: @pool.table_name_to_show.concat(' fue creada satisfactoriamente.') }
+        format.html { redirect_back pools_url, success: @pool.table_name_to_show.concat(' fue creada satisfactoriamente.') }
         format.json { render :show, status: :created, location: @pool }
         format.js { render :layout => false }
       else
@@ -127,7 +127,7 @@ class PoolsController < ApplicationController
     end
     respond_to do |format|
       if are_saved.all?
-        format.html { redirect_back pools_url, notice: @pool.table_name_to_show.concat(' fue actualizado satisfactoriamente.') }
+        format.html { redirect_back pools_url, success: @pool.table_name_to_show.concat(' fue actualizado satisfactoriamente.') }
         format.json { render :show, status: :ok, location: @pool }
         format.js { render :layout => false }
       else
@@ -145,7 +145,7 @@ class PoolsController < ApplicationController
     are_saved = update_balances(@pool)
     respond_to do |format|
       if are_saved.all?
-        format.html { redirect_back pools_url, notice: @pool.table_name_to_show.concat(' fue eliminado satisfactoriamente.')}
+        format.html { redirect_back pools_url, success: @pool.table_name_to_show.concat(' fue eliminado satisfactoriamente.')}
         format.json { head :no_content }
         format.js   { render 'layouts/destroy' }
       else

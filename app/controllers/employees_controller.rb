@@ -32,7 +32,7 @@ class EmployeesController < ApplicationController
 
     respond_to do |format|
       if @employee.save
-        format.html { redirect_to employees_url, notice: @employee.table_name_to_show.concat(' fue creado satisfactoriamente.') }
+        format.html { redirect_to employees_url, success: @employee.table_name_to_show.concat(' fue creado satisfactoriamente.') }
         format.json { render :show, status: :created, location: @employee }
       else
         format.html { render :new }
@@ -45,9 +45,10 @@ class EmployeesController < ApplicationController
   # PATCH/PUT /employees/1.json
   def update
     permission_denied and return  if current_user.cannot 'update_employee'
+
     respond_to do |format|
       if @employee.update(employee_params)
-        format.html { redirect_to employees_url, notice: @employee.table_name_to_show.concat(' fue actualizado satisfactoriamente.') }
+        format.html { redirect_to employees_url, success: @employee.table_name_to_show.concat(' fue actualizado satisfactoriamente.') }
         format.json { render :show, status: :ok, location: @employee }
       else
         format.html { render :edit }
@@ -62,7 +63,7 @@ class EmployeesController < ApplicationController
     permission_denied and return  if current_user.cannot 'destroy_employee'
     @employee.destroy
     respond_to do |format|
-      format.html { redirect_to employees_url, notice: @employee.table_name_to_show.concat(' fue eliminado satisfactoriamente.') }
+      format.html { redirect_to employees_url, success: @employee.table_name_to_show.concat(' fue eliminado satisfactoriamente.') }
       format.json { head :no_content }
       format.js   { render 'layouts/destroy' }
     end

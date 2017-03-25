@@ -32,7 +32,7 @@ class GgsController < ApplicationController
 
     respond_to do |format|
       if @gg.save
-        format.html { redirect_to ggs_url, notice: @gg.table_name_to_show.concat( ' fue creada satisfactoriamente.') }
+        format.html { redirect_to ggs_url, success: @gg.table_name_to_show.concat( ' fue creada satisfactoriamente.') }
         format.json { render :show, status: :created, location: @gg }
       else
         format.html { render :new }
@@ -46,7 +46,7 @@ class GgsController < ApplicationController
   def update
     respond_to do |format|
       if @gg.update(gg_params)
-        format.html { redirect_to ggs_url, notice: @gg.table_name_to_show.concat( ' fue actualizado satisfactoriamente.') }
+        format.html { redirect_to ggs_url, success: @gg.table_name_to_show.concat( ' fue actualizado satisfactoriamente.') }
         format.json { render :show, status: :ok, location: @gg }
       else
         format.html { render :edit }
@@ -60,7 +60,7 @@ class GgsController < ApplicationController
   def destroy
     @gg.destroy
     respond_to do |format|
-      format.html { redirect_to ggs_url, notice: 'Gg fue eliminado satisfactoriamente.' }
+      format.html { redirect_to ggs_url, success: 'Gg fue eliminado satisfactoriamente.' }
       format.json { head :no_content }
       format.js   { render 'layouts/destroy' }
     end

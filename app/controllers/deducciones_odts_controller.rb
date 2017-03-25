@@ -30,7 +30,7 @@ class DeduccionesOdtsController < ApplicationController
 
     respond_to do |format|
       if @deducciones_odt.save
-        format.html { redirect_to deducciones_odts_url, notice: 'Deducciones odt fue creada satisfactoriamente.' }
+        format.html { redirect_to deducciones_odts_url, success: 'Deducciones odt fue creada satisfactoriamente.' }
         format.json { render :show, status: :created, location: @deducciones_odt }
       else
         format.html { render :new }
@@ -45,7 +45,7 @@ class DeduccionesOdtsController < ApplicationController
     permission_denied and return  if current_user.cannot 'update_deduccion_odt'
     respond_to do |format|
       if @deducciones_odt.update(deducciones_odt_params)
-        format.html { redirect_to deducciones_odts_url, notice: 'Deducciones odt fue actualizado satisfactoriamente.' }
+        format.html { redirect_to deducciones_odts_url, success: 'Deducciones odt fue actualizado satisfactoriamente.' }
         format.json { render :show, status: :ok, location: @deducciones_odt }
       else
         format.html { render :edit }
@@ -60,7 +60,7 @@ class DeduccionesOdtsController < ApplicationController
     permission_denied and return  if current_user.cannot 'destroy_deduccion_odt'
     @deducciones_odt.destroy
     respond_to do |format|
-      format.html { redirect_to deducciones_odts_url, notice: 'Deducciones odt fue eliminado satisfactoriamente.' }
+      format.html { redirect_to deducciones_odts_url, success: 'Deducciones odt fue eliminado satisfactoriamente.' }
       format.json { head :no_content }
       format.js   { render 'layouts/destroy' }
     end

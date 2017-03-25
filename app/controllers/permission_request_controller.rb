@@ -31,8 +31,8 @@ class PermissionRequestController < ApplicationController
 		@permission_request = PermissionRequest.find params[:permission][:id]
 		@user = User.find_by id: params[:permission][:user_id]
 
-		redirect_to root_url, notice: 'Usuario no existe' and return if @user.nil?
-		redirect_to root_url, notice: "ERROR\n#{@user.record_name_to_show} no está autorizado" and return if @user.cannot @permission_request.action
+		redirect_to root_url, alert: "Error:\nUsuario no existe" and return if @user.nil?
+		redirect_to root_url, alert: "Error:\n#{@user.record_name_to_show} no está autorizado" and return if @user.cannot @permission_request.action
 
 		@permission_request.is_pending = true
 		unless @permission_request.action.starts_with?('create')
@@ -62,12 +62,12 @@ class PermissionRequestController < ApplicationController
 		end
 		def is_token_missing?
 			if @permission_request.nil?
-				redirect_to root_url, notice: 'Token no existe' and return
+				redirect_to root_url, alert: "Error:\nToken is missing (Dirección URL incorrecta)" and return
 			end
 		end
 		def is_already_approved_or_denied?
 			unless @permission_request.is_pending
-				redirect_to root_url, notice: 'Ya fue aprobado', date: @permission_request.approved_at and return
+				redirect_to root_url, info: 'Ya fue aprobado', date: @permission_request.approved_at and return
 			end
 		end
 		def get_users_who_can?(action)

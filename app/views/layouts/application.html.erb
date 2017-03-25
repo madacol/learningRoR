@@ -58,8 +58,18 @@
   <div class="container-fluid">
 
     <div class="row">
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+      <div class="alert alert-success hidden" role="alert">
+        <%= success %>
+      </div>
+      <div class="alert alert-info hidden" role="alert">
+        <%= info %>
+      </div>
+      <div class="alert alert-warning hidden" role="alert">
+        <%= warning %>
+      </div>
+      <div class="alert alert-danger hidden" role="alert">
+        <%= alert %>
+      </div>
     </div>
 
     <%= yield %>

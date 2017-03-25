@@ -56,11 +56,11 @@ class RazonSocialsController < ApplicationController
 
     respond_to do |format|
       if @razon_social.save
-        format.html { redirect_to razon_socials_url, notice: @razon_social.table_name_to_show.concat(' fue creada satisfactoriamente.') }
+        format.html { redirect_to razon_socials_url, success: @razon_social.table_name_to_show.concat(' fue creada satisfactoriamente.') }
         format.json { render :show, status: :created, location: @razon_social }
         format.js   { render :layout => false }
       else
-        format.html { redirect_to razon_socials_url, notice: 'Hubo un error' }
+        format.html { redirect_to razon_socials_url, success: 'Hubo un error' }
         format.json { render json: @razon_social.errors, status: :unprocessable_entity }
       end
     end
@@ -72,7 +72,7 @@ class RazonSocialsController < ApplicationController
     permission_denied and return  if current_user.cannot 'update_razon_social'
     respond_to do |format|
       if @razon_social.update(razon_social_params)
-        format.html { redirect_to razon_socials_url, notice: @razon_social.table_name_to_show.concat(' was successfully updated') }        
+        format.html { redirect_to razon_socials_url, success: @razon_social.table_name_to_show.concat(' was successfully updated') }        
         format.json { render :show, status: :ok, location: @razon_social }
       else
         format.html { render :edit }
@@ -87,7 +87,7 @@ class RazonSocialsController < ApplicationController
     permission_denied and return  if current_user.cannot 'destroy_razon_social'
     @razon_social.destroy
     respond_to do |format|
-      format.html { redirect_to razon_socials_url, notice: @razon_social.table_name_to_show+' fue eliminado satisfactoriamente.' }
+      format.html { redirect_to razon_socials_url, success: @razon_social.table_name_to_show+' fue eliminado satisfactoriamente.' }
       format.json { head :no_content }
       format.js   { render 'layouts/destroy' }
     end

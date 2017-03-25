@@ -44,7 +44,7 @@ class CierresController < ApplicationController
     end
     respond_to do |format|
       if @cierre.save
-        format.html { redirect_back days_account_pools_url(@cierre.account_id, 0), notice: 'Cierre was successfully created.' }
+        format.html { redirect_back days_account_pools_url(@cierre.account_id, 0), success: 'Cierre was successfully created.' }
         format.json { render :show, status: :created, location: @cierre }
       else
         format.html { render :new }
@@ -58,7 +58,7 @@ class CierresController < ApplicationController
   def update
     respond_to do |format|
       if @cierre.update(cierre_params)
-        format.html { redirect_to @cierre, notice: 'Cierre was successfully updated.' }
+        format.html { redirect_to @cierre, success: 'Cierre was successfully updated.' }
         format.json { render :show, status: :ok, location: @cierre }
       else
         format.html { render :edit }
@@ -72,7 +72,7 @@ class CierresController < ApplicationController
   def destroy
     @cierre.destroy
     respond_to do |format|
-      format.html { redirect_to cierres_url, notice: 'Cierre was successfully destroyed.' }
+      format.html { redirect_to cierres_url, success: 'Cierre was successfully destroyed.' }
       format.json { head :no_content }
       format.js   { render 'layouts/destroy' }
     end
