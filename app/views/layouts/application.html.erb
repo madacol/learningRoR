@@ -59,16 +59,16 @@
 
     <div class="row">
       <div class="alert alert-success hidden" role="alert">
-        <%= success %>
+        <%= success if defined? success %>
       </div>
       <div class="alert alert-info hidden" role="alert">
-        <%= info %>
+        <%= info if defined? info %>
       </div>
       <div class="alert alert-warning hidden" role="alert">
-        <%= warning %>
+        <%= warning if defined? warning %>
       </div>
       <div class="alert alert-danger hidden" role="alert">
-        <%= alert %>
+        <%= alert if defined? alert %>
       </div>
     </div>
 
