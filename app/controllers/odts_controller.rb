@@ -21,7 +21,25 @@ class OdtsController < ApplicationController
   def new
     @odt = Odt.new
   end
-
+  def modal
+    if params[:id] == '0' then
+      @odt = Odt.new
+      modal_id = "new_#{@odt.model_name.singular}"
+    else
+      @odt = Odt.find(params[:id])
+      modal_id = "edit_#{@odt.model_name.singular}_#{@odt.id}"
+    end
+    locals = {
+      :load_button => params[:button] != '0',
+      :load_form => params[:form] != '0',
+      :modal_id => modal_id,
+      :selector_href => request.path,
+      :form_to_render => 'form'
+    }
+    respond_to do |format|
+      format.js { render 'layouts/modal', :locals => locals }
+    end
+  end
   # GET /odts/1/edit
   def edit
   end
@@ -51,6 +69,7 @@ class OdtsController < ApplicationController
       if @odt.update(odt_params)
         format.html { redirect_to odts_url, success: @odt.table_name_to_show.concat(' fue actualizado satisfactoriamente.') }
         format.json { render :show, status: :ok, location: @odt }
+        format.js   { render 'layouts/update' }
       else
         format.html { render :edit }
         format.json { render json: @odt.errors, status: :unprocessable_entity }

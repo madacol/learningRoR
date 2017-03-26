@@ -1,10 +1,8 @@
 <p id="notice"><%= notice %></p>
 <h1><%= Odt.new.table_name_to_show %></h1>
 <p>
-  <%= render "layouts/modal_button", :btn_name => 'Nuevo Registro', :namespace_id => 'new_odt' %>
-  <%= render "layouts/modal", :@odt => @new_odt, :modal_title => 'Nuevo Registro', :namespace_id => 'new_odt' %>
-</p>
-<div class="table-responsive">
+  <%= link_to 'Nuevo Registro', modal_odts_url(0,1,1), :method => :get, :remote => true, :class => "btn btn-primary auto_load" %>
+<div>
   <table class="table table-sm table-hover table-striped table-bordered">
     <thead>
        <tr>
@@ -23,41 +21,9 @@
 
     <tbody>
       <% @odts.reverse.each do |odt| %>
-        <tr>
-          <td><%= odt.code %></td>
-          <td><%= odt.alias %></td>
-          <td><%= odt.description %></td>
-          <td><%= link_to odt.razon_social.record_name_to_show, odt.razon_social%></td>
-          <td><%= odt.monto_contrato %></td>
-          <td>
-              <% odt.comision_odts.each do |c| %>
-                <%= link_to c.employee.record_name_to_show, c.employee %><br>
-              <% end %>
-          </td>  
-          <td>
-              <% odt.comision_odts.each do |c| %>
-                <%= c.p_comision %><br>
-              <% end %>
-          </td>  
-          <td>
-            <% odt.deducciones_odts.each do |d| %>
-              <%= d.name %><br>
-            <% end %>
-          </td>  
-          <td>
-            <% odt.deducciones_odts.each do |d| %>
-              <%= d.p_gasto %><br>
-            <% end %>
-          </td>
-
-          <td>
-            <%= render "layouts/modal_button", :btn_name => 'Editar', :namespace_id => "edit_odt_#{odt.id}" %>
-            <%= render "layouts/modal", :@odt => odt, :modal_title => 'Editar', :namespace_id => "edit_odt_#{odt.id}" %>
-          </td>
-          <td><%= link_to '×', odt, method: :delete, data: { confirm: '¿Está seguro?' }, :remote => true, class: "close equis delete_row" %></td>
-        </tr>
+        <%= render 'row', :@odt => odt %>
       <% end %>
     </tbody>
   </table>
 </div>
-<%= render 'layouts/modal', :form_to_render => 'razon_socials/form', :@razon_social => RazonSocial.new, :modal_title => 'Añadir Razón social', :namespace_id => 'new_razon_social' %>
+<%= link_to '', modal_razon_socials_url(0,0,1), :method => :get, :remote => true, :class => " auto_load" %>

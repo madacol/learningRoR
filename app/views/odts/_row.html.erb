@@ -1,0 +1,29 @@
+<tr id="<%=@odt.id%>">
+  <td><%= @odt.code %></td>
+  <td><%= @odt.alias %></td>
+  <td><%= @odt.description %></td>
+  <td><%= link_to @odt.razon_social.record_name_to_show, @odt.razon_social%></td>
+  <td><%= @odt.monto_contrato %></td>
+  <td>
+      <% @odt.comision_odts.each do |c| %>
+        <%= link_to c.employee.record_name_to_show, c.employee %><br>
+      <% end %>
+  </td>  
+  <td>
+      <% @odt.comision_odts.each do |c| %>
+        <%= c.p_comision %><br>
+      <% end %>
+  </td>  
+  <td>
+    <% @odt.deducciones_odts.each do |d| %>
+      <%= d.name %><br>
+    <% end %>
+  </td>  
+  <td>
+    <% @odt.deducciones_odts.each do |d| %>
+      <%= d.p_gasto %><br>
+    <% end %>
+  </td>
+  <td><%= link_to 'Editar', modal_odts_url(@odt.id,1,1), :method => :get, :remote => true, :class => "btn btn-primary" %></td>
+  <td><%= link_to '×', @odt, :method => :delete, :data => { :confirm => '¿Está seguro?' }, :remote => true, :class => "delete_row close equis" %></td>
+</tr>
