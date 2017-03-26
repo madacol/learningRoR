@@ -3,19 +3,8 @@ class Pool < ActiveRecord::Base
 	has_one :permission_request, as: :auth_record, :dependent => :destroy
 	belongs_to :razon_social
 	belongs_to :account
-	enum forma_de_pago: [ "Efectivo", "Cheque", "Transferencia" ]
-
-	#Substitute card's ids in forma_de_pago, with card_name_to_show
-	def forma_de_pagos_for_collection
-		array = self.class.forma_de_pagos.collect do |k,v|
-			if is_integer?(k)
-				[k, PaymentCard.find(k).card_name_to_show]
-			else
-				[k,k]
-			end
-		end
-		Hash[array]
-	end
+	belongs_to :payment_method
+	
 	def table_name_to_show
 		return self.account.name
 	end

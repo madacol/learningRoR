@@ -28,10 +28,11 @@
             <a class="nav-link dropdown-toggle" role="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">OTROS</a>
             <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
               <a class="dropdown-item" href="/razon_socials"><%= RazonSocial.new.table_name_to_show %></a>
-              <a class="dropdown-item" href="/payment_cards">Tarjetas</a>
+              <a class="dropdown-item" href="/payment_methods">Métodos de pago</a>
               <a class="dropdown-item" href="/employees"><%= Employee.new.table_name_to_show %></a>
               <a class="dropdown-item" href="/inversions"><%= Inversion.new.table_name_to_show %></a>
               <a class="dropdown-item" href="/ggs"><%= Gg.new.table_name_to_show %></a>
+              <a class="dropdown-item" href="/accounts"><%= Account.new.table_name_to_show %></a>
             </div>
           </li>
         </ul>

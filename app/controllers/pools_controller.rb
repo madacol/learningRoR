@@ -33,7 +33,9 @@ class PoolsController < ApplicationController
     @new_pool = Pool.new
     @new_pool.account = account
     @new_pool.date_of = Date.today
-    @new_pool.forma_de_pago = "Efectivo"
+    if account.name == "Caja Chica" then
+      @new_pool.payment_method = PaymentMethod.where(:method => "Efectivo").find_by(:account_id => account_id)
+    end
     @cierre = Cierre.new
     @cierre.account = account
     render 'layouts/_pools_index'
@@ -55,7 +57,9 @@ class PoolsController < ApplicationController
       @pool = Pool.new
       @pool.account_id = params[:account_id]
       @pool.date_of = Date.today
-      @pool.forma_de_pago = "Efectivo"
+      if Account.find(@pool.account_id).name = "Caja Chica" then
+        @pool.payment_method = PaymentMethod.where(:method => "Efectivo").find_by(:account_id => @pool.account_id)
+      end
       modal_id = "new_#{@pool.model_name.singular}"
     else
       @pool = Pool.find(params[:id])
@@ -163,6 +167,6 @@ class PoolsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pool_params
-      params.require(:pool).permit(:category_id, :category_type, :monto, :monto_factura, :comprobante_type, :n_factura, :description, :razon_social_id, :date_of, :forma_de_pago, :forma_de_pago_nro, :receiver, :account_id)
+      params.require(:pool).permit(:category_id, :category_type, :monto, :monto_factura, :comprobante_type, :n_factura, :description, :razon_social_id, :date_of, :payment_method_id, :forma_de_pago_nro, :receiver, :account_id)
     end
 end

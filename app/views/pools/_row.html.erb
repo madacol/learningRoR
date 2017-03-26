@@ -8,7 +8,7 @@
   <td><%= number_with_delimiter @pool.monto, :delimiter => ".", :separator => "," %></td>
   <td><%= number_with_delimiter @pool.balance, :delimiter => ".", :separator => "," %></td>
   <td><%= @pool.receiver %></td>
-  <td data-toggle="tooltip" data-placement="left" title="<%= @pool.forma_de_pagos_for_collection[@pool.forma_de_pago] %>"><%= @pool.forma_de_pago_nro %></td>
+  <td data-toggle="tooltip" data-placement="left" title="<%= @pool.payment_method.record_name_to_show if @pool.payment_method %>"><%= @pool.forma_de_pago_nro %></td>
   <td><%= link_to 'Editar', modal_pools_url(@pool.id,1,1), :method => :get, :remote => true, :class => "btn btn-primary" %></td>
   <td><%= link_to '×', @pool, :method => :delete, :data => { :confirm => '¿Está seguro?' }, :remote => true, :class => "delete_row close equis" %></td>
 </tr>

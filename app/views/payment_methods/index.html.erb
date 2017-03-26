@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+<h1><%= PaymentMethod.new.table_name_to_show %></h1>
+<p>
+  <%= render "layouts/modal_button", :btn_name => 'Nuevo Registro', :namespace_id => 'new_payment_method' %>
+  <%= render "layouts/modal", :@payment_method => @new_payment_method, :modal_title => 'Nuevo Registro', :namespace_id => 'new_payment_method' %>
+</p>
+<div class="table-responsive">
+  <table class="table table-sm table-hover table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>Account</th>
+        <th>Method</th>
+        <th>Status</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @payment_methods.reverse.each do |payment_method| %>
+        <tr>
+          <td><%= payment_method.account.record_name_to_show %></td>
+          <td><%= payment_method.method %></td>
+          <td><%= payment_method.status %></td>
+          <td>
+            <%= render "layouts/modal_button", :btn_name => 'Editar', :namespace_id => "edit_payment_method_#{payment_method.id}" %>
+            <%= render "layouts/modal", :@payment_method => payment_method, :modal_title => 'Editar', :namespace_id => "edit_payment_method_#{payment_method.id}" %>
+          </td>
+          <td><%= link_to '×', payment_method, method: :delete, data: { confirm: '¿Está seguro?' }, :remote => true, class: "close equis delete_row" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

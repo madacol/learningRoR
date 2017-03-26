@@ -1,6 +1,5 @@
 <p id="notice"><%= notice %></p>
 <h1><%= @new_pool.table_name_to_show.titleize %></h1>
-<p>
   <div class="row">
     <div class="col-sm-2">
       <%= link_to 'Nuevo Registro', modal_pools_url(0,1,1,{:account_id => @new_pool.account_id}), :method => :get, :remote => true, :class => "btn btn-primary auto_load" %>
@@ -17,7 +16,6 @@
       </div>
     </div>
   </div>
-</p>
 <div class="table">
   <table id="main_table" class="table table-sm table-hover table-striped table-bordered">
     <thead>

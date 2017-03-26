@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170308000330) do
+ActiveRecord::Schema.define(version: 20170319165236) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "name",        limit: 255
@@ -224,6 +224,16 @@ ActiveRecord::Schema.define(version: 20170308000330) do
     t.datetime "updated_at",            null: false
   end
 
+  create_table "payment_methods", force: :cascade do |t|
+    t.integer  "account_id", limit: 4
+    t.string   "method",     limit: 255
+    t.integer  "status",     limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "payment_methods", ["account_id"], name: "index_payment_methods_on_account_id", using: :btree
+
   create_table "permission_requests", force: :cascade do |t|
     t.integer  "auth_record_id",     limit: 4
     t.string   "auth_record_type",   limit: 255
@@ -248,16 +258,17 @@ ActiveRecord::Schema.define(version: 20170308000330) do
     t.integer  "category_id",       limit: 4
     t.string   "category_type",     limit: 255
     t.date     "date_of"
-    t.integer  "forma_de_pago",     limit: 4
     t.string   "forma_de_pago_nro", limit: 255
     t.string   "receiver",          limit: 255
     t.decimal  "balance",                         precision: 15, scale: 2
     t.decimal  "monto_factura",                   precision: 15, scale: 2
     t.integer  "account_id",        limit: 4
+    t.integer  "payment_method_id", limit: 4
   end
 
   add_index "pools", ["account_id"], name: "index_pools_on_account_id", using: :btree
   add_index "pools", ["category_type", "category_id"], name: "index_pools_on_category_type_and_category_id", using: :btree
+  add_index "pools", ["payment_method_id"], name: "index_pools_on_payment_method_id", using: :btree
   add_index "pools", ["razon_social_id"], name: "index_pools_on_razon_social_id", using: :btree
 
   create_table "provincials", force: :cascade do |t|
@@ -343,7 +354,9 @@ ActiveRecord::Schema.define(version: 20170308000330) do
   add_foreign_key "is_allowed_tos", "actions"
   add_foreign_key "is_allowed_tos", "auth_groups"
   add_foreign_key "odts", "razon_socials"
+  add_foreign_key "payment_methods", "accounts"
   add_foreign_key "pools", "accounts"
+  add_foreign_key "pools", "payment_methods"
   add_foreign_key "pools", "razon_socials"
   add_foreign_key "users", "employees"
 end

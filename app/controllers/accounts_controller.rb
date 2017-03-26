@@ -5,6 +5,7 @@ class AccountsController < ApplicationController
   # GET /accounts.json
   def index
     @accounts = Account.all
+    @new_account = Account.new
   end
 
   # GET /accounts/1
@@ -25,10 +26,11 @@ class AccountsController < ApplicationController
   # POST /accounts.json
   def create
     @account = Account.new(account_params)
+    @new_account = Account.new
 
     respond_to do |format|
       if @account.save
-        format.html { redirect_to @account, notice: 'Account was successfully created.' }
+        format.html { redirect_to accounts_url, success: 'La cuenta fue creada satisfactoriamente.' }
         format.json { render :show, status: :created, location: @account }
       else
         format.html { render :new }
@@ -42,7 +44,7 @@ class AccountsController < ApplicationController
   def update
     respond_to do |format|
       if @account.update(account_params)
-        format.html { redirect_to @account, notice: 'Account was successfully updated.' }
+        format.html { redirect_to accounts_url, success: 'La cuenta fue actualizada satisfactoriamente.' }
         format.json { render :show, status: :ok, location: @account }
       else
         format.html { render :edit }
@@ -56,8 +58,9 @@ class AccountsController < ApplicationController
   def destroy
     @account.destroy
     respond_to do |format|
-      format.html { redirect_to accounts_url, notice: 'Account was successfully destroyed.' }
+      format.html { redirect_to accounts_url, success: 'La cuenta fue eliminada satisfactoriamente.' }
       format.json { head :no_content }
+      format.js   { render 'layouts/destroy' }
     end
   end
 

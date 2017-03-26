@@ -1,16 +1,12 @@
 Rails.application.routes.draw do
-  resources :accounts
+
   concern :get_modal do
     get 'modal/:id/:button/:form', action: 'modal', as: 'modal', on: :collection
   end
-
-  root "pools#days_index", :id => Account.first.id, :days => 0
+  
+  resources :payment_methods
+  resources :accounts
   resources :cierres
-  resources :payment_cards
-  resources :pools, concerns: :get_modal do
-    get 'account/:id', action: 'account_index', as: 'account', on: :collection
-    get 'account/:id/days/:days', action: 'days_index', as: 'days_account', on: :collection
-  end
   resources :auth_groups
   resources :employees, concerns: :get_modal
   resources :retenciones
@@ -20,6 +16,11 @@ Rails.application.routes.draw do
   resources :comision_odts
   resources :odts, concerns: :get_modal
   resources :razon_socials, concerns: :get_modal
+  resources :pools, concerns: :get_modal do
+    get 'account/:id', action: 'account_index', as: 'account', on: :collection
+    get 'account/:id/days/:days', action: 'days_index', as: 'days_account', on: :collection
+  end
+  root "pools#days_index", :id => Account.first.id, :days => 0
 
   devise_for :users, :controllers => { registrations: 'registrations' }
   get '/approve/:token', to: 'permission_request#approve'
@@ -27,7 +28,6 @@ Rails.application.routes.draw do
   get '/ask', to: 'permission_request#ask', as: :ask_permission
   post '/set_permission', to: 'permission_request#set_permission'
 
-  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
