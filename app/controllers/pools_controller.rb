@@ -129,7 +129,7 @@ class PoolsController < ApplicationController
       if are_saved.all?
         format.html { redirect_back pools_url, success: @pool.table_name_to_show.concat(' fue actualizado satisfactoriamente.') }
         format.json { render :show, status: :ok, location: @pool }
-        format.js { render :layout => false }
+        format.js   { render 'layouts/update' }
       else
         format.html { render :edit }
         format.json { render json: @pool.errors, status: :unprocessable_entity }
