@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     get 'account/:id', action: 'account_index', as: 'account', on: :collection
     get 'account/:id/days/:days', action: 'days_index', as: 'days_account', on: :collection
   end
-  root "pools#days_index", :id => Account.first.id, :days => 0
+  root "pools#days_index", :id => 1, :days => 0
 
   devise_for :users, :controllers => { registrations: 'registrations' }
   get '/approve/:token', to: 'permission_request#approve'
