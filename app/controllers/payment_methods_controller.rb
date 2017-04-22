@@ -6,6 +6,7 @@ class PaymentMethodsController < ApplicationController
   def index
     @payment_methods = PaymentMethod.all
     @new_payment_method = PaymentMethod.new
+    @new_payment_method.status="Activa"
   end
 
   # GET /payment_methods/1
@@ -26,7 +27,6 @@ class PaymentMethodsController < ApplicationController
   # POST /payment_methods.json
   def create
     @payment_method = PaymentMethod.new(payment_method_params)
-    @new_payment_method = PaymentMethod.new
 
     respond_to do |format|
       if @payment_method.save

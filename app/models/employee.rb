@@ -33,7 +33,7 @@ class Employee < ActiveRecord::Base
   end
 
 	def description
-		return nil
+		return "Préstamo de #{self.record_name_to_show}"
 	end
 	def category_name_to_show
 	'Préstamo'
