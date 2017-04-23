@@ -9,7 +9,7 @@
   <td><%= number_with_delimiter @pool.balance, :delimiter => ".", :separator => "," %></td>
   <td><%= @pool.receiver %></td>
   <td><%= @pool.forma_de_pago_nro %></td>
-  <td><%= @pool.payment_method %></td>
+  <td><%= @pool.payment_method.record_name_to_show %></td>
   <td><%= link_to 'Editar', modal_pools_url(@pool.id,1,1), :method => :get, :remote => true, :class => "btn btn-primary" %></td>
   <td><%= link_to '×', @pool, :method => :delete, :data => { :confirm => '¿Está seguro?' }, :remote => true, :class => "delete_row close equis" %></td>
 </tr>
