@@ -1,23 +1,21 @@
 <p id="notice"><%= notice %></p>
-<h1><%= @new_pool.table_name_to_show %></h1>
-<p>
+<h1><%= @new_pool.table_name_to_show.titleize %></h1>
   <div class="row">
     <div class="col-sm-2">
-      <%= link_to 'Nuevo Registro', "/#{@new_pool.model_name.plural}/modal/0/1/1", :method => :get, :remote => true, :class => "btn btn-primary auto_load" %>
+      <%= link_to 'Nuevo Registro', modal_pools_url(0,1,1,{:account_id => @new_pool.account_id}), :method => :get, :remote => true, :class => "btn btn-primary auto_load" %>
     </div>
     <div class="col-sm-6 pull-sm-right">
-      <%= render 'layouts/cierres_form', :cuenta =>  @new_pool.model_name.name %>
+      <%= render 'layouts/cierres_form', :cuenta =>  @new_pool.account_id %>
     </div>
     <div  class="col-sm-4">
       <div id="time_scope" class="btn-group" role="group">
-        <%= link_to "Hoy", "/#{@new_pool.model_name.plural}/days/0", :class => "btn btn-outline-primary #{'active' if current_page? "/#{@new_pool.model_name.plural}/days/0" or current_page? root_url }" %>
-        <%= link_to "7 días", "/#{@new_pool.model_name.plural}/days/7", :class => "btn btn-outline-primary #{'active' if current_page? "/#{@new_pool.model_name.plural}/days/7" }" %>
-        <%= link_to "30 días", "/#{@new_pool.model_name.plural}/days/30", :class => "btn btn-outline-primary #{'active' if current_page? "/#{@new_pool.model_name.plural}/days/30" }" %>
-        <%= link_to "Todos", "/#{@new_pool.model_name.plural}", :class => "btn btn-outline-primary #{'active' if current_page? "/#{@new_pool.model_name.plural}" }" %>
+        <%= link_to "Hoy", days_account_pools_url(@new_pool.account_id, 0), :class => "btn btn-outline-primary #{'active' if current_page? days_account_pools_url(@new_pool.account_id, 0) or current_page? root_url }" %>
+        <%= link_to "7 días", days_account_pools_url(@new_pool.account_id, 7), :class => "btn btn-outline-primary #{'active' if current_page? days_account_pools_url(@new_pool.account_id, 7) }" %>
+        <%= link_to "30 días", days_account_pools_url(@new_pool.account_id, 30), :class => "btn btn-outline-primary #{'active' if current_page? days_account_pools_url(@new_pool.account_id, 30) }" %>
+        <%= link_to "Todos", account_pools_url, :class => "btn btn-outline-primary #{'active' if current_page? account_pools_url }" %>
       </div>
     </div>
   </div>
-</p>
 <div class="table">
   <table id="main_table" class="table table-sm table-hover table-striped table-bordered">
     <thead>
@@ -27,10 +25,11 @@
         <th><%= RazonSocial.new.table_name_to_show %></th>
         <th>Descripción</th>
         <th>Categoría</th>
-        <th>Descripción</th>
+        <th>Descripción de la Categoria</th>
         <th>Monto</th>
         <th>Recibido por</th>
         <th>Recibo</th>
+        <th>Método de pago</th>
         <th>
           <button type="button" class="btn btn-success revertir">Invertir</button>
         </th>
@@ -39,7 +38,7 @@
     </thead>
     <tbody>
       <% @pools.reverse.each do |pool| %>
-        <%= render 'layouts/row_cuentas', :@pool => pool %>
+        <%= render 'row_cuentas', :@pool => pool %>
       <% end %>
     </tbody>
   </table>

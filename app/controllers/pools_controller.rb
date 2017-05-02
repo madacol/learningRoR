@@ -22,7 +22,11 @@ class PoolsController < ApplicationController
     @new_pool.date_of = Date.today
     @cierre = Cierre.new
     @cierre.account = account
-    render 'layouts/_pools_index'
+    if account == Account.first
+      render 'layouts/_pools_index'
+    else
+      render 'layouts/_cuentas_index'
+    end
   end
 
   # GET /pools/account/:id/days/:days
@@ -38,7 +42,11 @@ class PoolsController < ApplicationController
     end
     @cierre = Cierre.new
     @cierre.account = account
-    render 'layouts/_pools_index'
+    if account == Account.first
+      render 'layouts/_pools_index'
+    else
+      render 'layouts/_cuentas_index'
+    end
   end
 
   # GET /pools/1
