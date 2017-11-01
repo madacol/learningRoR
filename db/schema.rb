@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170319165236) do
+ActiveRecord::Schema.define(version: 20170818004127) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "name",        limit: 255
@@ -210,6 +210,8 @@ ActiveRecord::Schema.define(version: 20170319165236) do
     t.datetime "created_at",                                             null: false
     t.datetime "updated_at",                                             null: false
     t.string   "alias",           limit: 255
+    t.date     "end_date"
+    t.date     "start_date"
   end
 
   add_index "odts", ["code"], name: "index_odts_on_code", unique: true, using: :btree

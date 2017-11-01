@@ -97,6 +97,6 @@ class OdtsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def odt_params
-      params.require(:odt).permit(:code, :alias, :description, :razon_social_id, :monto_contrato, comision_odts_attributes: [:id, :p_comision, :employee_id, :_destroy], deducciones_odts_attributes: [:id, :name, :p_gasto, :_destroy])
+      params.require(:odt).permit(:code, :alias, :description, :razon_social_id, :monto_contrato, :end_date, :start_date, comision_odts_attributes: [:id, :p_comision, :employee_id, :_destroy], deducciones_odts_attributes: [:id, :name, :p_gasto, :_destroy])
     end
 end
