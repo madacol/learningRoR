@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Bank:</strong>
+  <%= @payment_card.bank_id %>
+</p>
+
+<p>
+  <strong>Bank type:</strong>
+  <%= @payment_card.bank_type %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @payment_card.type %>
+</p>
+
+<p>
+  <strong>Last digits:</strong>
+  <%= @payment_card.last_digits %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @payment_card.status %>
+</p>
+
+<%= link_to 'Edit', edit_payment_card_path(@payment_card) %> |
+<%= link_to 'Back', payment_cards_path %>

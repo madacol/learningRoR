@@ -1,0 +1,2 @@
+module MercantilsHelper
+end
